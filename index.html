@@ -235,15 +235,89 @@
         </div>
 
         <div class="bg-obsPanel border border-obsBorder rounded-2xl p-6 space-y-3">
-          <h2 class="font-mono text-sm font-bold text-white uppercase tracking-wider">Estrutura do Manual</h2>
-          <ul class="space-y-2 text-sm text-slate-300">
-            <li class="flex items-start gap-2"><span class="font-mono text-emerald-400">01</span><span><strong>Catálogo Parte 1 (Vol. 1)</strong> — 37 nodes das categorias [INP], [GEN], [COL] e [FIL] com portas tipadas e notas de uso.</span></li>
-            <li class="flex items-start gap-2"><span class="font-mono text-emerald-400">02</span><span><strong>Catálogo Parte 2 (Vol. 1)</strong> — 36 nodes das categorias [VEC], [UTI], [GEO], [VFX] e [OUT].</span></li>
-            <li class="flex items-start gap-2"><span class="font-mono text-cyan-400">03</span><span><strong>Anatomia & Coerção</strong> — zonas do node, regras de conexão entre tipos de pinos e simulador de portas.</span></li>
-            <li class="flex items-start gap-2"><span class="font-mono text-cyan-400">04</span><span><strong>Mapa de Caminhos</strong> — topologia do grafo, pares canônicos de encadeamento e fluxos por domínio.</span></li>
-            <li class="flex items-start gap-2"><span class="font-mono text-purple-300">05</span><span><strong>Receitas — 30 Fluxos (Vol. 2)</strong> — cadeias de encadeamento com mapeamento exato de pinos e dicas de calibração.</span></li>
-            <li class="flex items-start gap-2"><span class="font-mono text-amber-400">06</span><span><strong>Blueprints Aprimorados (Vol. 3)</strong> — os mesmos 30 padrões com topologia detalhada, parâmetros internos recomendados e variações.</span></li>
-          </ul>
+          <div class="flex items-center justify-between gap-3 flex-wrap">
+            <h2 class="font-mono text-sm font-bold text-white uppercase tracking-wider">Estrutura do Manual</h2>
+            <span class="font-mono text-[10px] text-slate-500">CLIQUE NUM TÓPICO PARA IR DIRETO →</span>
+          </div>
+          <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-3 pt-1">
+            <button onclick="switchSection('catalog')" class="topic-card group text-left bg-obsBase border border-obsBorder rounded-xl p-4 space-y-2 hover:bg-obsHover transition-all duration-200 hover:border-emerald-400/50">
+              <div class="flex items-center justify-between gap-2">
+                <span class="font-mono text-[10px] font-bold px-2 py-0.5 rounded bg-emerald-400/15 text-emerald-400 border border-emerald-400/30">01 · VOL. 1</span>
+                <span class="text-slate-500 group-hover:text-emerald-400 group-hover:translate-x-0.5 transition-all font-mono text-sm">→</span>
+              </div>
+              <h3 class="text-sm font-bold text-white">Catálogo Parte 1</h3>
+              <p class="text-[11px] text-slate-400 leading-relaxed"><span class="font-mono text-[10px] font-bold text-emerald-400">SERVE PARA:</span> consultar as fichas técnicas dos 37 nodes de entrada, geração, cor e filtro antes de montar o grafo.</p>
+              <p class="text-[11px] text-slate-500 leading-relaxed">Portas tipadas por cor · notas de uso · links diretos para as receitas que usam cada node.</p>
+              <div class="font-mono text-[10px] text-slate-500 pt-1.5 border-t border-obsDivider">37 NODES · 4 CATEGORIAS · INP GEN COL FIL</div>
+            </button>
+            <button onclick="switchSection('catalog2')" class="topic-card group text-left bg-obsBase border border-obsBorder rounded-xl p-4 space-y-2 hover:bg-obsHover transition-all duration-200 hover:border-emerald-400/50">
+              <div class="flex items-center justify-between gap-2">
+                <span class="font-mono text-[10px] font-bold px-2 py-0.5 rounded bg-emerald-400/15 text-emerald-400 border border-emerald-400/30">02 · VOL. 1</span>
+                <span class="text-slate-500 group-hover:text-emerald-400 group-hover:translate-x-0.5 transition-all font-mono text-sm">→</span>
+              </div>
+              <h3 class="text-sm font-bold text-white">Catálogo Parte 2</h3>
+              <p class="text-[11px] text-slate-400 leading-relaxed"><span class="font-mono text-[10px] font-bold text-emerald-400">SERVE PARA:</span> consultar os 36 nodes de vetor, utilidades, geometria, VFX e as saídas finais do grafo.</p>
+              <p class="text-[11px] text-slate-500 leading-relaxed">Portas tipadas por cor · notas de uso · links diretos para os blueprints que usam cada node.</p>
+              <div class="font-mono text-[10px] text-slate-500 pt-1.5 border-t border-obsDivider">36 NODES · 5 CATEGORIAS · VEC UTI GEO VFX OUT</div>
+            </button>
+            <button onclick="switchSection('anatomy')" class="topic-card group text-left bg-obsBase border border-obsBorder rounded-xl p-4 space-y-2 hover:bg-obsHover transition-all duration-200 hover:border-purple-400/50">
+              <div class="flex items-center justify-between gap-2">
+                <span class="font-mono text-[10px] font-bold px-2 py-0.5 rounded bg-purple-400/15 text-purple-400 border border-purple-400/30">03 · VOL. 2</span>
+                <span class="text-slate-500 group-hover:text-purple-400 group-hover:translate-x-0.5 transition-all font-mono text-sm">→</span>
+              </div>
+              <h3 class="text-sm font-bold text-white">Anatomia & Coerção</h3>
+              <p class="text-[11px] text-slate-400 leading-relaxed"><span class="font-mono text-[10px] font-bold text-purple-400">SERVE PARA:</span> entender como um node funciona por dentro e quais portas podem se conectar entre si.</p>
+              <p class="text-[11px] text-slate-500 leading-relaxed">Zonas do node · regras de coerção de tipos · simulador de portas interativo.</p>
+              <div class="font-mono text-[10px] text-slate-500 pt-1.5 border-t border-obsDivider">4 ESTÁGIOS · 5 TIPOS DE PINO</div>
+            </button>
+            <button onclick="switchSection('topology')" class="topic-card group text-left bg-obsBase border border-obsBorder rounded-xl p-4 space-y-2 hover:bg-obsHover transition-all duration-200 hover:border-cyan-400/50">
+              <div class="flex items-center justify-between gap-2">
+                <span class="font-mono text-[10px] font-bold px-2 py-0.5 rounded bg-cyan-400/15 text-cyan-400 border border-cyan-400/30">04 · VOL. 2</span>
+                <span class="text-slate-500 group-hover:text-cyan-400 group-hover:translate-x-0.5 transition-all font-mono text-sm">→</span>
+              </div>
+              <h3 class="text-sm font-bold text-white">Mapa de Caminhos</h3>
+              <p class="text-[11px] text-slate-400 leading-relaxed"><span class="font-mono text-[10px] font-bold text-cyan-400">SERVE PARA:</span> planejar o caminho dos dados do input ao output antes de construir o grafo.</p>
+              <p class="text-[11px] text-slate-500 leading-relaxed">Topologia do grafo · pares canônicos de encadeamento · fluxos por domínio.</p>
+              <div class="font-mono text-[10px] text-slate-500 pt-1.5 border-t border-obsDivider">TOPOLOGIA · PARES CANÔNICOS · FLUXOS</div>
+            </button>
+            <button onclick="switchSection('recipes')" class="topic-card group text-left bg-obsBase border border-obsBorder rounded-xl p-4 space-y-2 hover:bg-obsHover transition-all duration-200 hover:border-purple-400/50">
+              <div class="flex items-center justify-between gap-2">
+                <span class="font-mono text-[10px] font-bold px-2 py-0.5 rounded bg-purple-400/15 text-purple-400 border border-purple-400/30">05 · VOL. 2</span>
+                <span class="text-slate-500 group-hover:text-purple-400 group-hover:translate-x-0.5 transition-all font-mono text-sm">→</span>
+              </div>
+              <h3 class="text-sm font-bold text-white">Receitas — 30 Fluxos</h3>
+              <p class="text-[11px] text-slate-400 leading-relaxed"><span class="font-mono text-[10px] font-bold text-purple-400">SERVE PARA:</span> copiar cadeias prontas de encadeamento com mapeamento exato de pinos e dicas de calibração.</p>
+              <p class="text-[11px] text-slate-500 leading-relaxed">Diagrama de encadeamento · utilidade técnica · filtros por bloco e busca · links para os nodes.</p>
+              <div class="font-mono text-[10px] text-slate-500 pt-1.5 border-t border-obsDivider">30 RECEITAS · 6 BLOCOS TEMÁTICOS</div>
+            </button>
+            <button onclick="switchSection('blueprints')" class="topic-card group text-left bg-obsBase border border-obsBorder rounded-xl p-4 space-y-2 hover:bg-obsHover transition-all duration-200 hover:border-amber-400/50">
+              <div class="flex items-center justify-between gap-2">
+                <span class="font-mono text-[10px] font-bold px-2 py-0.5 rounded bg-amber-400/15 text-amber-400 border border-amber-400/30">06 · VOL. 3</span>
+                <span class="text-slate-500 group-hover:text-amber-400 group-hover:translate-x-0.5 transition-all font-mono text-sm">→</span>
+              </div>
+              <h3 class="text-sm font-bold text-white">Blueprints Aprimorados</h3>
+              <p class="text-[11px] text-slate-400 leading-relaxed"><span class="font-mono text-[10px] font-bold text-amber-400">SERVE PARA:</span> refinar os mesmos 30 padrões com parâmetros internos recomendados e variações avançadas.</p>
+              <p class="text-[11px] text-slate-500 leading-relaxed">Topologia detalhada · parâmetros de calibração · dificuldade · variações · links para os nodes.</p>
+              <div class="font-mono text-[10px] text-slate-500 pt-1.5 border-t border-obsDivider">30 BLUEPRINTS · 3 NÍVEIS DE DIFICULDADE</div>
+            </button>
+          </div>
+          <div class="pt-3 border-t border-obsDivider space-y-2">
+            <div class="font-mono text-[10px] uppercase text-slate-500 font-bold">Como usar este manual</div>
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+              <button onclick="switchSection('anatomy')" class="group text-left bg-obsBase border border-obsBorder rounded-xl p-3.5 hover:border-purple-500/50 hover:bg-obsHover transition-all duration-200">
+                <div class="flex items-center gap-2 mb-1"><span class="font-mono text-[10px] font-bold text-purple-400">PASSO 1 · APRENDER</span><span class="text-slate-500 group-hover:text-purple-300 transition-all font-mono text-xs ml-auto">→</span></div>
+                <p class="text-[11px] text-slate-400 leading-relaxed">Entenda zonas do node e regras de portas na <strong class="text-slate-200">Anatomia & Coerção</strong>.</p>
+              </button>
+              <button onclick="switchSection('catalog')" class="group text-left bg-obsBase border border-obsBorder rounded-xl p-3.5 hover:border-emerald-500/50 hover:bg-obsHover transition-all duration-200">
+                <div class="flex items-center gap-2 mb-1"><span class="font-mono text-[10px] font-bold text-emerald-400">PASSO 2 · CONSULTAR</span><span class="text-slate-500 group-hover:text-emerald-300 transition-all font-mono text-xs ml-auto">→</span></div>
+                <p class="text-[11px] text-slate-400 leading-relaxed">Verifique portas e usos de qualquer node nos <strong class="text-slate-200">Catálogos (73 nodes)</strong> — ou use <strong class="text-slate-200">Ctrl+K</strong>.</p>
+              </button>
+              <button onclick="switchSection('recipes')" class="group text-left bg-obsBase border border-obsBorder rounded-xl p-3.5 hover:border-amber-500/50 hover:bg-obsHover transition-all duration-200">
+                <div class="flex items-center gap-2 mb-1"><span class="font-mono text-[10px] font-bold text-amber-400">PASSO 3 · CONSTRUIR</span><span class="text-slate-500 group-hover:text-amber-300 transition-all font-mono text-xs ml-auto">→</span></div>
+                <p class="text-[11px] text-slate-400 leading-relaxed">Monte fluxos com as <strong class="text-slate-200">30 Receitas</strong> e refine nos <strong class="text-slate-200">30 Blueprints</strong>.</p>
+              </button>
+            </div>
+          </div>
         </div>
       </section>
 
@@ -264,6 +338,12 @@
                 Fichas técnicas com portas de entrada/saída tipadas por cor e notas de uso prático. Clique numa categoria para filtrar.
               </p>
             </div>
+              <div class="flex flex-wrap items-center gap-1.5 pt-1">
+                <span class="font-mono text-[10px] uppercase text-slate-500 font-bold mr-1">Seções relacionadas:</span>
+                <button onclick="switchSection('catalog2')" class="px-2.5 py-1 rounded-lg font-mono text-[11px] bg-obsBase text-slate-300 border border-obsBorder hover:border-emerald-400/50 hover:text-emerald-400 transition">Catálogo Parte 2</button>
+                <button onclick="switchSection('anatomy')" class="px-2.5 py-1 rounded-lg font-mono text-[11px] bg-obsBase text-slate-300 border border-obsBorder hover:border-purple-400/50 hover:text-purple-400 transition">Anatomia & Coerção</button>
+                <button onclick="switchSection('recipes')" class="px-2.5 py-1 rounded-lg font-mono text-[11px] bg-obsBase text-slate-300 border border-obsBorder hover:border-purple-400/50 hover:text-purple-400 transition">Receitas que usam estes nodes</button>
+              </div>
             <div class="bg-obsBase border border-obsBorder rounded-xl px-4 py-3 text-right shrink-0">
               <div class="text-xs font-mono text-slate-400">EXIBINDO</div>
               <div class="text-xl font-mono font-bold text-cyan-300"><span id="catalog1-visible-count">0</span> <span class="text-xs text-slate-500">NODES</span></div>
@@ -317,6 +397,12 @@
                 Fichas técnicas com portas de entrada/saída tipadas por cor e notas de uso prático. Clique numa categoria para filtrar.
               </p>
             </div>
+              <div class="flex flex-wrap items-center gap-1.5 pt-1">
+                <span class="font-mono text-[10px] uppercase text-slate-500 font-bold mr-1">Seções relacionadas:</span>
+                <button onclick="switchSection('catalog')" class="px-2.5 py-1 rounded-lg font-mono text-[11px] bg-obsBase text-slate-300 border border-obsBorder hover:border-emerald-400/50 hover:text-emerald-400 transition">Catálogo Parte 1</button>
+                <button onclick="switchSection('anatomy')" class="px-2.5 py-1 rounded-lg font-mono text-[11px] bg-obsBase text-slate-300 border border-obsBorder hover:border-purple-400/50 hover:text-purple-400 transition">Anatomia & Coerção</button>
+                <button onclick="switchSection('blueprints')" class="px-2.5 py-1 rounded-lg font-mono text-[11px] bg-obsBase text-slate-300 border border-obsBorder hover:border-amber-400/50 hover:text-amber-400 transition">Blueprints que usam estes nodes</button>
+              </div>
             <div class="bg-obsBase border border-obsBorder rounded-xl px-4 py-3 text-right shrink-0">
               <div class="text-xs font-mono text-slate-400">EXIBINDO</div>
               <div class="text-xl font-mono font-bold text-cyan-300"><span id="catalog2-visible-count">0</span> <span class="text-xs text-slate-500">NODES</span></div>
@@ -382,6 +468,12 @@
                 <button onclick="switchSection('recipes')" class="px-4 py-2.5 rounded-xl bg-purple-500 hover:bg-purple-400 text-white font-semibold text-xs sm:text-sm transition">
                   Abrir 30 Receitas Práticas →
                 </button>
+              </div>
+              <div class="flex flex-wrap items-center gap-1.5 pt-1">
+                <span class="font-mono text-[10px] uppercase text-slate-500 font-bold mr-1">Seções relacionadas:</span>
+                <button onclick="switchSection('catalog')" class="px-2.5 py-1 rounded-lg font-mono text-[11px] bg-obsBase text-slate-300 border border-obsBorder hover:border-emerald-400/50 hover:text-emerald-400 transition">Catálogo Parte 1</button>
+                <button onclick="switchSection('catalog2')" class="px-2.5 py-1 rounded-lg font-mono text-[11px] bg-obsBase text-slate-300 border border-obsBorder hover:border-emerald-400/50 hover:text-emerald-400 transition">Catálogo Parte 2</button>
+                <button onclick="switchSection('blueprints')" class="px-2.5 py-1 rounded-lg font-mono text-[11px] bg-obsBase text-slate-300 border border-obsBorder hover:border-amber-400/50 hover:text-amber-400 transition">Blueprints</button>
               </div>
             </div>
 
@@ -560,6 +652,13 @@
               Todo grafo na Prism flui da esquerda para a direita atravessando 4 estágios lógicos bem definidos.
             </p>
           </div>
+          <div class="flex flex-wrap items-center gap-1.5 pt-1">
+            <span class="font-mono text-[10px] uppercase text-slate-500 font-bold mr-1">Seções relacionadas:</span>
+            <button onclick="switchSection('anatomy')" class="px-2.5 py-1 rounded-lg font-mono text-[11px] bg-obsBase text-slate-300 border border-obsBorder hover:border-purple-400/50 hover:text-purple-400 transition">Anatomia & Coerção</button>
+            <button onclick="switchSection('catalog')" class="px-2.5 py-1 rounded-lg font-mono text-[11px] bg-obsBase text-slate-300 border border-obsBorder hover:border-emerald-400/50 hover:text-emerald-400 transition">Catálogo de Nodes</button>
+            <button onclick="switchSection('recipes')" class="px-2.5 py-1 rounded-lg font-mono text-[11px] bg-obsBase text-slate-300 border border-obsBorder hover:border-purple-400/50 hover:text-purple-400 transition">Receitas</button>
+            <button onclick="switchSection('blueprints')" class="px-2.5 py-1 rounded-lg font-mono text-[11px] bg-obsBase text-slate-300 border border-obsBorder hover:border-amber-400/50 hover:text-amber-400 transition">Blueprints</button>
+          </div>
 
           <!-- Pipeline Canônico de 4 Estágios -->
           <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
@@ -677,6 +776,12 @@
                 Cadeias completas de encadeamento organizadas em 6 domínios técnicos com mapeamento exato de pinos e dicas de calibração.
               </p>
             </div>
+              <div class="flex flex-wrap items-center gap-1.5 pt-1">
+                <span class="font-mono text-[10px] uppercase text-slate-500 font-bold mr-1">Seções relacionadas:</span>
+                <button onclick="switchSection('blueprints')" class="px-2.5 py-1 rounded-lg font-mono text-[11px] bg-obsBase text-slate-300 border border-obsBorder hover:border-amber-400/50 hover:text-amber-400 transition">Blueprints (versão detalhada)</button>
+                <button onclick="switchSection('catalog')" class="px-2.5 py-1 rounded-lg font-mono text-[11px] bg-obsBase text-slate-300 border border-obsBorder hover:border-emerald-400/50 hover:text-emerald-400 transition">Catálogo de Nodes</button>
+                <button onclick="switchSection('topology')" class="px-2.5 py-1 rounded-lg font-mono text-[11px] bg-obsBase text-slate-300 border border-obsBorder hover:border-cyan-400/50 hover:text-cyan-400 transition">Mapa de Caminhos</button>
+              </div>
             <div class="bg-obsBase border border-obsBorder rounded-xl px-4 py-3 text-right shrink-0">
               <div class="text-xs font-mono text-slate-400">EXIBINDO</div>
               <div class="text-xl font-mono font-bold text-purple-300"><span id="recipes-visible-count">30</span> <span class="text-xs text-slate-500">/ 30 RECEITAS</span></div>
@@ -742,6 +847,12 @@
             <p class="text-slate-300 text-xs sm:text-sm leading-relaxed">
               Biblioteca completa de padrões de encadeamento prontos para produção na Prism. Cada blueprint detalha a <strong>topologia exata de entrada/saída</strong>, os <strong>parâmetros internos recomendados</strong>, a <strong>utilidade técnica</strong> e variações avançadas de ajuste.
             </p>
+          </div>
+          <div class="flex flex-wrap items-center gap-1.5 pt-1">
+            <span class="font-mono text-[10px] uppercase text-slate-500 font-bold mr-1">Seções relacionadas:</span>
+            <button onclick="switchSection('recipes')" class="px-2.5 py-1 rounded-lg font-mono text-[11px] bg-obsBase text-slate-300 border border-obsBorder hover:border-purple-400/50 hover:text-purple-400 transition">Receitas (Vol. 2)</button>
+            <button onclick="switchSection('catalog')" class="px-2.5 py-1 rounded-lg font-mono text-[11px] bg-obsBase text-slate-300 border border-obsBorder hover:border-emerald-400/50 hover:text-emerald-400 transition">Catálogo de Nodes</button>
+            <button onclick="switchSection('topology')" class="px-2.5 py-1 rounded-lg font-mono text-[11px] bg-obsBase text-slate-300 border border-obsBorder hover:border-cyan-400/50 hover:text-cyan-400 transition">Mapa de Caminhos</button>
           </div>
 
           <div class="grid grid-cols-2 gap-3 shrink-0 lg:w-64">
@@ -1413,6 +1524,7 @@
                 ${chainHtml}
               </div>
             </div>
+            ${usedNodesChips(r)}
 
             <!-- Explicação Técnica & Dica de Calibração -->
             <div class="grid grid-cols-1 lg:grid-cols-12 gap-4 text-xs">
@@ -2219,6 +2331,7 @@ const BLOCKS_META = [
                 ${chainHtml}
               </div>
             </div>
+            ${usedNodesChips(r)}
 
             <!-- Detalhamento Técnico + Parâmetros Internos -->
             <div class="grid grid-cols-1 lg:grid-cols-12 gap-4 text-xs">
@@ -2294,7 +2407,7 @@ const BLOCKS_META = [
       resetBlueprintFilters();
       switchSection('blueprints');
       setTimeout(() => {
-        const target = document.getElementById(`recipe-card-${id}`);
+        const target = document.getElementById(`blueprint-card-${id}`);
         if (target) {
           if (typeof target.scrollIntoView === 'function') target.scrollIntoView({ behavior: 'smooth', block: 'center' });
           target.classList.add('ring-2', 'ring-amber-400', 'border-amber-400');
@@ -2325,6 +2438,94 @@ const BLOCKS_META = [
       return `<span class="inline-flex items-center gap-1.5 px-2 py-0.5 rounded bg-obsBase border border-obsBorder font-mono text-[10px] text-slate-300"><span class="w-2 h-2 rounded-full shrink-0" style="background-color: ${c}"></span>${label}</span>`;
     }
 
+    function normTxt(s) {
+      return String(s).normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase().trim();
+    }
+
+    function nodeSlugCandidates(raw) {
+      const s = String(raw).replace(/\[[^\]]*\]/g, ' ').replace(/\([^)]*\)/g, ' ');
+      return s.split(/\s*[+\/,&\u2794]\s*|\s+vs\s+|\s+with\s+/i).map(p => p.trim()).filter(Boolean);
+    }
+
+    const NODE_BY_NORM = (() => {
+      const m = {};
+      [...NODES_P1, ...NODES_P2].forEach(n => { m[normTxt(n.name)] = n; });
+      return m;
+    })();
+
+    function matchNodeSlug(raw) {
+      const hits = [];
+      nodeSlugCandidates(raw).forEach(p => {
+        const n = normTxt(p);
+        if (!n) return;
+        if (NODE_BY_NORM[n]) { hits.push(NODE_BY_NORM[n].slug); return; }
+        for (const key in NODE_BY_NORM) {
+          if ((key.startsWith(n) || n.startsWith(key)) && Math.abs(key.length - n.length) <= 3) {
+            hits.push(NODE_BY_NORM[key].slug); return;
+          }
+        }
+        for (const key in NODE_BY_NORM) {
+          const esc = key.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+          if (new RegExp('(^| )' + esc + '( |$)').test(n) || new RegExp('(^| )' + n.replace(/[.*+?^${}()|[\]\\]/g, '\\$&') + '( |$)').test(key)) {
+            hits.push(NODE_BY_NORM[key].slug); return;
+          }
+        }
+      });
+      return [...new Set(hits)];
+    }
+
+    const NODE_USAGE = (() => {
+      const map = {};
+      const add = (slug, kind, id) => {
+        if (!slug) return;
+        if (!map[slug]) map[slug] = { recipes: [], blueprints: [] };
+        const arr = kind === 'r' ? map[slug].recipes : map[slug].blueprints;
+        if (!arr.includes(id)) arr.push(id);
+      };
+      RECIPES_DATA.forEach(r => r.chain.forEach(c => matchNodeSlug(c.node).forEach(s => add(s, 'r', r.id))));
+      RECIPES_ENHANCED.forEach(r => r.chain.forEach(c => matchNodeSlug(c.node).forEach(s => add(s, 'b', r.id))));
+      return map;
+    })();
+
+    function linkifyUse(text) {
+      return String(text)
+        .replace(/Receita #(\d+)/g, '<button onclick="jumpToRecipe($1)" title="Ir para a Receita #$1" class="font-mono text-[10px] font-bold px-1.5 py-0.5 rounded bg-purple-500/15 text-purple-300 border border-purple-500/30 hover:bg-purple-500/30 transition">Receita #$1 \u2197</button>')
+        .replace(/Blueprint #(\d+)/g, '<button onclick="jumpToBlueprint($1)" title="Ir para o Blueprint #$1" class="font-mono text-[10px] font-bold px-1.5 py-0.5 rounded bg-amber-500/15 text-amber-300 border border-amber-500/30 hover:bg-amber-500/30 transition">Blueprint #$1 \u2197</button>');
+    }
+
+    function usageChips(slug) {
+      const u = NODE_USAGE[slug];
+      if (!u || (!u.recipes.length && !u.blueprints.length)) return '';
+      const rChips = u.recipes.slice().sort((a, b) => a - b).map(id =>
+        `<button onclick="jumpToRecipe(${id})" title="Abrir Receita #${String(id).padStart(2, '0')}" class="px-2 py-0.5 rounded font-mono text-[10px] font-semibold bg-purple-500/15 text-purple-300 border border-purple-500/30 hover:bg-purple-500/30 transition">Receita #${String(id).padStart(2, '0')}</button>`
+      ).join('');
+      const bChips = u.blueprints.slice().sort((a, b) => a - b).map(id =>
+        `<button onclick="jumpToBlueprint(${id})" title="Abrir Blueprint #${String(id).padStart(2, '0')}" class="px-2 py-0.5 rounded font-mono text-[10px] font-semibold bg-amber-500/15 text-amber-300 border border-amber-500/30 hover:bg-amber-500/30 transition">Blueprint #${String(id).padStart(2, '0')}</button>`
+      ).join('');
+      return `
+          <div class="flex flex-wrap items-center gap-1.5 pt-2 border-t border-obsDivider">
+            <span class="font-mono text-[10px] uppercase text-slate-500 font-bold shrink-0">Usado em:</span>
+            ${rChips}${bChips}
+          </div>`;
+    }
+
+    function usedNodesChips(r) {
+      const slugs = [...new Set(r.chain.flatMap(c => matchNodeSlug(c.node)))];
+      if (!slugs.length) return '';
+      const all = [...NODES_P1, ...NODES_P2];
+      const chips = slugs.map(s => {
+        const nd = all.find(x => x.slug === s);
+        if (!nd) return '';
+        const accent = NODE_CATS[nd.cat].accent;
+        return `<button onclick="jumpToNode('${s}')" title="Ir para a ficha do node ${nd.name}" class="inline-flex items-center gap-1 px-2 py-0.5 rounded font-mono text-[10px] font-semibold border transition hover:brightness-125" style="color:${accent};border-color:${accent}55;background:${accent}15">${nd.name}</button>`;
+      }).filter(Boolean).join('');
+      return `
+            <div class="flex flex-wrap items-center gap-1.5">
+              <span class="font-mono text-[10px] uppercase text-slate-500 font-bold shrink-0">Nodes utilizados:</span>
+              ${chips}
+            </div>`;
+    }
+
     function nodeCard(nd) {
       const cat = NODE_CATS[nd.cat];
       const pins = [...new Set([...nd.in.map(p => p[1]), ...nd.out.map(p => p[1])])].join(' ');
@@ -2351,8 +2552,9 @@ const BLOCKS_META = [
           </div>
           <div class="flex items-start gap-2 text-[11px] text-slate-400">
             <span class="font-mono text-amber-400 shrink-0">USO:</span>
-            <span class="leading-relaxed">${nd.use}</span>
+            <span class="leading-relaxed">${linkifyUse(nd.use)}</span>
           </div>
+          ${usageChips(nd.slug)}
         </article>`;
     }
 
