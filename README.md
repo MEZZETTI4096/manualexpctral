@@ -8,7 +8,7 @@ O manual unificado está publicado no GitHub Pages:
 
 **https://mezzetti4096.github.io/manualexpctral/**
 
-Um único arquivo navegável com 6 seções: Visão Geral · Catálogo de Nodes (90 nodes em 9 sessões por categoria, com template visual de portas e galeria de exemplos reais da interface) · Anatomia & Coerção · Mapa de Caminhos · 30 Receitas · 30 Blueprints Aprimorados.
+Um único arquivo navegável com 7 seções: Visão Geral (com guia rápido de cores de pinos e tags) · Catálogo Parte 1 (50 nodes) · Catálogo Parte 2 (40 nodes) · Anatomia & Coerção · Mapa de Caminhos · 30 Receitas · 30 Blueprints Aprimorados.
 
 Atalhos: `Ctrl+K` ou `/` abre a busca global (140 itens indexados) · `Exportar PDF (tudo)` gera o manual completo em PDF.
 

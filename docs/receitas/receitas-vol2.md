@@ -27,7 +27,7 @@ Cadeias completas de encadeamento organizadas em 6 domínios técnicos, com mape
 **Cadeia de encadeamento:**
 
 1. **Voronoi (Pedra) + Noise (Neve)** — OUT: Value _(escalar)_
-2. **Height Blend** — IN: Height A / Height B · OUT: Color & Height _(cor)_
+2. **Height Blend** — IN: Base / Blend / Height · OUT: Out & Height _(cor)_
 3. **Bump** — IN: Height · OUT: Normal _(vetor)_
 4. **Material Output** — IN: Base Color & Normal _(cor)_
 
@@ -89,7 +89,7 @@ Cadeias completas de encadeamento organizadas em 6 domínios técnicos, com mape
 
 1. **Image Texture (ORM)** — OUT: Color _(cor)_
 2. **Separate RGB** — IN: Color · OUT: R, G, B _(escalar)_
-3. **Material Output** — IN: Occlusion (R), Roughness (G), Metalness (B) _(escalar)_
+3. **Material Output** — IN: Occlusion (R), Roughness (G), Metallic (B) _(escalar)_
 
 **Utilidade técnica:** Otimiza memória de vídeo lendo um único arquivo RGB onde cada canal carrega uma propriedade física distinta do shader PBR.
 
@@ -120,7 +120,7 @@ Cadeias completas de encadeamento organizadas em 6 domínios técnicos, com mape
 
 1. **Image Texture** — OUT: Color _(cor)_
 2. **Posterize** — IN: In · OUT: Color _(cor)_
-3. **Gradient Map 4** — IN: In · OUT: Color _(cor)_
+3. **Gradient Map 4** — IN: In · OUT: Out _(cor)_
 4. **Material Output** — IN: Base Color _(cor)_
 
 **Utilidade técnica:** Quantiza gradientes contínuos em degraus tonais rígidos e remapeia os 4 níveis resultantes para uma paleta fechada estilo pixel art ou console retro.
@@ -198,7 +198,7 @@ Cadeias completas de encadeamento organizadas em 6 domínios técnicos, com mape
 
 1. **Time ➔ Mapping** — OUT: UV _(vetor)_
 2. **Noise** — IN: Coord · OUT: Value _(escalar)_
-3. **Directional Warp** — IN: Map (+ UV) · OUT: UV _(vetor)_
+3. **Directional Warp** — IN: Map (+ UV) · OUT: Color _(vetor)_
 4. **Image Texture** — IN: UV · OUT: Color _(cor)_
 
 **Utilidade técnica:** Desloca continuamente um campo de ruído ao longo do tempo para deformar as coordenadas UV de qualquer textura, simulando refração líquida ou ondas de calor.
@@ -213,7 +213,7 @@ Cadeias completas de encadeamento organizadas em 6 domínios técnicos, com mape
 
 1. **UV (UV) + Viewport (Aspect)** — OUT: Vector/Scalar _(vetor)_
 2. **Math [Multiply]** — IN: A / B · OUT: Value _(escalar)_
-3. **Dots / Checker** — IN: UV · OUT: Value _(escalar)_
+3. **Dots / Checker** — IN: Coord · OUT: Value _(escalar)_
 
 **Utilidade técnica:** Compensa a razão de aspecto da janela atual sobre as coordenadas UV para impedir que círculos, pontos e grades fiquem ovalados em telas widescreen ou mobile.
 
@@ -255,8 +255,8 @@ Cadeias completas de encadeamento organizadas em 6 domínios técnicos, com mape
 
 **Cadeia de encadeamento:**
 
-1. **UV ➔ Directional Warp (+ Noise)** — OUT: UV _(vetor)_
-2. **Wave** — IN: UV · OUT: Value _(escalar)_
+1. **UV ➔ Directional Warp (+ Noise)** — OUT: Color _(vetor)_
+2. **Wave** — IN: Coord · OUT: Value _(escalar)_
 3. **Color Ramp** — IN: Fac · OUT: Color _(cor)_
 4. **Material Output** — IN: Base Color _(cor)_
 
@@ -273,7 +273,7 @@ Cadeias completas de encadeamento organizadas em 6 domínios técnicos, com mape
 **Cadeia de encadeamento:**
 
 1. **UV** — OUT: UV _(vetor)_
-2. **Audio Input** — IN: U · OUT: Spectrum _(escalar)_
+2. **Audio Input** — OUT: Spectrum _(escalar)_
 3. **Step** — IN: In · OUT: Value _(escalar)_
 4. **Color Ramp** — IN: Fac · OUT: Color _(cor)_
 5. **Material Output** — IN: Emissive _(cor)_
@@ -408,7 +408,7 @@ Cadeias completas de encadeamento organizadas em 6 domínios técnicos, com mape
 
 1. **Particle ➔ Emitter ➔ Motion** — OUT: Position _(vetor)_
 2. **Turbulence** — IN: Position · OUT: Position _(vetor)_
-3. **Color over Life + Fade + Sprite** — OUT: Color / Opacity / Mask _(cor)_
+3. **Color over Life + Fade + Sprite** — OUT: Color / Opacity _(cor)_
 4. **VFX Output** — IN: Position, Color, Opacity, Sprite _(vetor)_
 
 **Utilidade técnica:** Pipeline completo de combustão onde partículas sobem a partir do emissor, ganham movimento orgânico via Turbulence, mudam de cor ao esfriar e somem suavemente.
@@ -422,8 +422,8 @@ Cadeias completas de encadeamento organizadas em 6 domínios técnicos, com mape
 **Cadeia de encadeamento:**
 
 1. **Motion (Position) + Particle (Time s)** — OUT: Vector/Scalar _(vetor)_
-2. **Vortex** — IN: Position / Time s · OUT: Position _(vetor)_
-3. **Size over Life + Sprite** — OUT: Size / Mask _(escalar)_
+2. **Vortex (variante VFX)** — IN: Position / Time (s) · OUT: Position _(vetor)_
+3. **Size over Life + Sprite** — OUT: Size _(escalar)_
 4. **VFX Output** — IN: Position, Size, Sprite _(vetor)_
 
 **Utilidade técnica:** Aplica força rotacional contínua ao redor de um eixo para girar partículas em redemoinho, ideal para vórtices de energia, feitiços ou tempestades.
@@ -437,7 +437,7 @@ Cadeias completas de encadeamento organizadas em 6 domínios técnicos, com mape
 **Cadeia de encadeamento:**
 
 1. **Emitter (Origin) + Particle (Age 0-1)** — OUT: Vector/Scalar _(vetor)_
-2. **Attractor** — IN: Position / Age 0-1 · OUT: Position _(vetor)_
+2. **Attractor (variante VFX)** — IN: Position / Age 0-1 · OUT: Position _(vetor)_
 3. **Fade (Opacity) + VFX Output** — IN: Position / Opacity _(vetor)_
 
 **Utilidade técnica:** Puxa partículas nascidas em uma esfera externa em direção a um ponto focal central conforme envelhecem, criando efeitos de implosão ou carregamento de poder.

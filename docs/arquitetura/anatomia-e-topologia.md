@@ -16,7 +16,7 @@
 
 ### 3. Portas de Entrada (Inputs — Esquerda)
 
-`RECEPTORES DE SINAL` — Recebem dados vindos de nodes anteriores. A cor do círculo indica o tipo esperado: Laranja (Escalar), Ciano (Vetor), Roxo (Cor), Turquesa (Geometria) e Menta (Instâncias).
+`RECEPTORES DE SINAL` — Recebem dados vindos de nodes anteriores. A cor do círculo indica o tipo esperado: Laranja (Escalar), Ciano (Vetor), Roxo (Cor), Turquesa (Geometria e Instâncias).
 
 > **Dica:** Quando desconectados, os inputs assumem o valor padrão configurado nos parâmetros internos do node.
 

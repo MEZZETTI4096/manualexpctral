@@ -16,7 +16,7 @@ Biblioteca de padrões de encadeamento prontos para produção: topologia exata 
 2. **Math [Add]** — IN: A / B · OUT: Value _(escalar)_
 3. **Edge Wear** — IN: Height · OUT: Value _(escalar)_
 4. **Mix + Invert** — IN: Fac / In · OUT: Color _(cor)_
-5. **Material Output** — IN: Base Color, Metalness & Roughness _(cor)_
+5. **Material Output** — IN: Base Color, Metallic & Roughness _(cor)_
 
 **Utilidade & comportamento no grafo:** Calcula a curvatura convexa do relevo combinado para gerar uma máscara de desgaste físico nas quinas. Onde a tinta descasca (Value = 1.0), o metal subjacente aparece e a rugosidade cai.
 
@@ -35,7 +35,7 @@ Biblioteca de padrões de encadeamento prontos para produção: topologia exata 
 **Topologia de encadeamento:**
 
 1. **Voronoi (Pedra) + Noise (Neve)** — OUT: Value _(escalar)_
-2. **Height Blend** — IN: A, B, Height A, Height B · OUT: Color, Height & Mask _(cor)_
+2. **Height Blend** — IN: Base, Blend, Height · OUT: Out & Height _(cor)_
 3. **Bump** — IN: Height · OUT: Normal _(vetor)_
 4. **Material Output** — IN: Base Color, Normal & Roughness _(cor)_
 
@@ -43,7 +43,7 @@ Biblioteca de padrões de encadeamento prontos para produção: topologia exata 
 
 **Parâmetros & calibração recomendada:**
 
-- Height Blend: Use a saída Mask para controlar também a transição de Roughness entre pedra úmida e neve.
+- Height Blend: Use a saída Out para controlar também a transição de Roughness entre pedra úmida e neve.
 - Bump: Conecte a saída Height combinada do Height Blend para manter a continuidade das normais.
 
 ### Blueprint #03 — Sombreamento de Cavidades & Sujeira (Micro-AO)
@@ -117,7 +117,7 @@ Biblioteca de padrões de encadeamento prontos para produção: topologia exata 
 
 1. **Image Texture (Mapa ORM)** — OUT: Color _(cor)_
 2. **Separate RGB** — IN: Color · OUT: R, G, B _(escalar)_
-3. **Material Output** — IN: Occlusion (R), Roughness (G), Metalness (B) _(escalar)_
+3. **Material Output** — IN: Occlusion (R), Roughness (G), Metallic (B) _(escalar)_
 
 **Utilidade & comportamento no grafo:** Reduz o consumo de memória de vídeo em até 66% ao decodificar três mapas PBR em escala de cinza a partir de um único arquivo RGB.
 
@@ -158,7 +158,7 @@ Biblioteca de padrões de encadeamento prontos para produção: topologia exata 
 
 1. **Image Texture** — OUT: Color _(cor)_
 2. **Posterize** — IN: In · OUT: Color _(cor)_
-3. **Gradient Map 4** — IN: In · OUT: Color _(cor)_
+3. **Gradient Map 4** — IN: In · OUT: Out _(cor)_
 4. **Material Output** — IN: Base Color _(cor)_
 
 **Utilidade & comportamento no grafo:** Transforma texturas fotográficas ou gradientes suaves em arte estilizada com bandas tonais discretas estilo pixel art ou console 16/64-bit.
@@ -256,7 +256,7 @@ Biblioteca de padrões de encadeamento prontos para produção: topologia exata 
 
 1. **Time ➔ Mapping** — OUT: UV _(vetor)_
 2. **Noise** — IN: Coord · OUT: Value _(escalar)_
-3. **Directional Warp** — IN: UV / Map · OUT: UV _(vetor)_
+3. **Directional Warp** — IN: UV / Map · OUT: Color _(vetor)_
 4. **Image Texture** — IN: UV · OUT: Color _(cor)_
 
 **Utilidade & comportamento no grafo:** Desloca um campo de ruído no tempo e o injeta no Directional Warp para ondular qualquer textura ou padrão, simulando refração na água ou ar quente.
@@ -275,7 +275,7 @@ Biblioteca de padrões de encadeamento prontos para produção: topologia exata 
 
 1. **UV (UV) + Viewport (Aspect)** — OUT: Vector/Scalar _(vetor)_
 2. **Math [Multiply]** — IN: A / B · OUT: Value _(escalar)_
-3. **Dots / Checker / Brick** — IN: UV · OUT: Value _(escalar)_
+3. **Dots / Checker / Brick** — IN: Coord · OUT: Value _(escalar)_
 
 **Utilidade & comportamento no grafo:** Multiplica o eixo horizontal das coordenadas UV pela razão de aspecto dinâmica da janela (Viewport), garantindo círculos e quadrados perfeitos em qualquer resolução.
 
@@ -329,8 +329,8 @@ Biblioteca de padrões de encadeamento prontos para produção: topologia exata 
 
 **Topologia de encadeamento:**
 
-1. **UV ➔ Directional Warp (+ Noise)** — OUT: UV _(vetor)_
-2. **Wave** — IN: UV · OUT: Value _(escalar)_
+1. **UV ➔ Directional Warp (+ Noise)** — OUT: Color _(vetor)_
+2. **Wave** — IN: Coord · OUT: Value _(escalar)_
 3. **Color Ramp** — IN: Fac · OUT: Color _(cor)_
 4. **Material Output** — IN: Base Color _(cor)_
 
@@ -351,7 +351,7 @@ Biblioteca de padrões de encadeamento prontos para produção: topologia exata 
 **Topologia de encadeamento:**
 
 1. **UV** — OUT: UV _(vetor)_
-2. **Audio Input** — IN: U · OUT: Spectrum _(escalar)_
+2. **Audio Input** — OUT: Spectrum _(escalar)_
 3. **Step** — IN: In · OUT: Value _(escalar)_
 4. **Color Ramp** — IN: Fac · OUT: Color _(cor)_
 5. **Material Output** — IN: Emissive _(cor)_
@@ -522,7 +522,7 @@ Biblioteca de padrões de encadeamento prontos para produção: topologia exata 
 
 1. **Particle ➔ Emitter ➔ Motion** — OUT: Position _(vetor)_
 2. **Turbulence** — IN: Position · OUT: Position _(vetor)_
-3. **Color over Life + Fade + Sprite** — OUT: Color / Opacity / Mask _(cor)_
+3. **Color over Life + Fade + Sprite** — OUT: Color / Opacity _(cor)_
 4. **VFX Output** — IN: Position, Color, Opacity, Sprite _(vetor)_
 
 **Utilidade & comportamento no grafo:** Controla todo o ciclo de vida das partículas desde o lançamento no Emitter, adicionando ondulação caótica via Turbulence e resfriamento gradual de cor.
@@ -540,8 +540,8 @@ Biblioteca de padrões de encadeamento prontos para produção: topologia exata 
 **Topologia de encadeamento:**
 
 1. **Motion (Position) + Particle (Time s)** — OUT: Vector/Scalar _(vetor)_
-2. **Vortex** — IN: Position / Time s · OUT: Position _(vetor)_
-3. **Size over Life + Sprite** — OUT: Size / Mask _(escalar)_
+2. **Vortex (variante VFX)** — IN: Position / Time (s) · OUT: Position _(vetor)_
+3. **Size over Life + Sprite** — OUT: Size _(escalar)_
 4. **VFX Output** — IN: Position, Size, Sprite _(vetor)_
 
 **Utilidade & comportamento no grafo:** Aplica um campo de força rotacional para criar portais arcanos, vórtices de energia, espirais de fogo ou tempestades de poeira.
@@ -559,7 +559,7 @@ Biblioteca de padrões de encadeamento prontos para produção: topologia exata 
 **Topologia de encadeamento:**
 
 1. **Emitter (Origin) + Particle (Age 0-1)** — OUT: Vector/Scalar _(vetor)_
-2. **Attractor** — IN: Position / Age 0-1 · OUT: Position _(vetor)_
+2. **Attractor (variante VFX)** — IN: Position / Age 0-1 · OUT: Position _(vetor)_
 3. **Fade (Opacity) + VFX Output** — IN: Position / Opacity _(vetor)_
 
 **Utilidade & comportamento no grafo:** Cria efeitos de implosão, coleta de energia ou carregamento de magia puxando partículas periféricas para o centro.
