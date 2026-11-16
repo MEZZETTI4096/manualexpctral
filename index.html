@@ -105,7 +105,7 @@
           <span class="font-mono font-bold text-sm tracking-tight text-white">PRISM // MANUAL COMPLETO</span>
           <span class="text-[10px] font-mono px-1.5 py-0.5 rounded bg-cyan-500/15 text-cyan-300 border border-cyan-500/30">OBSIDIAN V3.5</span>
         </div>
-        <p class="text-[11px] text-slate-400">Vol. 1: Nodes • Vol. 2: Topologia • Vol. 3: Blueprints</p>
+        <p class="text-[11px] text-slate-400">Vol. 1: Nodes • Vol. 2: Topologia • Vol. 3: Fluxos</p>
 
         <!-- Barra de Busca Rápida (Atalho '/') -->
         <div class="mt-3 relative">
@@ -116,7 +116,7 @@
 
         <!-- Barra de Busca dos Blueprints Aprimorados (Vol. 3) -->
         <div class="mt-2 relative">
-          <input id="blueprint-search" type="text" placeholder="Buscar blueprint... (/)"
+          <input id="blueprint-search" type="text" placeholder="Buscar fluxo... (/)"
                  class="w-full bg-obsBase border border-obsBorder focus:border-amber-400 rounded-lg pl-3 pr-7 py-1.5 text-xs font-mono text-slate-200 placeholder-slate-500 outline-none transition" />
           <span class="absolute right-2.5 top-1.5 text-[10px] font-mono text-slate-500 border border-obsBorder rounded px-1">/</span>
         </div>
@@ -145,7 +145,7 @@
           <span class="text-[10px] font-mono text-amber-400">30</span>
         </button>
         <button onclick="switchSection('blueprints')" id="btn-sec-blueprints" class="sec-nav-btn w-full flex items-center justify-between px-3 py-2 rounded-lg text-xs font-medium text-slate-300 hover:bg-obsHover transition">
-          <span>6. Blueprints Aprimorados</span>
+          <span>6. Fluxos (Blueprints)</span>
           <span class="text-[10px] font-mono text-amber-400">V3 • 30</span>
         </button>
       </nav>
@@ -164,7 +164,7 @@
           <span class="text-emerald-400">90 nodes • 60/60 ✓</span>
         </div>
         <div class="text-[10px] text-slate-500">
-          Vol. 1: 90 Nodes • Vol. 2: Topologia & 30 Receitas • Vol. 3: 30 Blueprints
+          Vol. 1: 90 Nodes • Vol. 2: Topologia & 30 Receitas • Vol. 3: 30 Fluxos
         </div>
       </div>
     </aside>
@@ -186,7 +186,7 @@
               Manual Técnico Prism — <span class="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-purple-400 to-amber-400">Edição Unificada</span>
             </h1>
             <p class="text-slate-300 text-sm sm:text-base leading-relaxed mb-6">
-              Referência completa em um único arquivo: a <strong>arquitetura nodal e a coerção de portas</strong>, o <strong>catálogo técnico dos 90 nodes</strong> nas <strong>9 categorias funcionais</strong>, o <strong>mapa de caminhos</strong> e as <strong>60 receitas/blueprints</strong> de produção — 30 receitas práticas (Vol. 2) e o catálogo aprimorado com parâmetros internos recomendados (Vol. 3).
+              Referência completa em um único arquivo: a <strong>arquitetura nodal e a coerção de portas</strong>, o <strong>catálogo técnico dos 90 nodes</strong> nas <strong>9 categorias funcionais</strong>, o <strong>mapa de caminhos</strong> e os <strong>60 padrões de produção</strong> — 30 receitas práticas (Vol. 2) e 30 fluxos de conexão com frames das portas reais (Vol. 3).
             </p>
             <div class="flex flex-wrap gap-3">
               <button onclick="switchSection('catalog')" class="px-4 py-2.5 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-semibold text-xs sm:text-sm transition shadow-lg shadow-emerald-500/20">
@@ -202,7 +202,7 @@
                 30 Receitas (Vol. 2) →
               </button>
               <button onclick="switchSection('blueprints')" class="px-4 py-2.5 rounded-xl bg-amber-500 hover:bg-amber-400 text-slate-950 font-semibold text-xs sm:text-sm transition shadow-lg shadow-amber-500/20">
-                30 Blueprints (Vol. 3) →
+                30 Fluxos (Vol. 3) →
               </button>
             </div>
           </div>
@@ -240,7 +240,7 @@
               </div>
               <h3 class="text-sm font-bold text-white">Catálogo de Nodes</h3>
               <p class="text-[11px] text-slate-400 leading-relaxed"><span class="font-mono text-[10px] font-bold text-emerald-400">SERVE PARA:</span> consultar as fichas técnicas dos 90 nodes, organizadas em 9 sessões por categoria com template visual de portas.</p>
-              <p class="text-[11px] text-slate-500 leading-relaxed">Portas tipadas por cor · notas de uso · exemplos reais da interface · links para receitas e blueprints.</p>
+              <p class="text-[11px] text-slate-500 leading-relaxed">Portas tipadas por cor · notas de uso · exemplos reais da interface · links para receitas e fluxos.</p>
               <div class="font-mono text-[10px] text-slate-500 pt-1.5 border-t border-obsDivider">90 NODES · 9 SESSÕES · INP→OUT</div>
             </button>
             <button onclick="openPalette()" class="topic-card group text-left bg-obsBase border border-obsBorder rounded-xl p-4 space-y-2 hover:bg-obsHover transition-all duration-200 hover:border-cyan-400/50">
@@ -249,7 +249,7 @@
                 <span class="text-slate-500 group-hover:text-cyan-400 group-hover:translate-x-0.5 transition-all font-mono text-sm">→</span>
               </div>
               <h3 class="text-sm font-bold text-white">Busca Rápida — Ctrl+K</h3>
-              <p class="text-[11px] text-slate-400 leading-relaxed"><span class="font-mono text-[10px] font-bold text-cyan-400">SERVE PARA:</span> achar qualquer node, receita ou blueprint em segundos, de qualquer lugar do manual.</p>
+              <p class="text-[11px] text-slate-400 leading-relaxed"><span class="font-mono text-[10px] font-bold text-cyan-400">SERVE PARA:</span> achar qualquer node, receita ou fluxo em segundos, de qualquer lugar do manual.</p>
               <p class="text-[11px] text-slate-500 leading-relaxed">150+ entradas · navegação por teclado (↑↓ / ↵ / Esc) · abre com Ctrl+K ou /</p>
               <div class="font-mono text-[10px] text-slate-500 pt-1.5 border-t border-obsDivider">6 SEÇÕES · 90 NODES · 60 RECEITAS/BLUEPRINTS</div>
             </button>
@@ -278,9 +278,9 @@
                 <span class="font-mono text-[10px] font-bold px-2 py-0.5 rounded bg-purple-400/15 text-purple-400 border border-purple-400/30">05 · VOL. 2</span>
                 <span class="text-slate-500 group-hover:text-purple-400 group-hover:translate-x-0.5 transition-all font-mono text-sm">→</span>
               </div>
-              <h3 class="text-sm font-bold text-white">Receitas — 30 Fluxos</h3>
-              <p class="text-[11px] text-slate-400 leading-relaxed"><span class="font-mono text-[10px] font-bold text-purple-400">SERVE PARA:</span> copiar cadeias prontas de encadeamento com mapeamento exato de pinos e dicas de calibração.</p>
-              <p class="text-[11px] text-slate-500 leading-relaxed">Diagrama de encadeamento · utilidade técnica · filtros por bloco e busca · links para os nodes.</p>
+              <h3 class="text-sm font-bold text-white">Receitas — 30 Padrões</h3>
+              <p class="text-[11px] text-slate-400 leading-relaxed"><span class="font-mono text-[10px] font-bold text-purple-400">SERVE PARA:</span> saber o que cada padrão faz, por que funciona e como calibrar — com link direto para o fluxo de conexão.</p>
+              <p class="text-[11px] text-slate-500 leading-relaxed">Utilidade técnica · calibração · filtros por bloco e busca · links para os nodes e para os fluxos.</p>
               <div class="font-mono text-[10px] text-slate-500 pt-1.5 border-t border-obsDivider">30 RECEITAS · 6 BLOCOS TEMÁTICOS</div>
             </button>
             <button onclick="switchSection('blueprints')" class="topic-card group text-left bg-obsBase border border-obsBorder rounded-xl p-4 space-y-2 hover:bg-obsHover transition-all duration-200 hover:border-amber-400/50">
@@ -288,9 +288,9 @@
                 <span class="font-mono text-[10px] font-bold px-2 py-0.5 rounded bg-amber-400/15 text-amber-400 border border-amber-400/30">06 · VOL. 3</span>
                 <span class="text-slate-500 group-hover:text-amber-400 group-hover:translate-x-0.5 transition-all font-mono text-sm">→</span>
               </div>
-              <h3 class="text-sm font-bold text-white">Blueprints Aprimorados</h3>
-              <p class="text-[11px] text-slate-400 leading-relaxed"><span class="font-mono text-[10px] font-bold text-amber-400">SERVE PARA:</span> refinar os mesmos 30 padrões com parâmetros internos recomendados e variações avançadas.</p>
-              <p class="text-[11px] text-slate-500 leading-relaxed">Topologia detalhada · parâmetros de calibração · dificuldade · variações · links para os nodes.</p>
+              <h3 class="text-sm font-bold text-white">Fluxos (Blueprints)</h3>
+              <p class="text-[11px] text-slate-400 leading-relaxed"><span class="font-mono text-[10px] font-bold text-amber-400">SERVE PARA:</span> montar as conexões dos 30 padrões com frames das portas reais e parâmetros recomendados.</p>
+              <p class="text-[11px] text-slate-500 leading-relaxed">Frames com portas reais · conexão entre etapas · parâmetros · dificuldade · links para os nodes.</p>
               <div class="font-mono text-[10px] text-slate-500 pt-1.5 border-t border-obsDivider">30 BLUEPRINTS · 3 NÍVEIS DE DIFICULDADE</div>
             </button>
           </div>
@@ -307,7 +307,7 @@
               </button>
               <button onclick="switchSection('recipes')" class="group text-left bg-obsBase border border-obsBorder rounded-xl p-3.5 hover:border-amber-500/50 hover:bg-obsHover transition-all duration-200">
                 <div class="flex items-center gap-2 mb-1"><span class="font-mono text-[10px] font-bold text-amber-400">PASSO 3 · CONSTRUIR</span><span class="text-slate-500 group-hover:text-amber-300 transition-all font-mono text-xs ml-auto">→</span></div>
-                <p class="text-[11px] text-slate-400 leading-relaxed">Monte fluxos com as <strong class="text-slate-200">30 Receitas</strong> e refine nos <strong class="text-slate-200">30 Blueprints</strong>.</p>
+                <p class="text-[11px] text-slate-400 leading-relaxed">Monte fluxos com as <strong class="text-slate-200">30 Receitas</strong> e refine nos <strong class="text-slate-200">30 Fluxos</strong>.</p>
               </button>
             </div>
           </div>
@@ -335,7 +335,7 @@
                 <span class="font-mono text-[10px] uppercase text-slate-500 font-bold mr-1">Seções relacionadas:</span>
                 <button onclick="switchSection('anatomy')" class="px-2.5 py-1 rounded-lg font-mono text-[11px] bg-obsBase text-slate-300 border border-obsBorder hover:border-purple-400/50 hover:text-purple-400 transition">Anatomia & Coerção</button>
                 <button onclick="switchSection('recipes')" class="px-2.5 py-1 rounded-lg font-mono text-[11px] bg-obsBase text-slate-300 border border-obsBorder hover:border-purple-400/50 hover:text-purple-400 transition">Receitas que usam estes nodes</button>
-                <button onclick="switchSection('blueprints')" class="px-2.5 py-1 rounded-lg font-mono text-[11px] bg-obsBase text-slate-300 border border-obsBorder hover:border-amber-400/50 hover:text-amber-400 transition">Blueprints</button>
+                <button onclick="switchSection('blueprints')" class="px-2.5 py-1 rounded-lg font-mono text-[11px] bg-obsBase text-slate-300 border border-obsBorder hover:border-amber-400/50 hover:text-amber-400 transition">Fluxos</button>
               </div>
             <div class="bg-obsBase border border-obsBorder rounded-xl px-4 py-3 text-right shrink-0">
               <div class="text-xs font-mono text-slate-400">EXIBINDO</div>
@@ -490,8 +490,8 @@
               <ul class="space-y-1.5 text-slate-300 leading-relaxed">
                 <li><span class="font-mono text-emerald-300">Nome</span> em mono = identificador do node no grafo; a tag colorida indica a categoria.</li>
                 <li><span class="text-white font-semibold">USO:</span> dica prática de quando recorrer ao node.</li>
-                <li><span class="text-cyan-300 font-semibold">Costuma receber de / alimentar:</span> vizinhos mais frequentes, calculados a partir das receitas e blueprints.</li>
-                <li><span class="text-purple-300 font-semibold">Chips Receita/Blueprint:</span> clicáveis — navegam direto para o exemplo completo.</li>
+                <li><span class="text-cyan-300 font-semibold">Costuma receber de / alimentar:</span> vizinhos mais frequentes, calculados a partir das receitas e fluxos.</li>
+                <li><span class="text-purple-300 font-semibold">Chips Receita/Fluxo:</span> clicáveis — navegam direto para o exemplo completo.</li>
                 <li><span class="text-amber-300 font-semibold">Especificações Técnicas:</span> faixas padrão, comportamento interno e custo.</li>
               </ul>
               <p class="text-slate-500 leading-relaxed">O template SVG de portas reproduz o layout real da interface; os rótulos dos pinos seguem os nomes originais (mistura de PT/EN).</p>
@@ -520,7 +520,7 @@
                 VOLUME 2 • ENGENHARIA DE GRAFOS & RECEITAS PRÁTICAS
               </div>
               <h1 class="text-3xl sm:text-4xl font-extrabold tracking-tight text-white mb-3">
-                Manual Prism — <span class="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 via-cyan-400 to-amber-400">Vol. 2: Caminhos & 30 Blueprints</span>
+                Manual Prism — <span class="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 via-cyan-400 to-amber-400">Vol. 2: Caminhos & 30 Receitas</span>
               </h1>
               <p class="text-slate-300 text-sm leading-relaxed mb-5">
                 Guia arquitetural completo sobre como os nodes da Prism se conectam, quais portas possuem afinidade natural, regras de coerção automática de dados e <strong>30 receitas prontas</strong> para produção de materiais PBR, estilização NPR, áudio-reatividade, geometria procedural e VFX.
@@ -536,7 +536,7 @@
               <div class="flex flex-wrap items-center gap-1.5 pt-1">
                 <span class="font-mono text-[10px] uppercase text-slate-500 font-bold mr-1">Seções relacionadas:</span>
                 <button onclick="switchSection('catalog')" class="px-2.5 py-1 rounded-lg font-mono text-[11px] bg-obsBase text-slate-300 border border-obsBorder hover:border-emerald-400/50 hover:text-emerald-400 transition">Catálogo de Nodes</button>
-                <button onclick="switchSection('blueprints')" class="px-2.5 py-1 rounded-lg font-mono text-[11px] bg-obsBase text-slate-300 border border-obsBorder hover:border-amber-400/50 hover:text-amber-400 transition">Blueprints</button>
+                <button onclick="switchSection('blueprints')" class="px-2.5 py-1 rounded-lg font-mono text-[11px] bg-obsBase text-slate-300 border border-obsBorder hover:border-amber-400/50 hover:text-amber-400 transition">Fluxos</button>
               </div>
             </div>
 
@@ -720,7 +720,7 @@
             <button onclick="switchSection('anatomy')" class="px-2.5 py-1 rounded-lg font-mono text-[11px] bg-obsBase text-slate-300 border border-obsBorder hover:border-purple-400/50 hover:text-purple-400 transition">Anatomia & Coerção</button>
             <button onclick="switchSection('catalog')" class="px-2.5 py-1 rounded-lg font-mono text-[11px] bg-obsBase text-slate-300 border border-obsBorder hover:border-emerald-400/50 hover:text-emerald-400 transition">Catálogo de Nodes</button>
             <button onclick="switchSection('recipes')" class="px-2.5 py-1 rounded-lg font-mono text-[11px] bg-obsBase text-slate-300 border border-obsBorder hover:border-purple-400/50 hover:text-purple-400 transition">Receitas</button>
-            <button onclick="switchSection('blueprints')" class="px-2.5 py-1 rounded-lg font-mono text-[11px] bg-obsBase text-slate-300 border border-obsBorder hover:border-amber-400/50 hover:text-amber-400 transition">Blueprints</button>
+            <button onclick="switchSection('blueprints')" class="px-2.5 py-1 rounded-lg font-mono text-[11px] bg-obsBase text-slate-300 border border-obsBorder hover:border-amber-400/50 hover:text-amber-400 transition">Fluxos</button>
           </div>
 
           <!-- Pipeline Canônico de 4 Estágios -->
@@ -832,16 +832,16 @@
           <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-4">
             <div>
               <div class="inline-flex items-center gap-2 px-2.5 py-0.5 rounded bg-amber-500/15 border border-amber-500/30 text-amber-300 font-mono text-[11px] mb-2">
-                CATÁLOGO EXPANDIDO • 30 BLUEPRINTS DE PRODUÇÃO
+                30 PADRÕES DE PRODUÇÃO • 6 DOMÍNIOS TÉCNICOS
               </div>
-              <h1 class="text-2xl sm:text-3xl font-extrabold text-white">Receitas & Combinações Úteis de Nodes (30 Fluxos)</h1>
+              <h1 class="text-2xl sm:text-3xl font-extrabold text-white">Receitas & Combinações Úteis de Nodes (30 Padrões)</h1>
               <p class="text-xs sm:text-sm text-slate-400 mt-1">
-                Cadeias completas de encadeamento organizadas em 6 domínios técnicos com mapeamento exato de pinos e dicas de calibração.
+                30 padrões de produção em 6 domínios técnicos — utilidade, calibração e link direto para o fluxo de conexão com as portas reais.
               </p>
             </div>
               <div class="flex flex-wrap items-center gap-1.5 pt-1">
                 <span class="font-mono text-[10px] uppercase text-slate-500 font-bold mr-1">Seções relacionadas:</span>
-                <button onclick="switchSection('blueprints')" class="px-2.5 py-1 rounded-lg font-mono text-[11px] bg-obsBase text-slate-300 border border-obsBorder hover:border-amber-400/50 hover:text-amber-400 transition">Blueprints (versão detalhada)</button>
+                <button onclick="switchSection('blueprints')" class="px-2.5 py-1 rounded-lg font-mono text-[11px] bg-obsBase text-slate-300 border border-obsBorder hover:border-amber-400/50 hover:text-amber-400 transition">Fluxos (frames de portas)</button>
                 <button onclick="switchSection('catalog')" class="px-2.5 py-1 rounded-lg font-mono text-[11px] bg-obsBase text-slate-300 border border-obsBorder hover:border-emerald-400/50 hover:text-emerald-400 transition">Catálogo de Nodes</button>
                 <button onclick="switchSection('topology')" class="px-2.5 py-1 rounded-lg font-mono text-[11px] bg-obsBase text-slate-300 border border-obsBorder hover:border-cyan-400/50 hover:text-cyan-400 transition">Mapa de Caminhos</button>
               </div>
@@ -905,10 +905,10 @@
               VOLUME 3 • PARTE 4 DO MANUAL OFICIAL PRISM
             </div>
             <h1 class="text-3xl sm:text-4xl font-extrabold tracking-tight text-white mb-3">
-              Catálogo Aprimorado de <span class="text-transparent bg-clip-text bg-gradient-to-r from-amber-400 via-purple-400 to-cyan-400">30 Receitas & Blueprints</span>
+              Fluxos de Conexão — <span class="text-transparent bg-clip-text bg-gradient-to-r from-amber-400 via-purple-400 to-cyan-400">30 Blueprints Aprimorados</span>
             </h1>
             <p class="text-slate-300 text-xs sm:text-sm leading-relaxed">
-              Biblioteca completa de padrões de encadeamento prontos para produção na Prism. Cada blueprint detalha a <strong>topologia exata de entrada/saída</strong>, os <strong>parâmetros internos recomendados</strong>, a <strong>utilidade técnica</strong> e variações avançadas de ajuste.
+              Biblioteca completa de padrões de encadeamento prontos para produção na Prism. Cada fluxo apresenta os <strong>frames dos nodes com suas portas reais</strong> (entradas à esquerda, saídas à direita; portas acesas = conectadas neste fluxo), a <strong>conexão exata entre as etapas</strong> e os <strong>parâmetros internos recomendados</strong>.
             </p>
           </div>
           <div class="flex flex-wrap items-center gap-1.5 pt-1">
@@ -921,7 +921,7 @@
           <div class="grid grid-cols-2 gap-3 shrink-0 lg:w-64">
             <div class="bg-obsBase border border-amber-500/30 rounded-xl p-4">
               <div class="text-2xl font-mono font-bold text-amber-400" id="blueprints-visible-count">30</div>
-              <div class="text-[11px] font-mono text-slate-400 mt-0.5">RECEITAS VISÍVEIS</div>
+              <div class="text-[11px] font-mono text-slate-400 mt-0.5">FLUXOS VISÍVEIS</div>
             </div>
             <div class="bg-obsBase border border-obsBorder rounded-xl p-4">
               <div class="text-2xl font-mono font-bold text-purple-300">06</div>
@@ -993,7 +993,7 @@
 
       <!-- Estado Vazio -->
       <div id="blueprints-empty-state" class="hidden bg-obsPanel border border-obsBorder rounded-2xl p-10 text-center space-y-3">
-        <div class="text-amber-400 font-mono text-sm">NENHUMA RECEITA ENCONTRADA COM OS FILTROS SELECIONADOS</div>
+        <div class="text-amber-400 font-mono text-sm">NENHUM FLUXO ENCONTRADO COM OS FILTROS SELECIONADOS</div>
         <button onclick="resetBlueprintFilters()" class="px-4 py-2 rounded-xl bg-obsBase hover:bg-obsHover border border-obsBorder text-xs font-mono text-amber-300">
           Restaurar Catálogo Completo (30)
         </button>
@@ -1023,7 +1023,7 @@
     <div class="mx-auto mt-[10vh] w-[92%] max-w-xl bg-obsPanel border border-obsBorder rounded-2xl shadow-2xl overflow-hidden" role="dialog" aria-modal="true" aria-label="Busca global" onclick="event.stopPropagation()">
       <div class="flex items-center gap-3 px-4 py-3 border-b border-obsDivider">
         <svg class="w-4 h-4 text-slate-500 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-4.35-4.35M17 10a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
-        <input id="palette-input" type="text" autocomplete="off" placeholder="Buscar nodes, receitas, blueprints e seções..."
+        <input id="palette-input" type="text" autocomplete="off" placeholder="Buscar nodes, receitas, fluxos e seções..."
                class="flex-1 bg-transparent outline-none text-sm font-mono text-slate-200 placeholder-slate-500" />
         <span class="text-[10px] font-mono text-slate-500 border border-obsBorder rounded px-1.5 py-0.5 shrink-0">ESC</span>
       </div>
@@ -1512,7 +1512,7 @@
       let html = `<div class="text-[10px] font-mono uppercase tracking-wider text-slate-500 px-1">Receitas — Vol. 2 (30)</div>`;
 
       RECIPE_BLOCKS.forEach((blk, idx) => {
-        const items = RECIPES_DATA.filter(r => r.block === blk.id);
+        const items = FLOWS.filter(r => r.block === blk.id);
         html += `
           <details ${idx === 0 ? 'open' : ''} class="rounded-lg bg-obsBase/80 border border-obsDivider overflow-hidden">
             <summary class="flex items-center justify-between px-2.5 py-2 cursor-pointer select-none hover:bg-obsHover transition">
@@ -1534,33 +1534,101 @@
       wireTree('sidebar-blocks');
     }
 
-    function renderRecipes() {
-      const container = document.getElementById('recipes-container');
-      container.innerHTML = RECIPES_DATA.map(r => {
-        const searchBlob = `${r.title} ${r.blockName} ${r.tags.join(' ')} ${r.chain.map(c => c.node).join(' ')} ${r.utility} ${r.tuning}`.toLowerCase();
 
-        const chainHtml = r.chain.map((step, i) => {
-          const pinColor = PIN_COLORS[step.type] || '#00BBF9';
-          const arrow = i < r.chain.length - 1
-            ? `<div class="flex items-center justify-center px-1 text-slate-500 font-mono font-bold text-sm">➔</div>`
-            : '';
+    function flowTokens(str) {
+      if (!str) return [];
+      return String(str).split(/\s*[\/&,+]\s*|\s+ou\s+|\s+e\s+/).map(t => t.trim()).filter(Boolean);
+    }
 
-          return `
-            <div class="flex items-center">
-              <div class="rounded-xl bg-[#13161E] border border-obsBorder px-3 py-2 font-mono text-xs space-y-1 shadow">
-                <div class="font-bold text-white flex items-center gap-1.5">
-                  <span class="w-2 h-2 rounded-full" style="background-color: ${pinColor}"></span>
-                  <span>${step.node}</span>
-                </div>
-                <div class="text-[10px] text-slate-400 flex items-center gap-2">
-                  ${step.in ? `<span class="text-sky-300">IN: ${step.in}</span>` : ''}
-                  ${step.out ? `<span class="text-emerald-300">OUT: ${step.out}</span>` : ''}
-                </div>
-              </div>
-              ${arrow}
+    function flowPortUsed(portName, usage) {
+      if (!usage) return false;
+      const esc = String(portName).replace(/[.*+?${}()|[\]\\]/g, '\\$&');
+      return new RegExp('(^|[^A-Za-z0-9])' + esc + '([^A-Za-z0-9]|$)', 'i').test(usage);
+    }
+
+    function flowFrame(step) {
+      const slugs = matchNodeSlug(step.node);
+      const all = [...NODES_P1, ...NODES_P2];
+      const nd = slugs.length === 1 ? all.find(x => x.slug === slugs[0]) : null;
+      const accent = nd ? NODE_CATS[nd.cat].accent : '#94A3B8';
+      const type = step.type || 'scalar';
+      const sig = PIN_COLORS[type] || '#00BBF9';
+      const inPorts = nd ? nd.in : flowTokens(step.in).map(t => [t, type]);
+      const outPorts = nd ? nd.out : flowTokens(step.out).map(t => [t, type]);
+
+      const portRow = (p, side) => {
+        const usage = side === 'in' ? step.in : step.out;
+        const used = nd ? flowPortUsed(p[0], usage) : true;
+        const c = PIN_COLORS[p[1]] || '#00BBF9';
+        const dot = `<span class="w-2 h-2 rounded-full shrink-0" style="background:${c};${used ? `box-shadow:0 0 5px ${c}` : 'opacity:.4'}"></span>`;
+        const label = `<span class="font-mono text-[9px] leading-tight truncate ${used ? 'text-white font-bold' : 'text-slate-500'}" title="${escXml(p[0])} (${escXml(p[1])})">${escXml(p[0])}</span>`;
+        const tip = used ? 'Conectada neste fluxo' : 'Disponível, não usada neste fluxo';
+        return side === 'in'
+          ? `<div class="flex items-center gap-1 min-w-0" title="${tip}">${dot}${label}</div>`
+          : `<div class="flex items-center justify-end gap-1 min-w-0" title="${tip}">${label}${dot}</div>`;
+      };
+
+      const head = nd
+        ? `<button onclick="jumpToNode('${nd.slug}')" title="Abrir a ficha do node ${escXml(nd.name)}" class="w-full flex items-center justify-between gap-1 px-2 py-1.5 rounded-t-[10px] hover:brightness-125 transition" style="background:${accent}1C">
+             <span class="font-mono text-[10px] font-bold text-white truncate">${escXml(nd.name)}</span>
+             <span class="font-mono text-[8px] font-bold shrink-0" style="color:${accent}">[${nd.cat}]</span>
+           </button>`
+        : `<div class="w-full flex items-center justify-between gap-1 px-2 py-1.5 rounded-t-[10px]" style="background:${accent}14" title="Combinação de nodes — use os chips 'Nodes utilizados' para abrir as fichas">
+             <span class="font-mono text-[10px] font-bold text-white truncate">${escXml(step.node)}</span>
+             <span class="font-mono text-[8px] text-slate-400 shrink-0">combo</span>
+           </div>`;
+
+      return `
+        <div class="shrink-0 w-44 rounded-[11px] bg-[#13161E] border shadow-lg" style="border-color:${accent}${nd ? '88' : '55'};border-style:${nd ? 'solid' : 'dashed'}">
+          ${head}
+          <div class="px-2.5 py-2 flex items-start justify-between gap-2">
+            <div class="space-y-1.5 min-w-0 flex-1">
+              ${inPorts.length ? inPorts.map(p => portRow(p, 'in')).join('') : '<span class="font-mono text-[8.5px] text-slate-500 italic">fonte — sem entradas</span>'}
             </div>
-          `;
-        }).join('');
+            <div class="space-y-1.5 min-w-0 flex-1 flex flex-col items-end">
+              ${outPorts.length ? outPorts.map(p => portRow(p, 'out')).join('') : '<span class="font-mono text-[8.5px] text-slate-500 italic">terminal — sem saídas</span>'}
+            </div>
+          </div>
+        </div>`;
+    }
+
+    function flowConnector(prev, next) {
+      const type = (next && next.type) || (prev && prev.type) || 'scalar';
+      const c = PIN_COLORS[type] || '#00BBF9';
+      const label = prev && prev.out && next && next.in ? `${prev.out} ➝ ${next.in}` : '';
+      return `
+        <div class="shrink-0 flex flex-col items-center justify-center gap-0.5 px-1.5 min-w-[74px] max-w-[120px]">
+          ${label ? `<span class="font-mono text-[8px] leading-tight text-center" style="color:${c}" title="Conexão real entre as portas">${escXml(label)}</span>` : ''}
+          <span class="font-mono text-sm font-bold leading-none" style="color:${c}">➜</span>
+        </div>`;
+    }
+
+    function flowFrames(chain) {
+      const items = chain.map((step, i) =>
+        flowFrame(step) + (i < chain.length - 1 ? flowConnector(step, chain[i + 1]) : '')
+      ).join('');
+      return `
+        <div class="bg-obsBase border border-obsBorder rounded-xl p-4">
+          <div class="flex flex-wrap items-center justify-between gap-2 mb-2.5">
+            <span class="text-[10px] font-mono uppercase text-slate-500">Fluxo de conexão — portas reais (acesas = conectadas neste fluxo)</span>
+            <div class="flex items-center gap-2 text-[9px] font-mono text-slate-500">
+              <span class="flex items-center gap-1"><span class="w-1.5 h-1.5 rounded-full bg-pinScalar"></span>escalar</span>
+              <span class="flex items-center gap-1"><span class="w-1.5 h-1.5 rounded-full bg-pinVector"></span>vetor</span>
+              <span class="flex items-center gap-1"><span class="w-1.5 h-1.5 rounded-full bg-pinColor"></span>cor</span>
+              <span class="flex items-center gap-1"><span class="w-1.5 h-1.5 rounded-full bg-pinGeo"></span>geo/inst</span>
+            </div>
+          </div>
+          <div class="flex items-stretch overflow-x-auto pb-1">
+            ${items}
+          </div>
+        </div>`;
+    }
+
+
+function renderRecipes() {
+      const container = document.getElementById('recipes-container');
+      container.innerHTML = FLOWS.map(r => {
+        const searchBlob = `${r.title} ${r.blockName} ${r.tags.join(' ')} ${r.chain.map(c => c.node).join(' ')} ${r.utility} ${r.tuning}`.toLowerCase();
 
         return `
           <article id="recipe-card-${r.id}"
@@ -1580,16 +1648,6 @@
               </div>
             </div>
 
-            <!-- Fluxograma Visual de Encadeamento -->
-            <div class="bg-obsBase border border-obsBorder rounded-xl p-4 overflow-x-auto">
-              <div class="text-[10px] font-mono uppercase text-slate-500 mb-2.5">Diagrama de Encadeamento de Portas</div>
-              <div class="flex flex-wrap items-center gap-y-2">
-                ${chainHtml}
-              </div>
-            </div>
-            ${usedNodesChips(r)}
-
-            <!-- Explicação Técnica & Dica de Calibração -->
             <div class="grid grid-cols-1 lg:grid-cols-12 gap-4 text-xs">
               <div class="lg:col-span-7 space-y-1">
                 <div class="font-mono text-[10px] uppercase text-cyan-400 font-bold">Utilidade Técnica</div>
@@ -1599,6 +1657,14 @@
                 <div class="font-mono text-[10px] uppercase text-amber-400 font-bold">Calibração & Ajuste Fino</div>
                 <p class="text-slate-400 leading-relaxed">${r.tuning}</p>
               </div>
+            </div>
+            ${usedNodesChips(r)}
+
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 pt-2 border-t border-obsDivider">
+              <span class="font-mono text-[10px] text-slate-500">O diagrama de conexão deste padrão (frames com as portas reais) está na seção Fluxos.</span>
+              <button onclick="jumpToBlueprint(${r.id})" title="Abrir o fluxo de conexão com as portas reais" class="px-3 py-1.5 rounded-lg font-mono text-[11px] font-semibold bg-amber-500/15 text-amber-300 border border-amber-500/40 hover:bg-amber-500/25 transition shrink-0">
+                Ver fluxo #${String(r.id).padStart(2, '0')} (frames de portas) →
+              </button>
             </div>
           </article>
         `;
@@ -1663,8 +1729,8 @@
       catalog: '01_VOL1_CATALOGO_TECNICO_90_NODES',
       anatomy: '03_ANATOMIA_COERCAO_PORTAS',
       topology: '04_MAPA_CAMINHOS_TOPOLOGIA',
-      recipes: '05_CATALOGO_30_RECEITAS_BLUEPRINTS',
-      blueprints: '06_CATALOGO_APRIMORADO_30_BLUEPRINTS'
+      recipes: '05_RECEITAS_30_PADROES',
+      blueprints: '06_FLUXOS_DE_CONEXAO_30_BLUEPRINTS'
     };
 
     const SECTION_LIST = [
@@ -1672,8 +1738,8 @@
       { id: 'catalog',    label: 'Catálogo — 90 Nodes' },
       { id: 'anatomy',    label: 'Anatomia & Coerção' },
       { id: 'topology',   label: 'Mapa de Caminhos' },
-      { id: 'recipes',    label: 'Receitas — 30 Fluxos' },
-      { id: 'blueprints', label: 'Blueprints Aprimorados' }
+      { id: 'recipes',    label: 'Receitas — 30 Padrões' },
+      { id: 'blueprints', label: 'Fluxos — 30 Blueprints' }
     ];
 
     function switchSection(sectionId) {
@@ -2293,7 +2359,13 @@ const BLOCKS_META = [
           'Audio Input: Use Level ou Bass para controlar o pulso simultâneo de todas as partículas ativas.'
         ]
       }
-    ];
+    ]
+
+    const FLOWS = RECIPES_ENHANCED.map(e => {
+      const base = RECIPES_DATA.find(x => x.id === e.id) || {};
+      return Object.assign({}, e, { tuning: base.tuning || '' });
+    });
+;
 
     let activeBlock = 'ALL';
     let activeDifficulty = 'ALL';
@@ -2301,10 +2373,10 @@ const BLOCKS_META = [
 
     function renderSidebarBlueprints() {
       const container = document.getElementById('sidebar-blueprints');
-      let html = `<div class="text-[10px] font-mono uppercase tracking-wider text-slate-500 px-1">Blueprints — Vol. 3 (30)</div>`;
+      let html = `<div class="text-[10px] font-mono uppercase tracking-wider text-slate-500 px-1">Fluxos — Vol. 3 (30)</div>`;
 
       BLOCKS_META.forEach((blk, idx) => {
-        const items = RECIPES_ENHANCED.filter(r => r.block === blk.id);
+        const items = FLOWS.filter(r => r.block === blk.id);
         html += `
           <details ${idx < 2 ? 'open' : ''} class="rounded-lg bg-obsBase/80 border border-obsDivider overflow-hidden">
             <summary class="flex items-center justify-between px-2.5 py-2 cursor-pointer select-none hover:bg-obsHover transition">
@@ -2328,8 +2400,8 @@ const BLOCKS_META = [
 
     function renderBlueprints() {
       const container = document.getElementById('blueprints-container');
-      container.innerHTML = RECIPES_ENHANCED.map(r => {
-        const searchIndex = `${r.title} ${r.summary} ${r.blockName} ${r.difficulty} ${r.tags.join(' ')} ${r.chain.map(c => c.node).join(' ')} ${r.utility} ${r.params.join(' ')}`.toLowerCase();
+      container.innerHTML = FLOWS.map(r => {
+        const searchIndex = `${r.title} ${r.summary} ${r.blockName} ${r.difficulty} ${r.tags.join(' ')} ${r.chain.map(c => c.node).join(' ')} ${r.params.join(' ')}`.toLowerCase();
 
         const diffBadgeColor = r.difficulty === 'Essencial'
           ? 'bg-emerald-500/10 text-emerald-300 border-emerald-500/30'
@@ -2337,41 +2409,17 @@ const BLOCKS_META = [
           ? 'bg-cyan-500/10 text-cyan-300 border-cyan-500/30'
           : 'bg-purple-500/10 text-purple-300 border-purple-500/30';
 
-        const chainHtml = r.chain.map((step, i) => {
-          const pinColor = PIN_COLORS[step.type] || '#00BBF9';
-          const arrow = i < r.chain.length - 1
-            ? `<div class="flex items-center justify-center px-1.5 text-slate-500 font-mono font-bold text-sm">➔</div>`
-            : '';
-
-          return `
-            <div class="flex items-center">
-              <div class="rounded-xl bg-[#13161E] border border-obsBorder px-3.5 py-2.5 font-mono text-xs space-y-1 shadow">
-                <div class="font-bold text-white flex items-center gap-1.5">
-                  <span class="w-2.5 h-2.5 rounded-full shrink-0" style="background-color: ${pinColor}"></span>
-                  <span>${step.node}</span>
-                </div>
-                <div class="text-[10px] text-slate-400 flex flex-wrap items-center gap-2">
-                  ${step.in ? `<span class="text-sky-300">IN: ${step.in}</span>` : ''}
-                  ${step.out ? `<span class="text-emerald-300">OUT: ${step.out}</span>` : ''}
-                </div>
-              </div>
-              ${arrow}
-            </div>
-          `;
-        }).join('');
-
         return `
           <article id="blueprint-card-${r.id}"
                    class="blueprint-card bg-obsPanel border border-obsBorder rounded-2xl p-6 space-y-4 transition-all duration-300"
                    data-block="${r.block}"
                    data-diff="${r.difficulty}"
                    data-search="${searchIndex}">
-            <!-- Cabeçalho -->
             <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-2 pb-3 border-b border-obsDivider">
               <div class="space-y-1">
                 <div class="flex flex-wrap items-center gap-2">
                   <span class="font-mono text-xs font-bold px-2 py-0.5 rounded bg-amber-500/15 text-amber-300 border border-amber-500/30">
-                    BLUEPRINT #${String(r.id).padStart(2, '0')}
+                    FLUXO #${String(r.id).padStart(2, '0')}
                   </span>
                   <span class="font-mono text-[11px] text-slate-400">${r.blockName}</span>
                 </div>
@@ -2385,27 +2433,21 @@ const BLOCKS_META = [
               </div>
             </div>
 
-            <!-- Fluxograma Visual de Encadeamento -->
-            <div class="bg-obsBase border border-obsBorder rounded-xl p-4 overflow-x-auto">
-              <div class="text-[10px] font-mono uppercase text-slate-500 mb-2.5">Topologia de Encadeamento de Portas</div>
-              <div class="flex flex-wrap items-center gap-y-2">
-                ${chainHtml}
-              </div>
-            </div>
+            ${flowFrames(r.chain)}
             ${usedNodesChips(r)}
 
-            <!-- Detalhamento Técnico + Parâmetros Internos -->
-            <div class="grid grid-cols-1 lg:grid-cols-12 gap-4 text-xs">
-              <div class="lg:col-span-6 space-y-1.5">
-                <div class="font-mono text-[10px] uppercase text-cyan-400 font-bold">Utilidade & Comportamento no Grafo</div>
-                <p class="text-slate-300 leading-relaxed">${r.utility}</p>
-              </div>
-              <div class="lg:col-span-6 bg-obsBase border border-obsBorder rounded-xl p-4 space-y-1.5">
-                <div class="font-mono text-[10px] uppercase text-amber-400 font-bold">Parâmetros & Calibração Recomendada</div>
-                <ul class="space-y-1 text-slate-300">
-                  ${r.params.map(p => `<li class="flex items-start gap-2"><span class="text-amber-400 font-mono">•</span><span>${p}</span></li>`).join('')}
-                </ul>
-              </div>
+            <div class="bg-obsBase border border-obsBorder rounded-xl p-4 space-y-1.5">
+              <div class="font-mono text-[10px] uppercase text-amber-400 font-bold">Parâmetros & Calibração Recomendada</div>
+              <ul class="grid grid-cols-1 md:grid-cols-2 gap-x-4 gap-y-1 text-xs text-slate-300">
+                ${r.params.map(p => `<li class="flex items-start gap-2"><span class="text-amber-400 font-mono">•</span><span>${p}</span></li>`).join('')}
+              </ul>
+            </div>
+
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 pt-2 border-t border-obsDivider">
+              <span class="font-mono text-[10px] text-slate-500">A utilidade técnica e a calibração rápida deste padrão estão na seção Receitas.</span>
+              <button onclick="jumpToRecipe(${r.id})" title="Abrir a receita correspondente" class="px-3 py-1.5 rounded-lg font-mono text-[11px] font-semibold bg-purple-500/15 text-purple-300 border border-purple-500/40 hover:bg-purple-500/25 transition shrink-0">
+                Ver receita #${String(r.id).padStart(2, '0')} →
+              </button>
             </div>
           </article>
         `;
@@ -2612,7 +2654,7 @@ const BLOCKS_META = [
     function linkifyUse(text) {
       return String(text)
         .replace(/Receita #(\d+)/g, '<button onclick="jumpToRecipe($1)" title="Ir para a Receita #$1" class="font-mono text-[10px] font-bold px-1.5 py-0.5 rounded bg-purple-500/15 text-purple-300 border border-purple-500/30 hover:bg-purple-500/30 transition">Receita #$1 \u2197</button>')
-        .replace(/Blueprint #(\d+)/g, '<button onclick="jumpToBlueprint($1)" title="Ir para o Blueprint #$1" class="font-mono text-[10px] font-bold px-1.5 py-0.5 rounded bg-amber-500/15 text-amber-300 border border-amber-500/30 hover:bg-amber-500/30 transition">Blueprint #$1 \u2197</button>');
+        .replace(/Fluxo #(\d+)/g, '<button onclick="jumpToBlueprint($1)" title="Ir para o Fluxo #$1" class="font-mono text-[10px] font-bold px-1.5 py-0.5 rounded bg-amber-500/15 text-amber-300 border border-amber-500/30 hover:bg-amber-500/30 transition">Fluxo #$1 \u2197</button>');
     }
 
     function usageChips(slug) {
@@ -2622,7 +2664,7 @@ const BLOCKS_META = [
         `<button onclick="jumpToRecipe(${id})" title="Abrir Receita #${String(id).padStart(2, '0')}" class="px-2 py-0.5 rounded font-mono text-[10px] font-semibold bg-purple-500/15 text-purple-300 border border-purple-500/30 hover:bg-purple-500/30 transition">Receita #${String(id).padStart(2, '0')}</button>`
       ).join('');
       const bChips = u.blueprints.slice().sort((a, b) => a - b).map(id =>
-        `<button onclick="jumpToBlueprint(${id})" title="Abrir Blueprint #${String(id).padStart(2, '0')}" class="px-2 py-0.5 rounded font-mono text-[10px] font-semibold bg-amber-500/15 text-amber-300 border border-amber-500/30 hover:bg-amber-500/30 transition">Blueprint #${String(id).padStart(2, '0')}</button>`
+        `<button onclick="jumpToBlueprint(${id})" title="Abrir Fluxo #${String(id).padStart(2, '0')}" class="px-2 py-0.5 rounded font-mono text-[10px] font-semibold bg-amber-500/15 text-amber-300 border border-amber-500/30 hover:bg-amber-500/30 transition">Fluxo #${String(id).padStart(2, '0')}</button>`
       ).join('');
       return `
           <div class="flex flex-wrap items-center gap-1.5 pt-2 border-t border-obsDivider">
@@ -2852,7 +2894,7 @@ const BLOCKS_META = [
     const PALETTE_TYPE_COLORS = {
       'Node': 'text-cyan-300 border-cyan-500/30 bg-cyan-500/10',
       'Receita': 'text-purple-300 border-purple-500/30 bg-purple-500/10',
-      'Blueprint': 'text-amber-300 border-amber-500/30 bg-amber-500/10',
+      'Fluxo': 'text-amber-300 border-amber-500/30 bg-amber-500/10',
       'Seção': 'text-emerald-300 border-emerald-500/30 bg-emerald-500/10'
     };
 
@@ -2866,7 +2908,7 @@ const BLOCKS_META = [
       SECTION_LIST.forEach(s => idx.push({ type: 'Seção', label: s.label, sub: 'Ir para a seção', run: () => switchSection(s.id) }));
       [...NODES_P1, ...NODES_P2].forEach(nd => idx.push({ type: 'Node', label: `[${nd.cat}] ${nd.name}`, sub: nd.desc, run: () => jumpToNode(nd.slug) }));
       RECIPES_DATA.forEach(r => idx.push({ type: 'Receita', label: `#${String(r.id).padStart(2, '0')} ${r.title}`, sub: r.blockName, run: () => jumpToRecipe(r.id) }));
-      RECIPES_ENHANCED.forEach(r => idx.push({ type: 'Blueprint', label: `#${String(r.id).padStart(2, '0')} ${r.title}`, sub: r.blockName + ' • catálogo aprimorado', run: () => jumpToBlueprint(r.id) }));
+      RECIPES_ENHANCED.forEach(r => idx.push({ type: 'Fluxo', label: `#${String(r.id).padStart(2, '0')} ${r.title}`, sub: r.blockName + ' • fluxo de conexão', run: () => jumpToBlueprint(r.id) }));
       return idx;
     }
 

@@ -8,7 +8,7 @@ O manual unificado está publicado no GitHub Pages:
 
 **https://mezzetti4096.github.io/manualexpctral/**
 
-Um único arquivo navegável com 6 seções: Visão Geral (com guia rápido "Como ler as fichas": cores de pinos, conversões e tags) · Catálogo Técnico (90 nodes em 9 sessões, 1 por categoria) · Anatomia & Coerção · Mapa de Caminhos · 30 Receitas · 30 Blueprints Aprimorados.
+Um único arquivo navegável com 6 seções: Visão Geral (com guia rápido "Como ler as fichas": cores de pinos, conversões e tags) · Catálogo Técnico (90 nodes em 9 sessões, 1 por categoria) · Anatomia & Coerção · Mapa de Caminhos · 30 Receitas (utilidade & calibração) · 30 Fluxos (frames com as portas reais de cada node).
 
 Atalhos: `Ctrl+K` ou `/` abre a busca global (150+ entradas indexadas: 90 nodes + 60 receitas/blueprints) · `Exportar PDF (tudo)` gera o manual completo em PDF.
 
@@ -30,4 +30,4 @@ Atalhos: `Ctrl+K` ou `/` abre a busca global (150+ entradas indexadas: 90 nodes 
 
 - **Vol. 1 — Catálogo de Nodes:** 90 nodes em 9 categorias ([INP], [GEN], [COL], [FIL], [VEC], [UTI], [GEO], [VFX], [OUT]), com entradas/saídas tipadas pelas 4 cores reais da UI (🟠 escalar `#FF9F1C` · 🔵 vetor `#06B6D4` · 🟣 cor `#A855F7` · 🟢 geometria/instâncias `#2DD4BF`).
 - **Vol. 2 — Arquitetura & Mapa de Caminhos:** anatomia do node, regras de coerção entre portas, pares canônicos de encadeamento e 30 receitas práticas em 6 blocos temáticos.
-- **Vol. 3 — Catálogo Aprimorado:** os mesmos 30 padrões com resumo, topologia detalhada e parâmetros internos de calibração, com filtros por bloco e complexidade.
+- **Vol. 3 — Fluxos (Blueprints):** os mesmos 30 padrões apresentados como frames com as portas reais de cada node (portas conectadas destacadas), conexão label a label entre etapas e parâmetros internos de calibração, com filtros por bloco e complexidade.
