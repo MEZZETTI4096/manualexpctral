@@ -1,0 +1,2624 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Manual Prism — Edição Única Unificada (Vols. 1–3)</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+            mono: ['JetBrains Mono', 'monospace'],
+          },
+          colors: {
+            obsBase: '#090A0D',
+            obsPanel: '#111318',
+            obsHover: '#181B22',
+            obsBorder: '#232732',
+            obsDivider: '#1B1E26',
+            pinScalar: '#FF9F1C',
+            pinVector: '#00BBF9',
+            pinColor: '#9B5DE5',
+            pinGeo: '#00F5D4',
+            pinInst: '#7AE582',
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    ::-webkit-scrollbar { width: 6px; height: 6px; }
+    ::-webkit-scrollbar-track { background: #090A0D; }
+    ::-webkit-scrollbar-thumb { background: #232732; border-radius: 9999px; }
+    ::-webkit-scrollbar-thumb:hover { background: #363C4D; }
+
+    @media print {
+      aside, header, .no-print { display: none !important; }
+      main { margin-left: 0 !important; padding: 0 !important; }
+      body { background: #090A0D !important; color: #F8FAFC !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+      .blueprint-card, .node-card { break-inside: avoid; page-break-inside: avoid; }
+    }
+    html { scroll-behavior: smooth; }
+    button:focus-visible, input:focus-visible, summary:focus-visible { outline: 2px solid #22d3ee; outline-offset: 2px; }
+    @keyframes sectionIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+    .animate-section-in { animation: sectionIn 0.22s ease-out; }
+    .node-card:hover, .blueprint-card:hover { border-color: #363C4D; }
+    @media print {
+      body.print-all main .hidden { display: block !important; }
+      body.print-all section { break-before: page; }
+      body.print-all #sec-overview { break-before: auto; }
+      #scroll-progress, #back-to-top { display: none !important; }
+    }
+  </style>
+</head>
+
+<body class="bg-obsBase text-slate-200 font-sans antialiased selection:bg-purple-500/30 selection:text-purple-200">
+
+<header class="sticky top-0 z-40 h-14 bg-obsBase/90 backdrop-blur-md border-b border-obsBorder px-4 lg:px-6 flex items-center justify-between">
+    <div class="flex items-center gap-3">
+      <button id="mobile-menu-btn" onclick="toggleMobileSidebar()" class="lg:hidden p-2 rounded-lg bg-obsPanel border border-obsBorder text-slate-300 hover:bg-obsHover">
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+      </button>
+      <div class="flex items-center gap-2 font-mono text-xs">
+        <span class="px-2 py-0.5 rounded bg-purple-500/15 text-purple-300 border border-purple-500/30 font-bold">PRISM // MANUAL COMPLETO</span>
+        <span class="text-slate-600">/</span>
+        <span id="top-breadcrumb" class="text-slate-300 truncate max-w-[200px] sm:max-w-none">01_ANATOMIA_COERCAO_PORTAS</span>
+      </div>
+    </div>
+
+    <div class="flex items-center gap-2.5">
+      <div class="hidden md:flex items-center gap-2 px-2.5 py-1 rounded-md bg-obsPanel border border-obsBorder text-[11px] font-mono">
+        <span class="w-2 h-2 rounded-full bg-purple-400"></span>
+        <span class="text-slate-300">EDIÇÃO ÚNICA • 73 NODES • TOPOLOGIA • 60 BLUEPRINTS</span>
+      </div>
+
+      <button onclick="openPalette()" class="no-print hidden sm:inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-obsPanel hover:bg-obsHover border border-obsBorder hover:border-slate-500 text-slate-400 font-mono text-xs transition">
+        <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-4.35-4.35M17 10a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
+        <span>Buscar</span>
+        <span class="text-[10px] text-slate-500 border border-obsBorder rounded px-1 py-0.5">Ctrl K</span>
+      </button>
+
+      <button onclick="printAllPDF()" title="Exporta as 7 seções completas em um único PDF" class="no-print inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-purple-500/15 hover:bg-purple-500/25 border border-purple-500/30 text-purple-200 font-mono text-xs transition">
+        <span>Exportar PDF (tudo)</span>
+      </button>
+    </div>
+  </header>
+
+  <!-- Progresso de Leitura -->
+  <div id="scroll-progress" class="no-print fixed top-14 left-0 z-40 h-0.5 bg-gradient-to-r from-cyan-400 via-purple-400 to-amber-400" style="width: 0%"></div>
+
+  <div class="flex min-h-[calc(100vh-3.5rem)]">
+    <!-- Backdrop Mobile da Sidebar -->
+    <div id="sidebar-backdrop" class="hidden fixed inset-0 z-20 bg-black/50 lg:hidden" onclick="toggleMobileSidebar()"></div>
+
+    <aside id="sidebar" class="fixed lg:sticky top-14 left-0 z-30 w-72 h-[calc(100vh-3.5rem)] bg-obsPanel border-r border-obsBorder flex flex-col transform -translate-x-full lg:translate-x-0 transition-transform duration-200">
+      <!-- Identidade / Logo -->
+      <div class="p-4 border-b border-obsDivider">
+        <div class="flex items-center justify-between mb-1">
+          <span class="font-mono font-bold text-sm tracking-tight text-white">PRISM // MANUAL COMPLETO</span>
+          <span class="text-[10px] font-mono px-1.5 py-0.5 rounded bg-cyan-500/15 text-cyan-300 border border-cyan-500/30">OBSIDIAN V3.5</span>
+        </div>
+        <p class="text-[11px] text-slate-400">Vol. 1: Nodes • Vol. 2: Topologia • Vol. 3: Blueprints</p>
+
+        <!-- Barra de Busca Rápida (Atalho '/') -->
+        <div class="mt-3 relative">
+          <input id="recipe-search" type="text" placeholder="Buscar receita ou node... (/)"
+                 class="w-full bg-obsBase border border-obsBorder focus:border-purple-400 rounded-lg pl-3 pr-7 py-1.5 text-xs font-mono text-slate-200 placeholder-slate-500 outline-none transition" />
+          <span class="absolute right-2.5 top-1.5 text-[10px] font-mono text-slate-500 border border-obsBorder rounded px-1">/</span>
+        </div>
+
+        <!-- Barra de Busca dos Blueprints Aprimorados (Vol. 3) -->
+        <div class="mt-2 relative">
+          <input id="blueprint-search" type="text" placeholder="Buscar blueprint... (/)"
+                 class="w-full bg-obsBase border border-obsBorder focus:border-amber-400 rounded-lg pl-3 pr-7 py-1.5 text-xs font-mono text-slate-200 placeholder-slate-500 outline-none transition" />
+          <span class="absolute right-2.5 top-1.5 text-[10px] font-mono text-slate-500 border border-obsBorder rounded px-1">/</span>
+        </div>
+      </div>
+
+      <!-- Navegação das 3 Seções do Volume 2 -->
+            <nav class="p-3 border-b border-obsDivider space-y-1">
+        <button onclick="switchSection('overview')" id="btn-sec-overview" class="sec-nav-btn w-full flex items-center justify-between px-3 py-2 rounded-lg text-xs font-medium text-slate-300 hover:bg-obsHover transition">
+          <span>1. Visão Geral</span>
+          <span class="text-[10px] font-mono text-cyan-400">V1–3</span>
+        </button>
+        <button onclick="switchSection('catalog')" id="btn-sec-catalog" class="sec-nav-btn w-full flex items-center justify-between px-3 py-2 rounded-lg text-xs font-medium text-slate-300 hover:bg-obsHover transition">
+          <span>2. Catálogo Parte 1</span>
+          <span class="text-[10px] font-mono text-emerald-400">37</span>
+        </button>
+        <button onclick="switchSection('catalog2')" id="btn-sec-catalog2" class="sec-nav-btn w-full flex items-center justify-between px-3 py-2 rounded-lg text-xs font-medium text-slate-300 hover:bg-obsHover transition">
+          <span>3. Catálogo Parte 2</span>
+          <span class="text-[10px] font-mono text-emerald-400">36</span>
+        </button>
+        <button onclick="switchSection('anatomy')" id="btn-sec-anatomy" class="sec-nav-btn w-full flex items-center justify-between px-3 py-2 rounded-lg text-xs font-semibold bg-purple-500/15 text-purple-300 border border-purple-500/30 transition">
+          <span>4. Anatomia & Coerção</span>
+          <span class="text-[10px] font-mono">UI</span>
+        </button>
+        <button onclick="switchSection('topology')" id="btn-sec-topology" class="sec-nav-btn w-full flex items-center justify-between px-3 py-2 rounded-lg text-xs font-medium text-slate-300 hover:bg-obsHover transition">
+          <span>5. Mapa de Caminhos</span>
+          <span class="text-[10px] font-mono text-cyan-400">FLUXO</span>
+        </button>
+        <button onclick="switchSection('recipes')" id="btn-sec-recipes" class="sec-nav-btn w-full flex items-center justify-between px-3 py-2 rounded-lg text-xs font-medium text-slate-300 hover:bg-obsHover transition">
+          <span>6. Receitas — 30 Fluxos</span>
+          <span class="text-[10px] font-mono text-amber-400">30</span>
+        </button>
+        <button onclick="switchSection('blueprints')" id="btn-sec-blueprints" class="sec-nav-btn w-full flex items-center justify-between px-3 py-2 rounded-lg text-xs font-medium text-slate-300 hover:bg-obsHover transition">
+          <span>7. Blueprints Aprimorados</span>
+          <span class="text-[10px] font-mono text-amber-400">V3 • 30</span>
+        </button>
+      </nav>
+
+      <!-- Árvore de Acesso Rápido aos 6 Blocos de Receitas -->
+      <div class="flex-1 overflow-y-auto p-3 space-y-3">
+        <div id="sidebar-nodes"></div>
+        <div id="sidebar-blocks"></div>
+        <div id="sidebar-blueprints"></div>
+      </div>
+
+      <!-- Rodapé Referência Cruzada Volume 1 -->
+      <div class="p-3 border-t border-obsDivider bg-[#0D0F14] text-[11px] font-mono space-y-1">
+        <div class="flex items-center justify-between text-slate-400">
+          <span>Manual Unificado — 3 Volumes</span>
+          <span class="text-emerald-400">73 nodes • 60/60 ✓</span>
+        </div>
+        <div class="text-[10px] text-slate-500">
+          Vol. 1: 73 Nodes • Vol. 2: Topologia & 30 Receitas • Vol. 3: 30 Blueprints
+        </div>
+      </div>
+    </aside>
+
+    <!-- Área Principal de Conteúdo -->
+<main class="flex-1 min-w-0 p-4 sm:p-6 lg:p-8 max-w-6xl mx-auto space-y-8">
+
+      <!-- =====================================================================
+           SEÇÃO 0: VISÃO GERAL — EDIÇÃO ÚNICA UNIFICADA (VOLS. 1–3)
+           ===================================================================== -->
+      <section id="sec-overview" class="space-y-6">
+        <div class="bg-obsPanel border border-obsBorder rounded-2xl p-6 sm:p-8 relative overflow-hidden">
+          <div class="absolute inset-0 pointer-events-none opacity-20" style="background: radial-gradient(circle at 85% 15%, #9B5DE5 0%, transparent 45%), radial-gradient(circle at 15% 85%, #00BBF9 0%, transparent 45%);"></div>
+          <div class="relative z-10">
+            <div class="inline-flex items-center gap-2 px-2.5 py-1 rounded-md bg-purple-500/15 border border-purple-500/30 text-purple-300 font-mono text-xs mb-3">
+              EDIÇÃO ÚNICA • MANUAL OFICIAL PRISM • VOLS. 1–3
+            </div>
+            <h1 class="text-3xl sm:text-4xl font-extrabold tracking-tight text-white mb-4">
+              Manual Técnico Prism — <span class="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-purple-400 to-amber-400">Edição Unificada</span>
+            </h1>
+            <p class="text-slate-300 text-sm sm:text-base leading-relaxed mb-6">
+              Referência completa em um único arquivo: a <strong>arquitetura nodal e a coerção de portas</strong>, o <strong>catálogo técnico dos 73 nodes</strong> nas <strong>9 categorias funcionais</strong>, o <strong>mapa de caminhos</strong> e as <strong>60 receitas/blueprints</strong> de produção — 30 receitas práticas (Vol. 2) e o catálogo aprimorado com parâmetros internos recomendados (Vol. 3).
+            </p>
+            <div class="flex flex-wrap gap-3">
+              <button onclick="switchSection('catalog')" class="px-4 py-2.5 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-semibold text-xs sm:text-sm transition shadow-lg shadow-emerald-500/20">
+                Catálogo Parte 1 (37 Nodes) →
+              </button>
+              <button onclick="switchSection('catalog2')" class="px-4 py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-semibold text-xs sm:text-sm transition shadow-lg shadow-emerald-600/20">
+                Catálogo Parte 2 (36 Nodes) →
+              </button>
+              <button onclick="switchSection('anatomy')" class="px-4 py-2.5 rounded-xl bg-purple-500 hover:bg-purple-400 text-white font-semibold text-xs sm:text-sm transition shadow-lg shadow-purple-500/20">
+                Anatomia & Coerção →
+              </button>
+              <button onclick="switchSection('topology')" class="px-4 py-2.5 rounded-xl bg-cyan-500 hover:bg-cyan-400 text-slate-950 font-semibold text-xs sm:text-sm transition shadow-lg shadow-cyan-500/20">
+                Mapa de Caminhos →
+              </button>
+              <button onclick="switchSection('recipes')" class="px-4 py-2.5 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-semibold text-xs sm:text-sm transition shadow-lg shadow-emerald-500/20">
+                30 Receitas (Vol. 2) →
+              </button>
+              <button onclick="switchSection('blueprints')" class="px-4 py-2.5 rounded-xl bg-amber-500 hover:bg-amber-400 text-slate-950 font-semibold text-xs sm:text-sm transition shadow-lg shadow-amber-500/20">
+                30 Blueprints (Vol. 3) →
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-2 lg:grid-cols-4 gap-3">
+          <div class="bg-obsBase border border-obsBorder rounded-xl p-4">
+            <div class="text-2xl font-mono font-bold text-white">73</div>
+            <div class="text-[11px] font-mono text-slate-400 mt-0.5">NODES MAPEADOS</div>
+          </div>
+          <div class="bg-obsBase border border-emerald-500/30 rounded-xl p-4">
+            <div class="text-2xl font-mono font-bold text-emerald-400">09</div>
+            <div class="text-[11px] font-mono text-slate-400 mt-0.5">CATEGORIAS</div>
+          </div>
+          <div class="bg-obsBase border border-purple-500/30 rounded-xl p-4">
+            <div class="text-2xl font-mono font-bold text-purple-300">60</div>
+            <div class="text-[11px] font-mono text-slate-400 mt-0.5">RECEITAS & BLUEPRINTS</div>
+          </div>
+          <div class="bg-obsBase border border-obsBorder rounded-xl p-4">
+            <div class="text-2xl font-mono font-bold text-cyan-400">V3.5</div>
+            <div class="text-[11px] font-mono text-slate-400 mt-0.5">OBSIDIAN UI</div>
+          </div>
+        </div>
+
+        <div class="bg-obsPanel border border-obsBorder rounded-2xl p-6 space-y-3">
+          <h2 class="font-mono text-sm font-bold text-white uppercase tracking-wider">Estrutura do Manual</h2>
+          <ul class="space-y-2 text-sm text-slate-300">
+            <li class="flex items-start gap-2"><span class="font-mono text-emerald-400">01</span><span><strong>Catálogo Parte 1 (Vol. 1)</strong> — 37 nodes das categorias [INP], [GEN], [COL] e [FIL] com portas tipadas e notas de uso.</span></li>
+            <li class="flex items-start gap-2"><span class="font-mono text-emerald-400">02</span><span><strong>Catálogo Parte 2 (Vol. 1)</strong> — 36 nodes das categorias [VEC], [UTI], [GEO], [VFX] e [OUT].</span></li>
+            <li class="flex items-start gap-2"><span class="font-mono text-cyan-400">03</span><span><strong>Anatomia & Coerção</strong> — zonas do node, regras de conexão entre tipos de pinos e simulador de portas.</span></li>
+            <li class="flex items-start gap-2"><span class="font-mono text-cyan-400">04</span><span><strong>Mapa de Caminhos</strong> — topologia do grafo, pares canônicos de encadeamento e fluxos por domínio.</span></li>
+            <li class="flex items-start gap-2"><span class="font-mono text-purple-300">05</span><span><strong>Receitas — 30 Fluxos (Vol. 2)</strong> — cadeias de encadeamento com mapeamento exato de pinos e dicas de calibração.</span></li>
+            <li class="flex items-start gap-2"><span class="font-mono text-amber-400">06</span><span><strong>Blueprints Aprimorados (Vol. 3)</strong> — os mesmos 30 padrões com topologia detalhada, parâmetros internos recomendados e variações.</span></li>
+          </ul>
+        </div>
+      </section>
+
+
+
+      <!-- =====================================================================
+           SEÇÃO VOL. 1 1: CATÁLOGO TÉCNICO — PARTE 1 (4 CATEGORIAS)
+           ===================================================================== -->
+      <section id="sec-catalog" class="hidden space-y-6">
+        <div class="bg-obsPanel border border-obsBorder rounded-2xl p-6 space-y-5">
+          <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-4">
+            <div>
+              <div class="inline-flex items-center gap-2 px-2.5 py-0.5 rounded bg-cyan-500/15 border border-cyan-500/30 text-cyan-300 font-mono text-[11px] mb-2">
+                VOL. 1 • PARTE 1 • REFERÊNCIA DOS 73 NODES
+              </div>
+              <h1 class="text-2xl sm:text-3xl font-extrabold text-white">Catálogo Técnico — Parte 1 (37 Nodes)</h1>
+              <p class="text-xs sm:text-sm text-slate-400 mt-1">
+                Fichas técnicas com portas de entrada/saída tipadas por cor e notas de uso prático. Clique numa categoria para filtrar.
+              </p>
+            </div>
+            <div class="bg-obsBase border border-obsBorder rounded-xl px-4 py-3 text-right shrink-0">
+              <div class="text-xs font-mono text-slate-400">EXIBINDO</div>
+              <div class="text-xl font-mono font-bold text-cyan-300"><span id="catalog1-visible-count">0</span> <span class="text-xs text-slate-500">NODES</span></div>
+            </div>
+          </div>
+
+          <div class="pt-4 border-t border-obsDivider space-y-3">
+            <div class="flex flex-wrap items-center gap-1.5">
+          <button onclick="setCatalogCategory(1,'INP')" data-part="1" data-cat="INP" class="cat-pill px-3 py-1.5 rounded-lg font-mono text-xs font-medium bg-obsBase text-slate-300 border border-obsBorder hover:border-slate-500 transition">
+            INP. Inputs & Fontes de Dados
+          </button>
+          <button onclick="setCatalogCategory(1,'GEN')" data-part="1" data-cat="GEN" class="cat-pill px-3 py-1.5 rounded-lg font-mono text-xs font-medium bg-obsBase text-slate-300 border border-obsBorder hover:border-slate-500 transition">
+            GEN. Geradores Procedurais
+          </button>
+          <button onclick="setCatalogCategory(1,'COL')" data-part="1" data-cat="COL" class="cat-pill px-3 py-1.5 rounded-lg font-mono text-xs font-medium bg-obsBase text-slate-300 border border-obsBorder hover:border-slate-500 transition">
+            COL. Cor & Composição
+          </button>
+          <button onclick="setCatalogCategory(1,'FIL')" data-part="1" data-cat="FIL" class="cat-pill px-3 py-1.5 rounded-lg font-mono text-xs font-medium bg-obsBase text-slate-300 border border-obsBorder hover:border-slate-500 transition">
+            FIL. Filtros & Convolução
+          </button>
+            </div>
+            <div class="pt-3 border-t border-obsDivider flex flex-wrap items-center gap-1.5">
+              <span class="text-[11px] font-mono text-slate-400 mr-1">FILTRAR POR PINO:</span>
+          <button onclick="setCatalogPin('all')" data-pin="all" class="pin-pill px-2.5 py-1 rounded font-mono text-[11px] font-semibold bg-cyan-500/20 text-cyan-300 border border-cyan-500/40">Todos os Pinos</button>
+          <button onclick="setCatalogPin('scalar')" data-pin="scalar" class="pin-pill px-2.5 py-1 rounded font-mono text-[11px] bg-obsBase text-slate-300 border border-obsBorder"><span class="inline-block w-2 h-2 rounded-full bg-pinScalar mr-1"></span>Escalar</button>
+          <button onclick="setCatalogPin('vector')" data-pin="vector" class="pin-pill px-2.5 py-1 rounded font-mono text-[11px] bg-obsBase text-slate-300 border border-obsBorder"><span class="inline-block w-2 h-2 rounded-full bg-pinVector mr-1"></span>Vetor</button>
+          <button onclick="setCatalogPin('color')" data-pin="color" class="pin-pill px-2.5 py-1 rounded font-mono text-[11px] bg-obsBase text-slate-300 border border-obsBorder"><span class="inline-block w-2 h-2 rounded-full bg-pinColor mr-1"></span>Cor</button>
+          <button onclick="setCatalogPin('geo')" data-pin="geo" class="pin-pill px-2.5 py-1 rounded font-mono text-[11px] bg-obsBase text-slate-300 border border-obsBorder"><span class="inline-block w-2 h-2 rounded-full bg-pinGeo mr-1"></span>Geo</button>
+          <button onclick="setCatalogPin('inst')" data-pin="inst" class="pin-pill px-2.5 py-1 rounded font-mono text-[11px] bg-obsBase text-slate-300 border border-obsBorder"><span class="inline-block w-2 h-2 rounded-full bg-pinInst mr-1"></span>Inst</button>
+            </div>
+          </div>
+        </div>
+
+        <div id="catalog1-container" class="grid grid-cols-1 xl:grid-cols-2 gap-4">
+          <!-- Renderizado via JS -->
+        </div>
+      </section>
+
+      <!-- =====================================================================
+           SEÇÃO VOL. 1 2: CATÁLOGO TÉCNICO — PARTE 2 (5 CATEGORIAS)
+           ===================================================================== -->
+      <section id="sec-catalog2" class="hidden space-y-6">
+        <div class="bg-obsPanel border border-obsBorder rounded-2xl p-6 space-y-5">
+          <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-4">
+            <div>
+              <div class="inline-flex items-center gap-2 px-2.5 py-0.5 rounded bg-cyan-500/15 border border-cyan-500/30 text-cyan-300 font-mono text-[11px] mb-2">
+                VOL. 1 • PARTE 2 • REFERÊNCIA DOS 73 NODES
+              </div>
+              <h1 class="text-2xl sm:text-3xl font-extrabold text-white">Catálogo Técnico — Parte 2 (36 Nodes)</h1>
+              <p class="text-xs sm:text-sm text-slate-400 mt-1">
+                Fichas técnicas com portas de entrada/saída tipadas por cor e notas de uso prático. Clique numa categoria para filtrar.
+              </p>
+            </div>
+            <div class="bg-obsBase border border-obsBorder rounded-xl px-4 py-3 text-right shrink-0">
+              <div class="text-xs font-mono text-slate-400">EXIBINDO</div>
+              <div class="text-xl font-mono font-bold text-cyan-300"><span id="catalog2-visible-count">0</span> <span class="text-xs text-slate-500">NODES</span></div>
+            </div>
+          </div>
+
+          <div class="pt-4 border-t border-obsDivider space-y-3">
+            <div class="flex flex-wrap items-center gap-1.5">
+          <button onclick="setCatalogCategory(2,'VEC')" data-part="2" data-cat="VEC" class="cat-pill px-3 py-1.5 rounded-lg font-mono text-xs font-medium bg-obsBase text-slate-300 border border-obsBorder hover:border-slate-500 transition">
+            VEC. Vetores & UV
+          </button>
+          <button onclick="setCatalogCategory(2,'UTI')" data-part="2" data-cat="UTI" class="cat-pill px-3 py-1.5 rounded-lg font-mono text-xs font-medium bg-obsBase text-slate-300 border border-obsBorder hover:border-slate-500 transition">
+            UTI. Utilitários & Lógica
+          </button>
+          <button onclick="setCatalogCategory(2,'GEO')" data-part="2" data-cat="GEO" class="cat-pill px-3 py-1.5 rounded-lg font-mono text-xs font-medium bg-obsBase text-slate-300 border border-obsBorder hover:border-slate-500 transition">
+            GEO. Geometria Procedural
+          </button>
+          <button onclick="setCatalogCategory(2,'VFX')" data-part="2" data-cat="VFX" class="cat-pill px-3 py-1.5 rounded-lg font-mono text-xs font-medium bg-obsBase text-slate-300 border border-obsBorder hover:border-slate-500 transition">
+            VFX. Partículas & VFX
+          </button>
+          <button onclick="setCatalogCategory(2,'OUT')" data-part="2" data-cat="OUT" class="cat-pill px-3 py-1.5 rounded-lg font-mono text-xs font-medium bg-obsBase text-slate-300 border border-obsBorder hover:border-slate-500 transition">
+            OUT. Saídas & Render
+          </button>
+            </div>
+            <div class="pt-3 border-t border-obsDivider flex flex-wrap items-center gap-1.5">
+              <span class="text-[11px] font-mono text-slate-400 mr-1">FILTRAR POR PINO:</span>
+          <button onclick="setCatalogPin('all')" data-pin="all" class="pin-pill px-2.5 py-1 rounded font-mono text-[11px] font-semibold bg-cyan-500/20 text-cyan-300 border border-cyan-500/40">Todos os Pinos</button>
+          <button onclick="setCatalogPin('scalar')" data-pin="scalar" class="pin-pill px-2.5 py-1 rounded font-mono text-[11px] bg-obsBase text-slate-300 border border-obsBorder"><span class="inline-block w-2 h-2 rounded-full bg-pinScalar mr-1"></span>Escalar</button>
+          <button onclick="setCatalogPin('vector')" data-pin="vector" class="pin-pill px-2.5 py-1 rounded font-mono text-[11px] bg-obsBase text-slate-300 border border-obsBorder"><span class="inline-block w-2 h-2 rounded-full bg-pinVector mr-1"></span>Vetor</button>
+          <button onclick="setCatalogPin('color')" data-pin="color" class="pin-pill px-2.5 py-1 rounded font-mono text-[11px] bg-obsBase text-slate-300 border border-obsBorder"><span class="inline-block w-2 h-2 rounded-full bg-pinColor mr-1"></span>Cor</button>
+          <button onclick="setCatalogPin('geo')" data-pin="geo" class="pin-pill px-2.5 py-1 rounded font-mono text-[11px] bg-obsBase text-slate-300 border border-obsBorder"><span class="inline-block w-2 h-2 rounded-full bg-pinGeo mr-1"></span>Geo</button>
+          <button onclick="setCatalogPin('inst')" data-pin="inst" class="pin-pill px-2.5 py-1 rounded font-mono text-[11px] bg-obsBase text-slate-300 border border-obsBorder"><span class="inline-block w-2 h-2 rounded-full bg-pinInst mr-1"></span>Inst</button>
+            </div>
+          </div>
+        </div>
+
+        <div id="catalog2-container" class="grid grid-cols-1 xl:grid-cols-2 gap-4">
+          <!-- Renderizado via JS -->
+        </div>
+      </section>
+      <!-- =====================================================================
+           SEÇÃO 1: ANATOMIA DO NODE & COERÇÃO DE PORTAS
+           ===================================================================== -->
+      <section id="sec-anatomy" class="space-y-6">
+        <!-- Hero Banner Volume 2 -->
+        <div class="bg-obsPanel border border-obsBorder rounded-2xl p-6 sm:p-8 relative overflow-hidden">
+          <div class="absolute inset-0 pointer-events-none opacity-20" style="background: radial-gradient(circle at 85% 20%, #9B5DE5 0%, transparent 45%), radial-gradient(circle at 15% 80%, #00BBF9 0%, transparent 40%);"></div>
+          <div class="relative z-10 flex flex-col lg:flex-row lg:items-center justify-between gap-6">
+            <div class="max-w-2xl">
+              <div class="inline-flex items-center gap-2 px-2.5 py-1 rounded-md bg-purple-500/15 border border-purple-500/30 text-purple-300 font-mono text-xs mb-3">
+                VOLUME 2 • ENGENHARIA DE GRAFOS & RECEITAS PRÁTICAS
+              </div>
+              <h1 class="text-3xl sm:text-4xl font-extrabold tracking-tight text-white mb-3">
+                Manual Prism — <span class="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 via-cyan-400 to-amber-400">Vol. 2: Caminhos & 30 Blueprints</span>
+              </h1>
+              <p class="text-slate-300 text-sm leading-relaxed mb-5">
+                Guia arquitetural completo sobre como os nodes da Prism se conectam, quais portas possuem afinidade natural, regras de coerção automática de dados e <strong>30 receitas prontas</strong> para produção de materiais PBR, estilização NPR, áudio-reatividade, geometria procedural e VFX.
+              </p>
+              <div class="flex flex-wrap gap-3">
+                <button onclick="switchSection('topology')" class="px-4 py-2.5 rounded-xl bg-cyan-500 hover:bg-cyan-400 text-slate-950 font-semibold text-xs sm:text-sm transition">
+                  Explorar Mapa de Caminhos →
+                </button>
+                <button onclick="switchSection('recipes')" class="px-4 py-2.5 rounded-xl bg-purple-500 hover:bg-purple-400 text-white font-semibold text-xs sm:text-sm transition">
+                  Abrir 30 Receitas Práticas →
+                </button>
+              </div>
+            </div>
+
+            <div class="grid grid-cols-2 gap-3 shrink-0 lg:w-64">
+              <div class="bg-obsBase border border-obsBorder rounded-xl p-4">
+                <div class="text-2xl font-mono font-bold text-cyan-400">04</div>
+                <div class="text-[11px] font-mono text-slate-400 mt-0.5">ESTÁGIOS DE FLUXO</div>
+              </div>
+              <div class="bg-obsBase border border-obsBorder rounded-xl p-4">
+                <div class="text-2xl font-mono font-bold text-amber-400">05</div>
+                <div class="text-[11px] font-mono text-slate-400 mt-0.5">TIPOS DE PORTAS</div>
+              </div>
+              <div class="bg-obsBase border border-purple-500/30 rounded-xl p-4">
+                <div class="text-2xl font-mono font-bold text-purple-300">30</div>
+                <div class="text-[11px] font-mono text-slate-400 mt-0.5">BLUEPRINTS PRONTOS</div>
+              </div>
+              <div class="bg-obsBase border border-obsBorder rounded-xl p-4">
+                <div class="text-2xl font-mono font-bold text-emerald-400">06</div>
+                <div class="text-[11px] font-mono text-slate-400 mt-0.5">DOMÍNIOS TÉCNICOS</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Inspetor Interativo da Anatomia de um Node -->
+        <div class="bg-obsPanel border border-obsBorder rounded-2xl p-6 space-y-5">
+          <div>
+            <h2 class="text-lg font-bold text-white">Anatomia Visual de um Node Prism (Clique nas Zonas)</h2>
+            <p class="text-xs text-slate-400">Clique em qualquer região do diagrama esquemático abaixo para inspecionar sua função na interface.</p>
+          </div>
+
+          <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-center">
+            <!-- Mockup Clicável -->
+            <div class="lg:col-span-5 bg-obsBase border border-obsBorder rounded-xl p-6 flex justify-center">
+              <div class="w-full max-w-[270px] rounded-2xl bg-[#13161E] border border-obsBorder p-4 shadow-2xl space-y-3" style="border-top: 3px solid #9B5DE5;">
+                <!-- Zona 1: Cabeçalho -->
+                <button onclick="selectAnatomyZone('header')" data-zone="header" class="anatomy-zone-btn w-full flex items-center justify-between p-2 rounded-lg border border-transparent hover:border-cyan-400/50 transition text-left">
+                  <span class="font-bold text-sm text-white">Height Blend</span>
+                  <span class="font-mono text-xs font-bold text-purple-400">[COL]</span>
+                </button>
+
+                <!-- Zona 2: Display Interno -->
+                <button onclick="selectAnatomyZone('display')" data-zone="display" class="anatomy-zone-btn w-full p-2 rounded-lg border border-transparent hover:border-cyan-400/50 transition">
+                  <div class="w-full h-11 rounded-lg bg-gradient-to-r from-slate-800 via-purple-900/60 to-amber-900/50 border border-white/10 flex items-center justify-center font-mono text-[11px] text-slate-200">
+                    Preview / Valor em Tempo Real
+                  </div>
+                </button>
+
+                <!-- Zonas 3 e 4: Pinos Esquerda / Direita -->
+                <div class="grid grid-cols-2 gap-2 pt-1 font-mono text-xs">
+                  <button onclick="selectAnatomyZone('inputs')" data-zone="inputs" class="anatomy-zone-btn p-2 rounded-lg border border-transparent hover:border-cyan-400/50 transition text-left space-y-2">
+                    <div class="flex items-center gap-2 -ml-3">
+                      <span class="w-2.5 h-2.5 rounded-full bg-pinColor"></span>
+                      <span class="text-slate-300">Cor A</span>
+                    </div>
+                    <div class="flex items-center gap-2 -ml-3">
+                      <span class="w-2.5 h-2.5 rounded-full bg-pinScalar"></span>
+                      <span class="text-slate-300">Height A</span>
+                    </div>
+                  </button>
+
+                  <button onclick="selectAnatomyZone('outputs')" data-zone="outputs" class="anatomy-zone-btn p-2 rounded-lg border border-transparent hover:border-cyan-400/50 transition text-right space-y-2">
+                    <div class="flex items-center justify-end gap-2 -mr-3">
+                      <span class="text-slate-200">Color</span>
+                      <span class="w-2.5 h-2.5 rounded-full bg-pinColor"></span>
+                    </div>
+                    <div class="flex items-center justify-end gap-2 -mr-3">
+                      <span class="text-slate-200">Mask</span>
+                      <span class="w-2.5 h-2.5 rounded-full bg-pinScalar"></span>
+                    </div>
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Painel Explicativo da Zona Selecionada -->
+            <div class="lg:col-span-7 bg-obsBase border border-obsBorder rounded-xl p-6 space-y-3">
+              <div class="flex items-center justify-between">
+                <h3 id="anatomy-detail-title" class="text-base font-bold text-white">1. Cabeçalho & Tag de Categoria</h3>
+                <span id="anatomy-detail-badge" class="font-mono text-xs px-2.5 py-0.5 rounded bg-purple-500/15 text-purple-300 border border-purple-500/30">IDENTIFICAÇÃO</span>
+              </div>
+              <p id="anatomy-detail-desc" class="text-xs sm:text-sm text-slate-300 leading-relaxed">
+                Exibe o nome funcional do operador à esquerda e o código de 3 letras da categoria à direita ([INP], [GEN], [COL], [FIL], [VEC], [UTI], [GEO], [VFX], [OUT]). A cor da borda superior acompanha o domínio da categoria.
+              </p>
+              <div class="pt-2 border-t border-obsDivider">
+                <span class="text-[11px] font-mono text-slate-500 block mb-1">DICA PRÁTICA:</span>
+                <p id="anatomy-detail-example" class="text-xs font-mono text-cyan-300">
+                  Use a tag [CAT] para localizar rapidamente qualquer node no menu de busca ou na árvore do Volume 1.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Tabela Semântica das 5 Portas & Coerção Implícita + Nota de Grupos -->
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+          <div class="lg:col-span-8 bg-obsPanel border border-obsBorder rounded-2xl p-6 space-y-4">
+            <h2 class="text-lg font-bold text-white">Código de Cores das Portas & Regras de Coerção</h2>
+            <div class="overflow-x-auto rounded-xl border border-obsBorder bg-obsBase">
+              <table class="w-full text-left border-collapse text-xs">
+                <thead>
+                  <tr class="bg-[#14171F] text-[10px] font-mono uppercase text-slate-400 border-b border-obsBorder">
+                    <th class="py-2.5 px-3">Pino</th>
+                    <th class="py-2.5 px-3">Tipo de Dado</th>
+                    <th class="py-2.5 px-3">Formato</th>
+                    <th class="py-2.5 px-3">Coerção Automática (Auto-Cast)</th>
+                  </tr>
+                </thead>
+                <tbody class="divide-y divide-obsDivider">
+                  <tr>
+                    <td class="py-2.5 px-3 font-mono font-bold text-amber-400">🟠 Laranja</td>
+                    <td class="py-2.5 px-3 font-semibold text-white">Escalar (Float)</td>
+                    <td class="py-2.5 px-3 font-mono text-slate-400">1 canal (x)</td>
+                    <td class="py-2.5 px-3 text-slate-300">Expande para Cor (x, x, x, 1) ou Vetor (x, x, x) quando ligado em pinos roxos ou cianos.</td>
+                  </tr>
+                  <tr>
+                    <td class="py-2.5 px-3 font-mono font-bold text-cyan-400">🔵 Ciano</td>
+                    <td class="py-2.5 px-3 font-semibold text-white">Vetor / Coord</td>
+                    <td class="py-2.5 px-3 font-mono text-slate-400">Vec2 / Vec3</td>
+                    <td class="py-2.5 px-3 text-slate-300">Extrai o canal X se conectado em Escalar; mapeia XYZ → RGB em pinos de Cor.</td>
+                  </tr>
+                  <tr>
+                    <td class="py-2.5 px-3 font-mono font-bold text-purple-400">🟣 Roxo</td>
+                    <td class="py-2.5 px-3 font-semibold text-white">Cor (RGBA)</td>
+                    <td class="py-2.5 px-3 font-mono text-slate-400">Vec4 (0..1)</td>
+                    <td class="py-2.5 px-3 text-slate-300">Converte automaticamente para luminância em escala de cinza ao entrar em pinos Escalar.</td>
+                  </tr>
+                  <tr>
+                    <td class="py-2.5 px-3 font-mono font-bold text-teal-300">🟢 Turquesa</td>
+                    <td class="py-2.5 px-3 font-semibold text-white">Geometria</td>
+                    <td class="py-2.5 px-3 font-mono text-slate-400">Mesh Buffer</td>
+                    <td class="py-2.5 px-3 text-slate-300">Exclusivo do domínio [GEO]. Não aceita sinais numéricos ou de cor.</td>
+                  </tr>
+                  <tr>
+                    <td class="py-2.5 px-3 font-mono font-bold text-emerald-300">🟢 Menta</td>
+                    <td class="py-2.5 px-3 font-semibold text-white">Instâncias</td>
+                    <td class="py-2.5 px-3 font-mono text-slate-400">Instance Array</td>
+                    <td class="py-2.5 px-3 text-slate-300">Gerado por Scatter e consumido exclusivamente por Geometry Output (Instâncias).</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <!-- Nota sobre Grupos -->
+          <div class="lg:col-span-4 bg-obsPanel border border-obsBorder rounded-2xl p-6 flex flex-col justify-between space-y-4">
+            <div class="space-y-3">
+              <div class="inline-flex items-center gap-2 px-2.5 py-0.5 rounded bg-emerald-500/15 border border-emerald-500/30 text-emerald-300 font-mono text-[11px]">
+                SISTEMA MODULAR
+              </div>
+              <h3 class="text-base font-bold text-white">Grupos (Importar grupo...)</h3>
+              <p class="text-xs text-slate-300 leading-relaxed">
+                No topo do menu de criação da Prism, a opção <code class="text-emerald-300 font-mono">Importar grupo...</code> permite encapsular sub-grafos complexos em um único bloco reutilizável com entradas e saídas expostas.
+              </p>
+            </div>
+            <div class="bg-obsBase border border-obsBorder rounded-xl p-3.5 text-[11px] font-mono text-slate-400 space-y-1">
+              <div class="text-slate-200 font-semibold">Boas Práticas de Encapsulamento:</div>
+              <div>• Converta receitas recorrentes (ex: Edge Wear PBR ou Aspect Ratio Fix) em Grupos salvos.</div>
+              <div>• Use <span class="text-cyan-300">Frame</span> e <span class="text-cyan-300">Reroute</span> antes de exportar.</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- =====================================================================
+           SEÇÃO 2: MAPA DE CAMINHOS & TOPOLOGIA DE CONEXÕES
+           ===================================================================== -->
+      <section id="sec-topology" class="hidden space-y-6">
+        <div class="bg-obsPanel border border-obsBorder rounded-2xl p-6 space-y-6">
+          <div>
+            <div class="inline-flex items-center gap-2 px-2.5 py-0.5 rounded bg-cyan-500/15 border border-cyan-500/30 text-cyan-300 font-mono text-[11px] mb-2">
+              ARQUITETURA DE FLUXO • COMO OS NODES SE CONECTAM
+            </div>
+            <h1 class="text-2xl sm:text-3xl font-extrabold text-white">Mapa de Caminhos & Topologia de Conexões</h1>
+            <p class="text-xs sm:text-sm text-slate-400 mt-1">
+              Todo grafo na Prism flui da esquerda para a direita atravessando 4 estágios lógicos bem definidos.
+            </p>
+          </div>
+
+          <!-- Pipeline Canônico de 4 Estágios -->
+          <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+            <div class="bg-obsBase border border-sky-500/30 rounded-xl p-4 space-y-2">
+              <div class="flex items-center justify-between font-mono text-xs">
+                <span class="text-sky-400 font-bold">ESTÁGIO 01</span>
+                <span class="text-slate-500">[VEC] / [UTI]</span>
+              </div>
+              <h3 class="font-bold text-white text-sm">Domínio & Coordenada</h3>
+              <p class="text-xs text-slate-400 leading-relaxed">Define onde e quando avaliar o pixel ou vértice (<code class="text-cyan-300">UV</code>, <code class="text-cyan-300">Position</code>, <code class="text-cyan-300">Mapping</code>, <code class="text-cyan-300">Directional Warp</code>, <code class="text-amber-300">Time</code>).</p>
+            </div>
+
+            <div class="bg-obsBase border border-emerald-500/30 rounded-xl p-4 space-y-2">
+              <div class="flex items-center justify-between font-mono text-xs">
+                <span class="text-emerald-400 font-bold">ESTÁGIO 02</span>
+                <span class="text-slate-500">[GEN] / [INP]</span>
+              </div>
+              <h3 class="font-bold text-white text-sm">Síntese & Amostragem</h3>
+              <p class="text-xs text-slate-400 leading-relaxed">Gera sinais brutos ou lê fontes externas (<code class="text-amber-300">Noise</code>, <code class="text-amber-300">Voronoi</code>, <code class="text-amber-300">Brick</code>, <code class="text-purple-300">Image Texture</code>, <code class="text-amber-300">Audio Input</code>).</p>
+            </div>
+
+            <div class="bg-obsBase border border-purple-500/30 rounded-xl p-4 space-y-2">
+              <div class="flex items-center justify-between font-mono text-xs">
+                <span class="text-purple-400 font-bold">ESTÁGIO 03</span>
+                <span class="text-slate-500">[FIL] / [COL] / [UTI]</span>
+              </div>
+              <h3 class="font-bold text-white text-sm">Modulação & Filtragem</h3>
+              <p class="text-xs text-slate-400 leading-relaxed">Esculpe máscaras, calcula relevo/AO e coloriza (<code class="text-amber-300">Histogram Scan</code>, <code class="text-amber-300">Edge Wear</code>, <code class="text-purple-300">Color Ramp</code>, <code class="text-purple-300">Height Blend</code>).</p>
+            </div>
+
+            <div class="bg-obsBase border border-rose-500/30 rounded-xl p-4 space-y-2">
+              <div class="flex items-center justify-between font-mono text-xs">
+                <span class="text-rose-400 font-bold">ESTÁGIO 04</span>
+                <span class="text-slate-500">[OUT] / [GEO] / [VFX]</span>
+              </div>
+              <h3 class="font-bold text-white text-sm">Consolidação & Saída</h3>
+              <p class="text-xs text-slate-400 leading-relaxed">Entrega os canais finais aos nós terminais (<code class="text-rose-300">Material Output</code>, <code class="text-teal-300">Geometry Output</code>, <code class="text-amber-300">VFX Output</code>).</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Quais Portas Costumam se Encontrar (8 Autoestradas Canônicas) -->
+        <div class="bg-obsPanel border border-obsBorder rounded-2xl p-6 space-y-4">
+          <div>
+            <h2 class="text-lg font-bold text-white">Quais Portas Costumam se Encontrar? (Afinidade de Pinos)</h2>
+            <p class="text-xs text-slate-400">Os 8 emparelhamentos de portas mais frequentes em grafos profissionais da Prism.</p>
+          </div>
+          <div id="canonical-pairs-grid" class="grid grid-cols-1 md:grid-cols-2 gap-3.5">
+            <!-- Renderizado via JS -->
+          </div>
+        </div>
+
+        <!-- Simulador Interativo de Compatibilidade de Portas + Bifurcação/Convergência -->
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+          <div class="lg:col-span-6 bg-obsPanel border border-obsBorder rounded-2xl p-6 space-y-4">
+            <h3 class="text-base font-bold text-white">Inspetor de Compatibilidade entre Portas</h3>
+            <p class="text-xs text-slate-400">Teste o comportamento do motor ao ligar qualquer tipo de saída em uma entrada.</p>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+              <div>
+                <label class="block text-[10px] font-mono text-slate-400 mb-1">PORTA DE SAÍDA (OUT)</label>
+                <select id="sim-port-source" onchange="evaluatePortConnection()" class="w-full bg-obsBase border border-obsBorder rounded-lg px-3 py-2 text-xs font-mono text-white outline-none">
+                  <option value="scalar">🟠 Escalar (Value / Height / Mask)</option>
+                  <option value="vector">🔵 Vetor (UV / Position / Normal)</option>
+                  <option value="color">🟣 Cor (Color / RGBA)</option>
+                  <option value="geo">🟢 Geometria (Mesh)</option>
+                  <option value="inst">🟢 Instâncias (Instance Array)</option>
+                </select>
+              </div>
+              <div>
+                <label class="block text-[10px] font-mono text-slate-400 mb-1">PORTA DE ENTRADA (IN)</label>
+                <select id="sim-port-target" onchange="evaluatePortConnection()" class="w-full bg-obsBase border border-obsBorder rounded-lg px-3 py-2 text-xs font-mono text-white outline-none">
+                  <option value="scalar">🟠 Escalar (Fac / Height / Roughness)</option>
+                  <option value="vector">🔵 Vetor (UV / Coord / Normal)</option>
+                  <option value="color">🟣 Cor (Base Color / In / Base)</option>
+                  <option value="geo">🟢 Geometria (Superfície / Geometria)</option>
+                  <option value="inst">🟢 Instâncias (Instâncias)</option>
+                </select>
+              </div>
+            </div>
+
+            <div id="sim-port-result" class="rounded-xl border p-4 text-xs">
+              <!-- Atualizado via JS -->
+            </div>
+          </div>
+
+          <div class="lg:col-span-6 bg-obsPanel border border-obsBorder rounded-2xl p-6 space-y-4">
+            <h3 class="text-base font-bold text-white">Padrões de Bifurcação & Convergência</h3>
+            <div class="space-y-3 text-xs">
+              <div class="bg-obsBase border border-obsBorder rounded-xl p-3.5 space-y-1">
+                <div class="font-mono font-bold text-cyan-300">1. Fan-Out (Uma Fonte → Múltiplos Canais PBR)</div>
+                <p class="text-slate-400">Um único <code class="text-white">Noise (Value)</code> alimenta simultaneamente <code class="text-white">Color Ramp</code> (Albedo), <code class="text-white">Bump</code> (Normal), <code class="text-white">Height AO</code> (Occlusion) e <code class="text-white">Levels</code> (Roughness) garantindo coerência física entre cor e relevo.</p>
+              </div>
+              <div class="bg-obsBase border border-obsBorder rounded-xl p-3.5 space-y-1">
+                <div class="font-mono font-bold text-purple-300">2. Fan-In (Convergência de Camadas)</div>
+                <p class="text-slate-400">Use <code class="text-white">Math [Add/Multiply]</code> para fundir máscaras escalares, <code class="text-white">Mix / Blend</code> para camadas de cor e <code class="text-white">Height Blend</code> quando precisar unir dois materiais completos respeitando o relevo de cada um.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- =====================================================================
+           SEÇÃO 3: CATÁLOGO DE 30 RECEITAS & BLUEPRINTS PRÁTICOS
+           ===================================================================== -->
+      <section id="sec-recipes" class="hidden space-y-6">
+        <div class="bg-obsPanel border border-obsBorder rounded-2xl p-6 space-y-5">
+          <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-4">
+            <div>
+              <div class="inline-flex items-center gap-2 px-2.5 py-0.5 rounded bg-amber-500/15 border border-amber-500/30 text-amber-300 font-mono text-[11px] mb-2">
+                CATÁLOGO EXPANDIDO • 30 BLUEPRINTS DE PRODUÇÃO
+              </div>
+              <h1 class="text-2xl sm:text-3xl font-extrabold text-white">Receitas & Combinações Úteis de Nodes (30 Fluxos)</h1>
+              <p class="text-xs sm:text-sm text-slate-400 mt-1">
+                Cadeias completas de encadeamento organizadas em 6 domínios técnicos com mapeamento exato de pinos e dicas de calibração.
+              </p>
+            </div>
+            <div class="bg-obsBase border border-obsBorder rounded-xl px-4 py-3 text-right shrink-0">
+              <div class="text-xs font-mono text-slate-400">EXIBINDO</div>
+              <div class="text-xl font-mono font-bold text-purple-300"><span id="recipes-visible-count">30</span> <span class="text-xs text-slate-500">/ 30 RECEITAS</span></div>
+            </div>
+          </div>
+
+          <!-- Filtros por Bloco Temático -->
+          <div class="pt-4 border-t border-obsDivider flex flex-wrap items-center gap-1.5">
+            <button onclick="setRecipeBlock('ALL')" data-block="ALL" class="recipe-block-pill px-3 py-1.5 rounded-lg font-mono text-xs font-semibold bg-purple-500/20 text-purple-300 border border-purple-500/40 transition">
+              Todas (30)
+            </button>
+            <button onclick="setRecipeBlock('PBR')" data-block="PBR" class="recipe-block-pill px-3 py-1.5 rounded-lg font-mono text-xs font-medium bg-obsBase text-slate-300 border border-obsBorder hover:border-slate-500 transition">
+              1. Materiais PBR (1–7)
+            </button>
+            <button onclick="setRecipeBlock('NPR')" data-block="NPR" class="recipe-block-pill px-3 py-1.5 rounded-lg font-mono text-xs font-medium bg-obsBase text-slate-300 border border-obsBorder hover:border-slate-500 transition">
+              2. Estilização & NPR (8–12)
+            </button>
+            <button onclick="setRecipeBlock('UV')" data-block="UV" class="recipe-block-pill px-3 py-1.5 rounded-lg font-mono text-xs font-medium bg-obsBase text-slate-300 border border-obsBorder hover:border-slate-500 transition">
+              3. UV & Animação (13–17)
+            </button>
+            <button onclick="setRecipeBlock('INT')" data-block="INT" class="recipe-block-pill px-3 py-1.5 rounded-lg font-mono text-xs font-medium bg-obsBase text-slate-300 border border-obsBorder hover:border-slate-500 transition">
+              4. Áudio & Interação (18–22)
+            </button>
+            <button onclick="setRecipeBlock('GEO')" data-block="GEO" class="recipe-block-pill px-3 py-1.5 rounded-lg font-mono text-xs font-medium bg-obsBase text-slate-300 border border-obsBorder hover:border-slate-500 transition">
+              5. Geometria [GEO] (23–26)
+            </button>
+            <button onclick="setRecipeBlock('VFX')" data-block="VFX" class="recipe-block-pill px-3 py-1.5 rounded-lg font-mono text-xs font-medium bg-obsBase text-slate-300 border border-obsBorder hover:border-slate-500 transition">
+              6. Partículas [VFX] (27–30)
+            </button>
+          </div>
+        </div>
+
+        <!-- Estado Vazio -->
+        <div id="recipes-empty-state" class="hidden bg-obsPanel border border-obsBorder rounded-2xl p-10 text-center space-y-3">
+          <div class="text-amber-400 font-mono text-sm">NENHUMA RECEITA ENCONTRADA PARA O FILTRO ATUAL</div>
+          <button onclick="resetRecipeFilters()" class="px-4 py-2 rounded-xl bg-obsBase hover:bg-obsHover border border-obsBorder text-xs font-mono text-purple-300">
+            Mostrar Todas as 30 Receitas
+          </button>
+        </div>
+
+        <!-- Lista de 30 Blueprints -->
+        <div id="recipes-container" class="space-y-4">
+          <!-- Renderizado via JS -->
+        </div>
+      </section>
+
+      <!-- =====================================================================
+           SEÇÃO 5: CATÁLOGO APRIMORADO DE 30 RECEITAS & BLUEPRINTS (VOL. 3)
+           ===================================================================== -->
+      <section id="sec-blueprints" class="hidden space-y-6">
+
+      <!-- Hero Banner Volume 3 -->
+      <div class="bg-obsPanel border border-obsBorder rounded-2xl p-6 sm:p-8 relative overflow-hidden">
+        <div class="absolute inset-0 pointer-events-none opacity-20" style="background: radial-gradient(circle at 88% 18%, #FF9F1C 0%, transparent 45%), radial-gradient(circle at 12% 85%, #9B5DE5 0%, transparent 45%);"></div>
+        <div class="relative z-10 flex flex-col lg:flex-row lg:items-center justify-between gap-6">
+          <div class="max-w-2xl">
+            <div class="inline-flex items-center gap-2 px-2.5 py-1 rounded-md bg-amber-500/15 border border-amber-500/30 text-amber-300 font-mono text-xs mb-3">
+              VOLUME 3 • PARTE 4 DO MANUAL OFICIAL PRISM
+            </div>
+            <h1 class="text-3xl sm:text-4xl font-extrabold tracking-tight text-white mb-3">
+              Catálogo Aprimorado de <span class="text-transparent bg-clip-text bg-gradient-to-r from-amber-400 via-purple-400 to-cyan-400">30 Receitas & Blueprints</span>
+            </h1>
+            <p class="text-slate-300 text-xs sm:text-sm leading-relaxed">
+              Biblioteca completa de padrões de encadeamento prontos para produção na Prism. Cada blueprint detalha a <strong>topologia exata de entrada/saída</strong>, os <strong>parâmetros internos recomendados</strong>, a <strong>utilidade técnica</strong> e variações avançadas de ajuste.
+            </p>
+          </div>
+
+          <div class="grid grid-cols-2 gap-3 shrink-0 lg:w-64">
+            <div class="bg-obsBase border border-amber-500/30 rounded-xl p-4">
+              <div class="text-2xl font-mono font-bold text-amber-400" id="blueprints-visible-count">30</div>
+              <div class="text-[11px] font-mono text-slate-400 mt-0.5">RECEITAS VISÍVEIS</div>
+            </div>
+            <div class="bg-obsBase border border-obsBorder rounded-xl p-4">
+              <div class="text-2xl font-mono font-bold text-purple-300">06</div>
+              <div class="text-[11px] font-mono text-slate-400 mt-0.5">BLOCOS TEMÁTICOS</div>
+            </div>
+            <div class="bg-obsBase border border-obsBorder rounded-xl p-4">
+              <div class="text-2xl font-mono font-bold text-cyan-400">73</div>
+              <div class="text-[11px] font-mono text-slate-400 mt-0.5">NODES COBERTOS</div>
+            </div>
+            <div class="bg-obsBase border border-obsBorder rounded-xl p-4">
+              <div class="text-2xl font-mono font-bold text-emerald-400">V3.5</div>
+              <div class="text-[11px] font-mono text-slate-400 mt-0.5">OBSIDIAN UI</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Barra de Filtros Avançados (Bloco + Dificuldade + Categoria) -->
+      <div class="bg-obsPanel border border-obsBorder rounded-2xl p-5 space-y-4">
+        <div class="flex flex-wrap items-center justify-between gap-2">
+          <span class="text-xs font-mono font-bold text-slate-300">FILTRAR POR BLOCO TEMÁTICO:</span>
+          <button onclick="resetBlueprintFilters()" class="text-[11px] font-mono text-cyan-400 hover:text-cyan-300 underline">
+            Limpar todos os filtros
+          </button>
+        </div>
+
+        <div class="flex flex-wrap items-center gap-1.5">
+          <button onclick="setBlueprintBlock('ALL')" data-block="ALL" class="block-pill px-3 py-1.5 rounded-lg font-mono text-xs font-semibold bg-amber-500/20 text-amber-300 border border-amber-500/40 transition">
+            Todos os Blocos (30)
+          </button>
+          <button onclick="setBlueprintBlock('PBR')" data-block="PBR" class="block-pill px-3 py-1.5 rounded-lg font-mono text-xs font-medium bg-obsBase text-slate-300 border border-obsBorder hover:border-slate-500 transition">
+            1. Materiais PBR (01–07)
+          </button>
+          <button onclick="setBlueprintBlock('NPR')" data-block="NPR" class="block-pill px-3 py-1.5 rounded-lg font-mono text-xs font-medium bg-obsBase text-slate-300 border border-obsBorder hover:border-slate-500 transition">
+            2. Estilização & NPR (08–12)
+          </button>
+          <button onclick="setBlueprintBlock('UV')" data-block="UV" class="block-pill px-3 py-1.5 rounded-lg font-mono text-xs font-medium bg-obsBase text-slate-300 border border-obsBorder hover:border-slate-500 transition">
+            3. UV & Animação (13–17)
+          </button>
+          <button onclick="setBlueprintBlock('INT')" data-block="INT" class="block-pill px-3 py-1.5 rounded-lg font-mono text-xs font-medium bg-obsBase text-slate-300 border border-obsBorder hover:border-slate-500 transition">
+            4. Áudio & Interação (18–22)
+          </button>
+          <button onclick="setBlueprintBlock('GEO')" data-block="GEO" class="block-pill px-3 py-1.5 rounded-lg font-mono text-xs font-medium bg-obsBase text-slate-300 border border-obsBorder hover:border-slate-500 transition">
+            5. Geometria [GEO] (23–26)
+          </button>
+          <button onclick="setBlueprintBlock('VFX')" data-block="VFX" class="block-pill px-3 py-1.5 rounded-lg font-mono text-xs font-medium bg-obsBase text-slate-300 border border-obsBorder hover:border-slate-500 transition">
+            6. Partículas [VFX] (27–30)
+          </button>
+        </div>
+
+        <div class="pt-3 border-t border-obsDivider flex flex-wrap items-center justify-between gap-3">
+          <div class="flex flex-wrap items-center gap-1.5">
+            <span class="text-[11px] font-mono text-slate-400 mr-1">COMPLEXIDADE:</span>
+            <button onclick="setBlueprintDifficulty('ALL')" data-diff="ALL" class="diff-pill px-2.5 py-1 rounded font-mono text-[11px] font-semibold bg-purple-500/20 text-purple-300 border border-purple-500/40">Todas</button>
+            <button onclick="setBlueprintDifficulty('Essencial')" data-diff="Essencial" class="diff-pill px-2.5 py-1 rounded font-mono text-[11px] bg-obsBase text-slate-300 border border-obsBorder">Essencial</button>
+            <button onclick="setBlueprintDifficulty('Intermediário')" data-diff="Intermediário" class="diff-pill px-2.5 py-1 rounded font-mono text-[11px] bg-obsBase text-slate-300 border border-obsBorder">Intermediário</button>
+            <button onclick="setBlueprintDifficulty('Avançado')" data-diff="Avançado" class="diff-pill px-2.5 py-1 rounded font-mono text-[11px] bg-obsBase text-slate-300 border border-obsBorder">Avançado</button>
+          </div>
+
+          <div class="flex items-center gap-3 text-[11px] font-mono text-slate-400">
+            <span class="flex items-center gap-1"><span class="w-2 h-2 rounded-full bg-pinScalar"></span>Escalar</span>
+            <span class="flex items-center gap-1"><span class="w-2 h-2 rounded-full bg-pinVector"></span>Vetor</span>
+            <span class="flex items-center gap-1"><span class="w-2 h-2 rounded-full bg-pinColor"></span>Cor</span>
+            <span class="flex items-center gap-1"><span class="w-2 h-2 rounded-full bg-pinGeo"></span>Geo</span>
+            <span class="flex items-center gap-1"><span class="w-2 h-2 rounded-full bg-pinInst"></span>Inst</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Estado Vazio -->
+      <div id="blueprints-empty-state" class="hidden bg-obsPanel border border-obsBorder rounded-2xl p-10 text-center space-y-3">
+        <div class="text-amber-400 font-mono text-sm">NENHUMA RECEITA ENCONTRADA COM OS FILTROS SELECIONADOS</div>
+        <button onclick="resetBlueprintFilters()" class="px-4 py-2 rounded-xl bg-obsBase hover:bg-obsHover border border-obsBorder text-xs font-mono text-amber-300">
+          Restaurar Catálogo Completo (30)
+        </button>
+      </div>
+
+      <!-- Container das 30 Receitas Aprimoradas -->
+      <div id="blueprints-container" class="space-y-5">
+        <!-- Renderizado via JS -->
+      </div>
+
+          </section>
+
+      <!-- Paginação entre Seções -->
+      <div id="section-pager" class="no-print flex items-center justify-between gap-3 pt-2"></div>
+
+    </main>
+  </div>
+
+  <!-- Botão Voltar ao Topo -->
+  <button id="back-to-top" onclick="window.scrollTo({ top: 0, behavior: 'smooth' })" aria-label="Voltar ao topo"
+          class="no-print hidden fixed bottom-5 right-5 z-40 w-10 h-10 rounded-full bg-obsPanel border border-obsBorder hover:border-cyan-400/50 text-cyan-300 font-mono items-center justify-center shadow-lg transition">
+    ↑
+  </button>
+
+  <!-- Paleta de Comandos (Busca Global) -->
+  <div id="palette-backdrop" class="hidden fixed inset-0 z-50 bg-black/60 backdrop-blur-sm" onclick="closePalette()">
+    <div class="mx-auto mt-[10vh] w-[92%] max-w-xl bg-obsPanel border border-obsBorder rounded-2xl shadow-2xl overflow-hidden" role="dialog" aria-modal="true" aria-label="Busca global" onclick="event.stopPropagation()">
+      <div class="flex items-center gap-3 px-4 py-3 border-b border-obsDivider">
+        <svg class="w-4 h-4 text-slate-500 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-4.35-4.35M17 10a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
+        <input id="palette-input" type="text" autocomplete="off" placeholder="Buscar nodes, receitas, blueprints e seções..."
+               class="flex-1 bg-transparent outline-none text-sm font-mono text-slate-200 placeholder-slate-500" />
+        <span class="text-[10px] font-mono text-slate-500 border border-obsBorder rounded px-1.5 py-0.5 shrink-0">ESC</span>
+      </div>
+      <div id="palette-results" class="max-h-[50vh] overflow-y-auto p-2 space-y-0.5"></div>
+      <div class="px-4 py-2 border-t border-obsDivider flex items-center gap-3 text-[10px] font-mono text-slate-500">
+        <span>↑↓ navegar</span><span>↵ abrir</span><span>esc fechar</span>
+        <span class="ml-auto" id="palette-count"></span>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const PIN_COLORS = {
+      scalar: '#FF9F1C',
+      vector: '#00BBF9',
+      color:  '#9B5DE5',
+      geo:    '#00F5D4',
+      inst:   '#7AE582'
+    };
+
+    const ANATOMY_ZONES = {
+      header: {
+        title: '1. Cabeçalho & Tag de Categoria',
+        badge: 'IDENTIFICAÇÃO',
+        desc: 'Exibe o nome funcional do operador à esquerda e o código de 3 letras da categoria à direita ([INP], [GEN], [COL], [FIL], [VEC], [UTI], [GEO], [VFX], [OUT]). A barra superior colorida indica o domínio.',
+        example: 'Use a tag [CAT] para localizar rapidamente qualquer node no menu de busca ou no Volume 1.'
+      },
+      display: {
+        title: '2. Display Interno & Preview em Tempo Real',
+        badge: 'TELEMETRIA VISUAL',
+        desc: 'Mostra uma miniatura em tempo real da textura/gradiente gerado, o wireframe de vértices (em [GEO]) ou o valor escalar/vetorial atual avaliado pelo node.',
+        example: 'Permite diagnosticar máscaras ou valores estourados sem precisar conectar cada node na saída final.'
+      },
+      inputs: {
+        title: '3. Portas de Entrada (Inputs — Esquerda)',
+        badge: 'RECEPTORES DE SINAL',
+        desc: 'Recebem dados vindos de nodes anteriores. A cor do círculo indica o tipo esperado: Laranja (Escalar), Ciano (Vetor), Roxo (Cor), Turquesa (Geometria) e Menta (Instâncias).',
+        example: 'Quando desconectados, os inputs assumem o valor padrão configurado nos parâmetros internos do node.'
+      },
+      outputs: {
+        title: '4. Portas de Saída (Outputs — Direita)',
+        badge: 'EMISSORES DE SINAL',
+        desc: 'Exportam os resultados calculados pelo node. Uma única porta de saída pode se ramificar (Fan-Out) para alimentar múltiplos nodes simultaneamente.',
+        example: 'Nodes terminais ([OUT] Material Output, Geometry Output e VFX Output) não possuem saídas à direita.'
+      }
+    };
+
+    const CANONICAL_PAIRS = [
+      { from: 'UV / Mapping (UV 🔵)', to: 'Noise / Image Texture (Coord/UV 🔵)', desc: 'Define escala, rotação e deslocamento espacial antes de amostrar qualquer padrão ou textura.' },
+      { from: 'Noise / Voronoi (Value 🟠)', to: 'Color Ramp (Fac 🟠)', desc: 'Converte mapas procedurais em escala de cinza para paletas cromáticas complexas.' },
+      { from: 'Brick / Noise (Value 🟠)', to: 'Bump / Height AO / Edge Wear (Height 🟠)', desc: 'Transforma mapas de altura em normais 3D, sombras de cavidade e máscaras de desgaste.' },
+      { from: 'Edge Wear / Histogram Scan (Value 🟠)', to: 'Mix / Blend (Fac / Mask 🟠)', desc: 'Atua como máscara de controle para mesclar dois materiais ou camadas de cor.' },
+      { from: 'Time (Value 🟠)', to: 'Math [Sine/Multiply] ➔ Remap (In 🟠)', desc: 'Gera ciclos contínuos normalizados (0.0 a 1.0) para pulsações luminosas e ondas.' },
+      { from: 'Audio Input (Spectrum/Beat 🟠)', to: 'Step / Smoothstep (In 🟠)', desc: 'Calibra picos sonoros em gatilhos limpos para deformação geométrica ou emissão.' },
+      { from: 'Primitive / Deform (Geometria 🟢)', to: 'Scatter (Superfície/Instância 🟢)', desc: 'Encadeamento base para criar terrenos e espalhar milhares de instâncias sobre eles.' },
+      { from: 'Particle (Age 0-1 🟠)', to: 'Size / Color over Life & Fade (Age 0-1 🟠)', desc: 'Sincroniza escala, evolução de cor e transparência ao longo da vida de cada partícula.' }
+    ];
+
+    const PORT_RULES = {
+      'scalar->scalar': { status: 'COMPATÍVEL DIRETO (1:1)', color: 'text-emerald-300 border-emerald-500/30 bg-emerald-500/10', msg: 'Transferência numérica direta sem perda ou conversão.' },
+      'scalar->color':  { status: 'COERÇÃO AUTOMÁTICA (AUTO-CAST)', color: 'text-cyan-300 border-cyan-500/30 bg-cyan-500/10', msg: 'O valor escalar X é replicado nos canais RGB como tom de cinza (X, X, X, 1.0).' },
+      'scalar->vector': { status: 'COERÇÃO AUTOMÁTICA (AUTO-CAST)', color: 'text-cyan-300 border-cyan-500/30 bg-cyan-500/10', msg: 'O valor escalar X preenche todos os eixos do vetor (X, X, X).' },
+      'vector->vector': { status: 'COMPATÍVEL DIRETO (1:1)', color: 'text-emerald-300 border-emerald-500/30 bg-emerald-500/10', msg: 'Transferência vetorial direta (Vec2 ou Vec3).' },
+      'vector->scalar': { status: 'EXTRAÇÃO DE CANAL (X)', color: 'text-amber-300 border-amber-500/30 bg-amber-500/10', msg: 'Apenas o primeiro componente (eixo X / U) do vetor é lido pela entrada escalar.' },
+      'vector->color':  { status: 'MAPEAMENTO ESPACIAL (XYZ → RGB)', color: 'text-cyan-300 border-cyan-500/30 bg-cyan-500/10', msg: 'Os eixos X, Y e Z são interpretados diretamente como canais Vermelho, Verde e Azul.' },
+      'color->color':   { status: 'COMPATÍVEL DIRETO (1:1)', color: 'text-emerald-300 border-emerald-500/30 bg-emerald-500/10', msg: 'Transferência cromática completa RGBA.' },
+      'color->scalar':  { status: 'CONVERSÃO POR LUMINÂNCIA', color: 'text-amber-300 border-amber-500/30 bg-amber-500/10', msg: 'O motor calcula automaticamente a luminância ponderada em escala de cinza (0.0 a 1.0).' },
+      'color->vector':  { status: 'CONVERSÃO (RGB → XYZ)', color: 'text-cyan-300 border-cyan-500/30 bg-cyan-500/10', msg: 'Os canais R, G e B alimentam os componentes X, Y e Z do vetor.' },
+      'geo->geo':       { status: 'COMPATÍVEL DIRETO (MESH)', color: 'text-emerald-300 border-emerald-500/30 bg-emerald-500/10', msg: 'Fluxo de malha poligonal válido dentro do pipeline [GEO].' },
+      'inst->inst':     { status: 'COMPATÍVEL DIRETO (INSTÂNCIAS)', color: 'text-emerald-300 border-emerald-500/30 bg-emerald-500/10', msg: 'Coleção de instâncias conectada diretamente ao Geometry Output.' }
+    };
+
+    const RECIPE_BLOCKS = [
+      { id: 'PBR', name: '1. Materiais PBR & Superfícies', range: '01–07', accent: '#10B981' },
+      { id: 'NPR', name: '2. Estilização & Retro NPR', range: '08–12', accent: '#9B5DE5' },
+      { id: 'UV',  name: '3. UV, Distorção & Animação', range: '13–17', accent: '#00BBF9' },
+      { id: 'INT', name: '4. Áudio, Cursor & Dados', range: '18–22', accent: '#FF9F1C' },
+      { id: 'GEO', name: '5. Geometria Procedural', range: '23–26', accent: '#00F5D4' },
+      { id: 'VFX', name: '6. Partículas & VFX', range: '27–30', accent: '#F59E0B' }
+    ];
+
+    const RECIPES_DATA = [
+      // BLOCO 1: PBR (1-7)
+      {
+        id: 1, block: 'PBR', blockName: 'Materiais PBR & Superfícies', difficulty: 'Intermediário',
+        title: 'Desgaste Metálico em Quinas (Edge Wear PBR)',
+        tags: ['[GEN]', '[FIL]', '[COL]', '[OUT]'],
+        chain: [
+          { node: 'Brick + Noise', out: 'Value', type: 'scalar' },
+          { node: 'Math [Add]', in: 'A / B', out: 'Value', type: 'scalar' },
+          { node: 'Edge Wear', in: 'Height', out: 'Value', type: 'scalar' },
+          { node: 'Mix + Invert', in: 'Fac / In', out: 'Color', type: 'color' },
+          { node: 'Material Output', in: 'Base Color & Roughness', type: 'color' }
+        ],
+        utility: 'Detecta automaticamente as quinas convexas do relevo combinado para revelar metal brilhante e polido nas bordas expostas, mantendo a pintura fosca nas superfícies planas.',
+        tuning: 'Use Invert na saída de Edge Wear antes de ligar em Roughness para que as quinas desgastadas fiquem mais lisas (menor rugosidade) que a tinta.'
+      },
+      {
+        id: 2, block: 'PBR', blockName: 'Materiais PBR & Superfícies', difficulty: 'Intermediário',
+        title: 'Acúmulo Realista de Neve, Areia ou Musgo (Height Blend)',
+        tags: ['[GEN]', '[COL]', '[VEC]', '[OUT]'],
+        chain: [
+          { node: 'Voronoi (Pedra) + Noise (Neve)', out: 'Value', type: 'scalar' },
+          { node: 'Height Blend', in: 'Height A / Height B', out: 'Color & Height', type: 'color' },
+          { node: 'Bump', in: 'Height', out: 'Normal', type: 'vector' },
+          { node: 'Material Output', in: 'Base Color & Normal', type: 'color' }
+        ],
+        utility: 'Diferente de uma mistura linear comum, o Height Blend compara a altura física de dois materiais para preencher primeiro frestas e cavidades profundas antes de cobrir o topo das pedras.',
+        tuning: 'Anime ou ajuste o deslocamento de altura do material B para controlar o volume acumulado de neve ou areia.'
+      },
+      {
+        id: 3, block: 'PBR', blockName: 'Materiais PBR & Superfícies', difficulty: 'Essencial',
+        title: 'Sombreamento de Cavidades & Sujeira (Micro-AO)',
+        tags: ['[GEN]', '[FIL]', '[COL]', '[OUT]'],
+        chain: [
+          { node: 'Brick', out: 'Value', type: 'scalar' },
+          { node: 'Height AO', in: 'Height', out: 'Value', type: 'scalar' },
+          { node: 'Levels', in: 'In', out: 'Color', type: 'color' },
+          { node: 'Blend [Multiply]', in: 'Blend', out: 'Color', type: 'color' },
+          { node: 'Material Output', in: 'Base Color & Occlusion', type: 'scalar' }
+        ],
+        utility: 'Calcula oclusão de ambiente procedural diretamente a partir do mapa de altura, escurecendo rejuntes e cavidades sem depender de texturas pré-assadas.',
+        tuning: 'Conecte o mesmo sinal de Height AO tanto em Blend [Multiply] na cor base quanto no pino Occlusion do Material Output.'
+      },
+      {
+        id: 4, block: 'PBR', blockName: 'Materiais PBR & Superfícies', difficulty: 'Intermediário',
+        title: 'Alvenaria Orgânica com Tijolos Quebrados (Slope Blur)',
+        tags: ['[GEN]', '[FIL]', '[VEC]', '[OUT]'],
+        chain: [
+          { node: 'Brick (In) + Noise (Slope)', out: 'Value', type: 'scalar' },
+          { node: 'Slope Blur', in: 'In / Slope', out: 'Color', type: 'color' },
+          { node: 'Bump', in: 'Height', out: 'Normal', type: 'vector' },
+          { node: 'Material Output', in: 'Normal', type: 'vector' }
+        ],
+        utility: 'Quebra a perfeição geométrica das linhas retas do node Brick empurrando seus contornos ao longo das inclinações de um ruído, criando tijolos lascados e pedras naturais.',
+        tuning: 'Ajuste a escala do Noise conectado em Slope para alternar entre lascas finas de alta frequência ou deformações amplas.'
+      },
+      {
+        id: 5, block: 'PBR', blockName: 'Materiais PBR & Superfícies', difficulty: 'Essencial',
+        title: 'Variação Individual por Peça / Ladrilho (Brick ID)',
+        tags: ['[GEN]', '[COL]', '[OUT]'],
+        chain: [
+          { node: 'Brick', out: 'ID', type: 'scalar' },
+          { node: 'Color Ramp', in: 'Fac', out: 'Color', type: 'color' },
+          { node: 'Blend [Overlay]', in: 'Blend', out: 'Color', type: 'color' },
+          { node: 'Material Output', in: 'Base Color', type: 'color' }
+        ],
+        utility: 'Aproveita o identificador numérico único (ID) gerado por cada tijolo individual para atribuir variações sutis de tonalidade e queima entre peças vizinhas.',
+        tuning: 'Mantenha as paradas do Color Ramp próximas em luminância e use baixa opacidade (Mask) no Blend para um realismo sutil.'
+      },
+      {
+        id: 6, block: 'PBR', blockName: 'Materiais PBR & Superfícies', difficulty: 'Essencial',
+        title: 'Desempacotamento de Mapas ORM (Channel-Packed PBR)',
+        tags: ['[INP]', '[VEC]', '[OUT]'],
+        chain: [
+          { node: 'Image Texture (ORM)', out: 'Color', type: 'color' },
+          { node: 'Separate RGB', in: 'Color', out: 'R, G, B', type: 'scalar' },
+          { node: 'Material Output', in: 'Occlusion (R), Roughness (G), Metalness (B)', type: 'scalar' }
+        ],
+        utility: 'Otimiza memória de vídeo lendo um único arquivo RGB onde cada canal carrega uma propriedade física distinta do shader PBR.',
+        tuning: 'Padrão da indústria: R = Ambient Occlusion, G = Roughness, B = Metalness.'
+      },
+      {
+        id: 7, block: 'PBR', blockName: 'Materiais PBR & Superfícies', difficulty: 'Essencial',
+        title: 'Textura Triplanar / Sem Costuras UV (World-Space)',
+        tags: ['[VEC]', '[GEN]', '[COL]', '[OUT]'],
+        chain: [
+          { node: 'Position', out: 'Position', type: 'vector' },
+          { node: 'Noise / Voronoi', in: 'Coord', out: 'Value', type: 'scalar' },
+          { node: 'Color Ramp', in: 'Fac', out: 'Color', type: 'color' },
+          { node: 'Material Output', in: 'Base Color', type: 'color' }
+        ],
+        utility: 'Avalia geradores procedurais no espaço 3D contínuo (Position) em vez de coordenadas UV 2D, eliminando emendas visíveis em terrenos e malhas complexas.',
+        tuning: 'Multiplique Position por um Value antes de entrar em Coord para controlar a densidade global do padrão no mundo.'
+      },
+
+      // BLOCO 2: NPR (8-12)
+      {
+        id: 8, block: 'NPR', blockName: 'Estilização & Retro NPR', difficulty: 'Essencial',
+        title: 'Cel-Shading / Faixas Tonais Retro 64-Bit',
+        tags: ['[INP]', '[COL]', '[OUT]'],
+        chain: [
+          { node: 'Image Texture', out: 'Color', type: 'color' },
+          { node: 'Posterize', in: 'In', out: 'Color', type: 'color' },
+          { node: 'Gradient Map 4', in: 'In', out: 'Color', type: 'color' },
+          { node: 'Material Output', in: 'Base Color', type: 'color' }
+        ],
+        utility: 'Quantiza gradientes contínuos em degraus tonais rígidos e remapeia os 4 níveis resultantes para uma paleta fechada estilo pixel art ou console retro.',
+        tuning: 'Configure Posterize para 4 níveis para alinhar perfeitamente cada faixa tonal com as 4 paradas do Gradient Map 4.'
+      },
+      {
+        id: 9, block: 'NPR', blockName: 'Estilização & Retro NPR', difficulty: 'Essencial',
+        title: 'Contorno Mágico / Rim Light (Fresnel + Smoothstep)',
+        tags: ['[VEC]', '[UTI]', '[COL]', '[OUT]'],
+        chain: [
+          { node: 'Fresnel', out: 'Value', type: 'scalar' },
+          { node: 'Smoothstep', in: 'In', out: 'Value', type: 'scalar' },
+          { node: 'Color Ramp', in: 'Fac', out: 'Color', type: 'color' },
+          { node: 'Material Output', in: 'Emissive', type: 'color' }
+        ],
+        utility: 'Isola apenas os ângulos rasantes da silhueta do objeto em relação à câmera para criar auras holográficas, escudos de energia ou contornos estilizados.',
+        tuning: 'Aproxime Edge0 e Edge1 no Smoothstep (ex: 0.65 e 0.85) para criar um contorno fino e intenso na borda do modelo.'
+      },
+      {
+        id: 10, block: 'NPR', blockName: 'Estilização & Retro NPR', difficulty: 'Avançado',
+        title: 'Retícula de Quadrinhos / Halftone Dinâmico',
+        tags: ['[VEC]', '[GEN]', '[COL]', '[UTI]', '[OUT]'],
+        chain: [
+          { node: 'Mapping ➔ Dots (Value) + Luminance (Value)', out: 'Value', type: 'scalar' },
+          { node: 'Math [Greater Than]', in: 'A / B', out: 'Value', type: 'scalar' },
+          { node: 'Color Ramp', in: 'Fac', out: 'Color', type: 'color' },
+          { node: 'Material Output', in: 'Base Color', type: 'color' }
+        ],
+        utility: 'Compara a grade procedural de pontos (Dots) com o brilho percebido (Luminance) de uma imagem para gerar retículas estilizadas estilo impressão em quadrinhos.',
+        tuning: 'Rotacione o Mapping em 45 graus para obter o ângulo clássico de retícula tipográfica.'
+      },
+      {
+        id: 11, block: 'NPR', blockName: 'Estilização & Retro NPR', difficulty: 'Intermediário',
+        title: 'Iridescência Óptica / Bolha de Sabão e Óleo',
+        tags: ['[VEC]', '[GEN]', '[UTI]', '[COL]', '[OUT]'],
+        chain: [
+          { node: 'Fresnel (Value) + Noise (Value)', out: 'Value', type: 'scalar' },
+          { node: 'Math [Add]', in: 'A / B', out: 'Value', type: 'scalar' },
+          { node: 'Spectral Dispersion', in: 'Thickness', out: 'Color', type: 'color' },
+          { node: 'Material Output', in: 'Base Color & Clearcoat', type: 'color' }
+        ],
+        utility: 'Simula interferência de filme fino variando a espessura óptica conforme o ângulo da câmera e um ruído orgânico, produzindo reflexos arco-íris dinâmicos.',
+        tuning: 'Combine com Roughness baixo (0.05) e Clearcoat em 1.0 para simular vidro dicroico ou películas líquidas.'
+      },
+      {
+        id: 12, block: 'NPR', blockName: 'Estilização & Retro NPR', difficulty: 'Intermediário',
+        title: 'Conversão de Altura para Normal Map RGB (Sobel)',
+        tags: ['[GEN]', '[FIL]', '[VEC]', '[OUT]'],
+        chain: [
+          { node: 'Voronoi', out: 'Value', type: 'scalar' },
+          { node: 'Blur', in: 'In', out: 'Color', type: 'color' },
+          { node: 'Sobel Normal', in: 'Height', out: 'Normal Map', type: 'color' },
+          { node: 'Normal Map', in: 'Color', out: 'Normal', type: 'vector' },
+          { node: 'Material Output', in: 'Normal', type: 'vector' }
+        ],
+        utility: 'Gera uma textura RGB de Normal Map via operador Sobel antes da decodificação, permitindo mesclar mapas normais usando nodes da categoria [COL].',
+        tuning: 'Passar pelo Blur antes do Sobel Normal suaviza degraus de quantização e cria chanfros redondos nas células.'
+      },
+
+      // BLOCO 3: UV & ANIMAÇÃO (13-17)
+      {
+        id: 13, block: 'UV', blockName: 'UV, Distorção & Animação', difficulty: 'Intermediário',
+        title: 'Superfície de Água Ondulante / Distorção de Calor',
+        tags: ['[UTI]', '[VEC]', '[GEN]', '[INP]'],
+        chain: [
+          { node: 'Time ➔ Mapping', out: 'UV', type: 'vector' },
+          { node: 'Noise', in: 'Coord', out: 'Value', type: 'scalar' },
+          { node: 'Directional Warp', in: 'Map (+ UV)', out: 'UV', type: 'vector' },
+          { node: 'Image Texture', in: 'UV', out: 'Color', type: 'color' }
+        ],
+        utility: 'Desloca continuamente um campo de ruído ao longo do tempo para deformar as coordenadas UV de qualquer textura, simulando refração líquida ou ondas de calor.',
+        tuning: 'Mantenha a intensidade do Directional Warp baixa (0.02 a 0.08) para evitar esticamento excessivo dos pixels.'
+      },
+      {
+        id: 14, block: 'UV', blockName: 'UV, Distorção & Animação', difficulty: 'Essencial',
+        title: 'Correção de Proporção de Tela (Aspect Ratio Fix)',
+        tags: ['[VEC]', '[INP]', '[UTI]', '[GEN]'],
+        chain: [
+          { node: 'UV (UV) + Viewport (Aspect)', out: 'Vector/Scalar', type: 'vector' },
+          { node: 'Math [Multiply]', in: 'A / B', out: 'Value', type: 'scalar' },
+          { node: 'Dots / Checker', in: 'UV', out: 'Value', type: 'scalar' }
+        ],
+        utility: 'Compensa a razão de aspecto da janela atual sobre as coordenadas UV para impedir que círculos, pontos e grades fiquem ovalados em telas widescreen ou mobile.',
+        tuning: 'Essencial em shaders 2D de tela cheia e interfaces interativas.'
+      },
+      {
+        id: 15, block: 'UV', blockName: 'UV, Distorção & Animação', difficulty: 'Essencial',
+        title: 'Pulso Rítmico Normalizado (Senoide Calibrada)',
+        tags: ['[UTI]', '[OUT]'],
+        chain: [
+          { node: 'Time', out: 'Value', type: 'scalar' },
+          { node: 'Math [Sine]', in: 'A', out: 'Value', type: 'scalar' },
+          { node: 'Remap [-1..1 → 0..1]', in: 'In', out: 'Value', type: 'scalar' },
+          { node: 'Material Output', in: 'Emissive', type: 'color' }
+        ],
+        utility: 'Converte a saída negativa/positiva de uma onda senoidal (-1.0 a +1.0) para a faixa segura de [0.0, 1.0], criando pulsações luminosas suaves e cíclicas.',
+        tuning: 'Multiplique Time antes do Sine para acelerar ou desacelerar a frequência da pulsação.'
+      },
+      {
+        id: 16, block: 'UV', blockName: 'UV, Distorção & Animação', difficulty: 'Intermediário',
+        title: 'Erosão / Dissolve Orgânico com Histogram Scan',
+        tags: ['[GEN]', '[FIL]', '[UTI]', '[OUT]'],
+        chain: [
+          { node: 'Noise', out: 'Value', type: 'scalar' },
+          { node: 'Histogram Scan', in: 'In', out: 'Value', type: 'scalar' },
+          { node: 'Clamp', in: 'In', out: 'Value', type: 'scalar' },
+          { node: 'Material Output', in: 'Opacity', type: 'scalar' }
+        ],
+        utility: 'Varre progressivamente a faixa tonal de um ruído para fazer objetos surgirem ou se dissolverem organicamente (efeito teletransporte ou queima).',
+        tuning: 'Use o histograma invertido em um Smoothstep estreito para extrair uma borda brilhante incandescente exatamente na linha de queima.'
+      },
+      {
+        id: 17, block: 'UV', blockName: 'UV, Distorção & Animação', difficulty: 'Intermediário',
+        title: 'Madeira Procedural com Veios Orgânicos',
+        tags: ['[VEC]', '[GEN]', '[COL]', '[OUT]'],
+        chain: [
+          { node: 'UV ➔ Directional Warp (+ Noise)', out: 'UV', type: 'vector' },
+          { node: 'Wave', in: 'UV', out: 'Value', type: 'scalar' },
+          { node: 'Color Ramp', in: 'Fac', out: 'Color', type: 'color' },
+          { node: 'Material Output', in: 'Base Color', type: 'color' }
+        ],
+        utility: 'Deforma o espaço UV com ruído antes de gerar ondas periódicas, transformando listras retas em anéis concêntricos e veios naturais de madeira.',
+        tuning: 'Estique a escala Y no Mapping antes do Wave para alongar os veios no sentido das tábuas.'
+      },
+
+      // BLOCO 4: INTERATIVIDADE, ÁUDIO & DADOS (18-22)
+      {
+        id: 18, block: 'INT', blockName: 'Áudio, Cursor & Dados', difficulty: 'Intermediário',
+        title: 'Visualizador de Espectro de Áudio (Spectrum Bars)',
+        tags: ['[VEC]', '[INP]', '[UTI]', '[COL]', '[OUT]'],
+        chain: [
+          { node: 'UV', out: 'UV', type: 'vector' },
+          { node: 'Audio Input', in: 'U', out: 'Spectrum', type: 'scalar' },
+          { node: 'Step', in: 'In', out: 'Value', type: 'scalar' },
+          { node: 'Color Ramp', in: 'Fac', out: 'Color', type: 'color' },
+          { node: 'Material Output', in: 'Emissive', type: 'color' }
+        ],
+        utility: 'Amostra a magnitude de cada banda de frequência ao longo do eixo horizontal da tela (UV.x), desenhando barras luminosas reativas em tempo real.',
+        tuning: 'Compare UV.y com Spectrum usando Math [Less Than] para desenhar barras verticais sólidas de baixo para cima.'
+      },
+      {
+        id: 19, block: 'INT', blockName: 'Áudio, Cursor & Dados', difficulty: 'Essencial',
+        title: 'Batida Musical Pulsando Geometria e Luz (Beat Trigger)',
+        tags: ['[INP]', '[UTI]', '[GEO]', '[OUT]'],
+        chain: [
+          { node: 'Audio Input', out: 'Beat & Bass', type: 'scalar' },
+          { node: 'Smoothstep', in: 'In', out: 'Value', type: 'scalar' },
+          { node: 'Deform (Height) + Material Output (Emissive)', in: 'Height / Emissive', type: 'scalar' }
+        ],
+        utility: 'Sincroniza deformações físicas da malha 3D e picos de brilho emissivo exatamente com os graves e batidas detectadas na música.',
+        tuning: 'Use Smoothstep para amaciar a queda do pulso Beat e evitar trepidações bruscas.'
+      },
+      {
+        id: 20, block: 'INT', blockName: 'Áudio, Cursor & Dados', difficulty: 'Avançado',
+        title: 'Pincel / Halo Interativo com o Cursor (Pointer Tracking)',
+        tags: ['[VEC]', '[INP]', '[UTI]', '[OUT]'],
+        chain: [
+          { node: 'UV (UV) vs Pointer (UV)', out: 'Vector', type: 'vector' },
+          { node: 'Math [Distance] ➔ Smoothstep', in: 'A / B', out: 'Value', type: 'scalar' },
+          { node: 'Math [Multiply] (+ Pointer Down)', in: 'A / B', out: 'Value', type: 'scalar' },
+          { node: 'Material Output', in: 'Emissive', type: 'color' }
+        ],
+        utility: 'Calcula a distância entre cada pixel e o cursor do mouse/toque, acendendo um halo interativo apenas enquanto o botão está pressionado (Down = 1.0).',
+        tuning: 'Conecte Pointer (Position) em Directional Warp (Map) para criar ondas que se deslocam ao arrastar o dedo.'
+      },
+      {
+        id: 21, block: 'INT', blockName: 'Áudio, Cursor & Dados', difficulty: 'Essencial',
+        title: 'Variação Automática por Objeto na Cena (Object ID)',
+        tags: ['[INP]', '[UTI]', '[COL]', '[OUT]'],
+        chain: [
+          { node: 'Object Info', out: 'ID', type: 'scalar' },
+          { node: 'Math [Multiply]', in: 'A', out: 'Value', type: 'scalar' },
+          { node: 'Hue Shift', in: 'In', out: 'Color', type: 'color' },
+          { node: 'Material Output', in: 'Base Color', type: 'color' }
+        ],
+        utility: 'Usa o identificador numérico único de cada objeto na cena para rotacionar sua matiz automaticamente, evitando repetição visual ao reutilizar materiais.',
+        tuning: 'Multiplique ID por uma fração irracional (ex: 0.37) para espalhar bem as cores entre objetos consecutivos.'
+      },
+      {
+        id: 22, block: 'INT', blockName: 'Áudio, Cursor & Dados', difficulty: 'Intermediário',
+        title: 'Visualização de Gráficos Guiada por Planilha (Data)',
+        tags: ['[INP]', '[UTI]', '[GEO]', '[COL]'],
+        chain: [
+          { node: 'Data (T / Coluna U)', out: 'Value', type: 'scalar' },
+          { node: 'Remap', in: 'In', out: 'Value', type: 'scalar' },
+          { node: 'Deform (Height) + Color Ramp (Fac)', in: 'Height / Fac', type: 'scalar' }
+        ],
+        utility: 'Conecta tabelas externas diretamente à elevação e cor de malhas 3D, permitindo criar gráficos dinâmicos e animações orientadas por dados.',
+        tuning: 'Use a saída Count do node Data para normalizar o índice T entre 0.0 e 1.0.'
+      },
+
+      // BLOCO 5: GEOMETRIA PROCEDURAL (23-26)
+      {
+        id: 23, block: 'GEO', blockName: 'Geometria Procedural', difficulty: 'Essencial',
+        title: 'Terreno Procedural Esculpido (Primitive + Deform)',
+        tags: ['[GEO]', '[GEN]'],
+        chain: [
+          { node: 'Primitive (Plano) + Noise (Value)', out: 'Geo / Scalar', type: 'geo' },
+          { node: 'Deform', in: 'Geometria / Height', out: 'Geometria', type: 'geo' },
+          { node: 'Geometry Output', in: 'Geometria', type: 'geo' }
+        ],
+        utility: 'Transforma uma malha plana subdividida em relevo montanhoso contínuo deslocando fisicamente seus vértices através de um campo de ruído.',
+        tuning: 'Aumente a densidade de vértices no Primitive para capturar detalhes finos do ruído sem serrilhado poligonal.'
+      },
+      {
+        id: 24, block: 'GEO', blockName: 'Geometria Procedural', difficulty: 'Intermediário',
+        title: 'Ecossistema / Floresta com Clareiras Naturais (Scatter)',
+        tags: ['[GEO]', '[GEN]'],
+        chain: [
+          { node: 'Deform (Terreno) + Primitive (Árvore)', out: 'Geometria', type: 'geo' },
+          { node: 'Scatter (+ Noise em Densidade)', in: 'Superfície / Instância / Densidade', out: 'Instâncias', type: 'inst' },
+          { node: 'Geometry Output', in: 'Geometria & Instâncias', type: 'inst' }
+        ],
+        utility: 'Espalha milhares de cópias de um objeto sobre um terreno usando um ruído escalar para modular onde a vegetação nasce densa e onde surgem clareiras.',
+        tuning: 'Passe o Noise por um Histogram Scan antes de ligar em Densidade para definir clareiras com bordas mais nítidas.'
+      },
+      {
+        id: 25, block: 'GEO', blockName: 'Geometria Procedural', difficulty: 'Essencial',
+        title: 'Colorização Aleatória de Instâncias (Instance Info)',
+        tags: ['[GEO]', '[COL]', '[OUT]'],
+        chain: [
+          { node: 'Instance Info', out: 'Aleatório', type: 'scalar' },
+          { node: 'Color Ramp', in: 'Fac', out: 'Color', type: 'color' },
+          { node: 'Material Output', in: 'Base Color', type: 'color' }
+        ],
+        utility: 'Lê a semente aleatória individual (0.0 a 1.0) de cada cópia gerada pelo Scatter para variar cores de folhas, pedras ou cristais sem duplicar geometria.',
+        tuning: 'Funciona em conjunto com qualquer malha instanciada via Scatter.'
+      },
+      {
+        id: 26, block: 'GEO', blockName: 'Geometria Procedural', difficulty: 'Essencial',
+        title: 'Deformação Ondulante Animada em Malha',
+        tags: ['[UTI]', '[VEC]', '[GEN]', '[GEO]'],
+        chain: [
+          { node: 'Time ➔ Mapping ➔ Wave', out: 'Value', type: 'scalar' },
+          { node: 'Deform (+ Primitive)', in: 'Height / Geometria', out: 'Geometria', type: 'geo' },
+          { node: 'Geometry Output', in: 'Geometria', type: 'geo' }
+        ],
+        utility: 'Cria bandeiras tremulando, ondas oceânicas físicas ou superfícies orgânicas pulsantes diretamente nos vértices da geometria 3D.',
+        tuning: 'Combine dois nodes Wave em direções cruzadas com Math [Add] para simular ondas marítimas naturais.'
+      },
+
+      // BLOCO 6: PARTÍCULAS & VFX (27-30)
+      {
+        id: 27, block: 'VFX', blockName: 'Partículas & VFX', difficulty: 'Intermediário',
+        title: 'Fogo / Fumaça Ascendente com Turbulência',
+        tags: ['[VFX]'],
+        chain: [
+          { node: 'Particle ➔ Emitter ➔ Motion', out: 'Position', type: 'vector' },
+          { node: 'Turbulence', in: 'Position', out: 'Position', type: 'vector' },
+          { node: 'Color over Life + Fade + Sprite', out: 'Color / Opacity / Mask', type: 'color' },
+          { node: 'VFX Output', in: 'Position, Color, Opacity, Sprite', type: 'vector' }
+        ],
+        utility: 'Pipeline completo de combustão onde partículas sobem a partir do emissor, ganham movimento orgânico via Turbulence, mudam de cor ao esfriar e somem suavemente.',
+        tuning: 'Configure Color over Life de branco/amarelo (Age 0.0) para laranja vivo (0.4) e cinza escuro (1.0).'
+      },
+      {
+        id: 28, block: 'VFX', blockName: 'Partículas & VFX', difficulty: 'Intermediário',
+        title: 'Portal Mágico / Tornado em Espiral (Vortex)',
+        tags: ['[VFX]'],
+        chain: [
+          { node: 'Motion (Position) + Particle (Time s)', out: 'Vector/Scalar', type: 'vector' },
+          { node: 'Vortex', in: 'Position / Time s', out: 'Position', type: 'vector' },
+          { node: 'Size over Life + Sprite', out: 'Size / Mask', type: 'scalar' },
+          { node: 'VFX Output', in: 'Position, Size, Sprite', type: 'vector' }
+        ],
+        utility: 'Aplica força rotacional contínua ao redor de um eixo para girar partículas em redemoinho, ideal para vórtices de energia, feitiços ou tempestades.',
+        tuning: 'Encadeie Turbulence logo após o Vortex para adicionar irregularidade orgânica às espirais.'
+      },
+      {
+        id: 29, block: 'VFX', blockName: 'Partículas & VFX', difficulty: 'Essencial',
+        title: 'Absorção de Energia / Buraco Negro (Attractor)',
+        tags: ['[VFX]'],
+        chain: [
+          { node: 'Emitter (Origin) + Particle (Age 0-1)', out: 'Vector/Scalar', type: 'vector' },
+          { node: 'Attractor', in: 'Position / Age 0-1', out: 'Position', type: 'vector' },
+          { node: 'Fade (Opacity) + VFX Output', in: 'Position / Opacity', type: 'vector' }
+        ],
+        utility: 'Puxa partículas nascidas em uma esfera externa em direção a um ponto focal central conforme envelhecem, criando efeitos de implosão ou carregamento de poder.',
+        tuning: 'Use Size over Life encolhendo próximo a Age 1.0 para que as partículas desapareçam ao atingir o núcleo.'
+      },
+      {
+        id: 30, block: 'VFX', blockName: 'Partículas & VFX', difficulty: 'Avançado',
+        title: 'Enxame de Vaga-Lumes / Brasas Reativas ao Áudio',
+        tags: ['[VFX]', '[INP]'],
+        chain: [
+          { node: 'Turbulence (Position) ➔ VFX Output (Position)', out: 'Position', type: 'vector' },
+          { node: 'Audio Input (Level)', out: 'Level', type: 'scalar' },
+          { node: 'VFX Output', in: 'Size & Opacity (+ Sprite)', type: 'scalar' }
+        ],
+        utility: 'Combina partículas flutuantes erráticas com a amplitude do áudio em tempo real para fazer com que cada brasa pulse em tamanho e brilho no ritmo da música.',
+        tuning: 'Passe Audio Input (Level) por um Remap para definir um tamanho mínimo visível mesmo nos trechos silenciosos.'
+      }
+    ];
+
+    let activeBlockFilter = 'ALL';
+    let activeRecipeSearch = '';
+    let activeSection = 'overview';
+
+    function renderSidebarBlocks() {
+      const container = document.getElementById('sidebar-blocks');
+      let html = `<div class="text-[10px] font-mono uppercase tracking-wider text-slate-500 px-1">Receitas — Vol. 2 (30)</div>`;
+
+      RECIPE_BLOCKS.forEach((blk, idx) => {
+        const items = RECIPES_DATA.filter(r => r.block === blk.id);
+        html += `
+          <details ${idx === 0 ? 'open' : ''} class="rounded-lg bg-obsBase/80 border border-obsDivider overflow-hidden">
+            <summary class="flex items-center justify-between px-2.5 py-2 cursor-pointer select-none hover:bg-obsHover transition">
+              <span class="text-xs font-semibold text-slate-200 truncate">${blk.name}</span>
+              <span class="text-[10px] font-mono font-bold" style="color: ${blk.accent}">${blk.range}</span>
+            </summary>
+            <div class="px-2 pb-2 pt-1 space-y-0.5 border-t border-obsDivider/60">
+              ${items.map(r => `
+                <button onclick="jumpToRecipe(${r.id})" class="w-full text-left px-2 py-1 rounded text-[11px] font-mono text-slate-400 hover:text-purple-300 hover:bg-obsHover transition truncate">
+                  #${String(r.id).padStart(2, '0')} ${r.title.split('(')[0].trim()}
+                </button>
+              `).join('')}
+            </div>
+          </details>
+        `;
+      });
+
+      container.innerHTML = html;
+      wireTree('sidebar-blocks');
+    }
+
+    function renderRecipes() {
+      const container = document.getElementById('recipes-container');
+      container.innerHTML = RECIPES_DATA.map(r => {
+        const searchBlob = `${r.title} ${r.blockName} ${r.tags.join(' ')} ${r.chain.map(c => c.node).join(' ')} ${r.utility} ${r.tuning}`.toLowerCase();
+
+        const chainHtml = r.chain.map((step, i) => {
+          const pinColor = PIN_COLORS[step.type] || '#00BBF9';
+          const arrow = i < r.chain.length - 1
+            ? `<div class="flex items-center justify-center px-1 text-slate-500 font-mono font-bold text-sm">➔</div>`
+            : '';
+
+          return `
+            <div class="flex items-center">
+              <div class="rounded-xl bg-[#13161E] border border-obsBorder px-3 py-2 font-mono text-xs space-y-1 shadow">
+                <div class="font-bold text-white flex items-center gap-1.5">
+                  <span class="w-2 h-2 rounded-full" style="background-color: ${pinColor}"></span>
+                  <span>${step.node}</span>
+                </div>
+                <div class="text-[10px] text-slate-400 flex items-center gap-2">
+                  ${step.in ? `<span class="text-sky-300">IN: ${step.in}</span>` : ''}
+                  ${step.out ? `<span class="text-emerald-300">OUT: ${step.out}</span>` : ''}
+                </div>
+              </div>
+              ${arrow}
+            </div>
+          `;
+        }).join('');
+
+        return `
+          <article id="recipe-card-${r.id}"
+                   class="blueprint-card bg-obsPanel border border-obsBorder rounded-2xl p-6 space-y-4 transition-all duration-300"
+                   data-block="${r.block}"
+                   data-search="${searchBlob}">
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 pb-3 border-b border-obsDivider">
+              <div class="flex flex-wrap items-center gap-2.5">
+                <span class="font-mono text-xs font-bold px-2 py-0.5 rounded bg-purple-500/15 text-purple-300 border border-purple-500/30">
+                  #${String(r.id).padStart(2, '0')}
+                </span>
+                <h3 class="text-base sm:text-lg font-bold text-white">${r.title}</h3>
+              </div>
+              <div class="flex items-center gap-1.5 font-mono text-[10px]">
+                ${r.tags.map(t => `<span class="px-2 py-0.5 rounded bg-obsBase border border-obsBorder text-slate-300">${t}</span>`).join('')}
+                <span class="px-2 py-0.5 rounded bg-cyan-500/10 border border-cyan-500/30 text-cyan-300">${r.difficulty}</span>
+              </div>
+            </div>
+
+            <!-- Fluxograma Visual de Encadeamento -->
+            <div class="bg-obsBase border border-obsBorder rounded-xl p-4 overflow-x-auto">
+              <div class="text-[10px] font-mono uppercase text-slate-500 mb-2.5">Diagrama de Encadeamento de Portas</div>
+              <div class="flex flex-wrap items-center gap-y-2">
+                ${chainHtml}
+              </div>
+            </div>
+
+            <!-- Explicação Técnica & Dica de Calibração -->
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-4 text-xs">
+              <div class="lg:col-span-7 space-y-1">
+                <div class="font-mono text-[10px] uppercase text-cyan-400 font-bold">Utilidade Técnica</div>
+                <p class="text-slate-300 leading-relaxed">${r.utility}</p>
+              </div>
+              <div class="lg:col-span-5 bg-obsBase border border-obsBorder rounded-xl p-3.5 space-y-1">
+                <div class="font-mono text-[10px] uppercase text-amber-400 font-bold">Calibração & Ajuste Fino</div>
+                <p class="text-slate-400 leading-relaxed">${r.tuning}</p>
+              </div>
+            </div>
+          </article>
+        `;
+      }).join('');
+    }
+
+    function applyRecipeFilters() {
+      const cards = document.querySelectorAll('#recipes-container .blueprint-card');
+      let visible = 0;
+
+      cards.forEach(card => {
+        const matchBlock = activeBlockFilter === 'ALL' || card.dataset.block === activeBlockFilter;
+        const matchSearch = !activeRecipeSearch || card.dataset.search.includes(activeRecipeSearch);
+        if (matchBlock && matchSearch) {
+          card.classList.remove('hidden');
+          visible++;
+        } else {
+          card.classList.add('hidden');
+        }
+      });
+
+      document.getElementById('recipes-visible-count').textContent = visible;
+      const emptyEl = document.getElementById('recipes-empty-state');
+      if (visible === 0) emptyEl.classList.remove('hidden');
+      else emptyEl.classList.add('hidden');
+    }
+
+    function setRecipeBlock(blockId) {
+      activeBlockFilter = blockId;
+      document.querySelectorAll('.recipe-block-pill').forEach(btn => {
+        if (btn.dataset.block === blockId) {
+          btn.className = 'recipe-block-pill px-3 py-1.5 rounded-lg font-mono text-xs font-semibold bg-purple-500/20 text-purple-300 border border-purple-500/40 transition';
+        } else {
+          btn.className = 'recipe-block-pill px-3 py-1.5 rounded-lg font-mono text-xs font-medium bg-obsBase text-slate-300 border border-obsBorder hover:border-slate-500 transition';
+        }
+      });
+      applyRecipeFilters();
+    }
+
+    function resetRecipeFilters() {
+      activeBlockFilter = 'ALL';
+      activeRecipeSearch = '';
+      document.getElementById('recipe-search').value = '';
+      setRecipeBlock('ALL');
+    }
+
+    function jumpToRecipe(id) {
+      resetRecipeFilters();
+      switchSection('recipes');
+      setTimeout(() => {
+        const target = document.getElementById(`recipe-card-${id}`);
+        if (target) {
+          if (typeof target.scrollIntoView === 'function') target.scrollIntoView({ behavior: 'smooth', block: 'center' });
+          target.classList.add('ring-2', 'ring-purple-400', 'border-purple-400');
+          setTimeout(() => target.classList.remove('ring-2', 'ring-purple-400', 'border-purple-400'), 1800);
+        }
+      }, 60);
+    }
+
+    const BREADCRUMB_VOL2 = {
+      overview: '00_VISAO_GERAL_EDICAO_UNIFICADA',
+      catalog: '01_VOL1_CATALOGO_PARTE_1_37_NODES',
+      catalog2: '02_VOL1_CATALOGO_PARTE_2_36_NODES',
+      anatomy: '03_ANATOMIA_COERCAO_PORTAS',
+      topology: '04_MAPA_CAMINHOS_TOPOLOGIA',
+      recipes: '05_CATALOGO_30_RECEITAS_BLUEPRINTS',
+      blueprints: '06_CATALOGO_APRIMORADO_30_BLUEPRINTS'
+    };
+
+    const SECTION_LIST = [
+      { id: 'overview',   label: 'Visão Geral' },
+      { id: 'catalog',    label: 'Catálogo P1 (37 Nodes)' },
+      { id: 'catalog2',   label: 'Catálogo P2 (36 Nodes)' },
+      { id: 'anatomy',    label: 'Anatomia & Coerção' },
+      { id: 'topology',   label: 'Mapa de Caminhos' },
+      { id: 'recipes',    label: 'Receitas — 30 Fluxos' },
+      { id: 'blueprints', label: 'Blueprints Aprimorados' }
+    ];
+
+    function switchSection(sectionId) {
+      ['overview', 'catalog', 'catalog2', 'anatomy', 'topology', 'recipes', 'blueprints'].forEach(id => {
+        const sec = document.getElementById(`sec-${id}`);
+        const btn = document.getElementById(`btn-sec-${id}`);
+        if (sec) sec.classList.toggle('hidden', id !== sectionId);
+        if (btn) {
+          btn.className = id === sectionId
+            ? 'sec-nav-btn w-full flex items-center justify-between px-3 py-2 rounded-lg text-xs font-semibold bg-purple-500/15 text-purple-300 border border-purple-500/30 transition'
+            : 'sec-nav-btn w-full flex items-center justify-between px-3 py-2 rounded-lg text-xs font-medium text-slate-300 hover:bg-obsHover transition';
+        }
+      });
+      activeSection = sectionId;
+      try { localStorage.setItem('prism-active-section', sectionId); } catch (err) {}
+      if (window.innerWidth < 1024) closeMobileSidebar();
+      const activeSec = document.getElementById(`sec-${sectionId}`);
+      if (activeSec) {
+        activeSec.classList.remove('animate-section-in');
+        void activeSec.offsetWidth;
+        activeSec.classList.add('animate-section-in');
+      }
+      renderPager();
+      document.getElementById('top-breadcrumb').textContent = BREADCRUMB_VOL2[sectionId] || '';
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function selectAnatomyZone(zoneKey) {
+      const zone = ANATOMY_ZONES[zoneKey];
+      if (!zone) return;
+      document.querySelectorAll('.anatomy-zone-btn').forEach(btn => {
+        btn.classList.toggle('ring-2', btn.dataset.zone === zoneKey);
+        btn.classList.toggle('ring-cyan-400', btn.dataset.zone === zoneKey);
+        btn.classList.toggle('bg-cyan-500/10', btn.dataset.zone === zoneKey);
+      });
+      document.getElementById('anatomy-detail-title').textContent = zone.title;
+      document.getElementById('anatomy-detail-badge').textContent = zone.badge;
+      document.getElementById('anatomy-detail-desc').textContent = zone.desc;
+      document.getElementById('anatomy-detail-example').textContent = zone.example;
+    }
+
+    function renderCanonicalPairs() {
+      const container = document.getElementById('canonical-pairs-grid');
+      container.innerHTML = CANONICAL_PAIRS.map(p => `
+        <div class="bg-obsBase border border-obsBorder rounded-xl p-4 space-y-2 hover:border-slate-600 transition">
+          <div class="flex items-center justify-between gap-2 font-mono text-xs">
+            <span class="px-2 py-0.5 rounded bg-obsPanel border border-obsDivider text-slate-200">${p.from}</span>
+            <span class="text-cyan-400 font-bold">➔</span>
+            <span class="px-2 py-0.5 rounded bg-obsPanel border border-obsDivider text-slate-200">${p.to}</span>
+          </div>
+          <p class="text-xs text-slate-400 leading-relaxed">${p.desc}</p>
+        </div>
+      `).join('');
+    }
+
+    function evaluatePortConnection() {
+      const src = document.getElementById('sim-port-source').value;
+      const dst = document.getElementById('sim-port-target').value;
+      const box = document.getElementById('sim-port-result');
+      const rule = PORT_RULES[`${src}->${dst}`] || {
+        status: 'INCOMPATÍVEL SEM CONVERSOR',
+        color: 'text-rose-400 border-rose-500/30 bg-rose-500/10',
+        msg: 'Domínios incompatíveis diretamente (Geometria/Instâncias não convertem para sinais numéricos ou de cor).'
+      };
+      box.className = `rounded-xl border p-4 text-xs space-y-1 transition ${rule.color}`;
+      box.innerHTML = `<div class="font-mono font-bold">${rule.status}</div><div class="text-slate-300">${rule.msg}</div>`;
+    }
+
+    function toggleMobileSidebar() {
+      document.getElementById('sidebar').classList.toggle('-translate-x-full');
+      document.getElementById('sidebar-backdrop').classList.toggle('hidden');
+    }
+
+    function closeMobileSidebar() {
+      document.getElementById('sidebar').classList.add('-translate-x-full');
+      document.getElementById('sidebar-backdrop').classList.add('hidden');
+    }
+
+    document.getElementById('recipe-search').addEventListener('input', (e) => {
+      activeRecipeSearch = e.target.value.toLowerCase().trim();
+      if (activeRecipeSearch) switchSection('recipes');
+      applyRecipeFilters();
+    });
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && paletteOpen) { e.preventDefault(); closePalette(); return; }
+      if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 'k') { e.preventDefault(); openPalette(); return; }
+      if (e.key === '/' && !paletteOpen && document.activeElement.tagName !== 'INPUT' && document.activeElement.tagName !== 'SELECT') {
+        e.preventDefault();
+        openPalette();
+      }
+    });
+
+    // Expor handlers no escopo global window para os atributos inline onclick/onchange
+    window.switchSection = switchSection;
+    window.toggleMobileSidebar = toggleMobileSidebar;
+    window.selectAnatomyZone = selectAnatomyZone;
+    window.evaluatePortConnection = evaluatePortConnection;
+    window.setRecipeBlock = setRecipeBlock;
+    window.resetRecipeFilters = resetRecipeFilters;
+    window.jumpToRecipe = jumpToRecipe;
+    window.setBlueprintBlock = setBlueprintBlock;
+    window.setBlueprintDifficulty = setBlueprintDifficulty;
+    window.resetBlueprintFilters = resetBlueprintFilters;
+    window.jumpToBlueprint = jumpToBlueprint;
+    window.setCatalogCategory = setCatalogCategory;
+    window.setCatalogPin = setCatalogPin;
+    window.jumpToNode = jumpToNode;
+    window.openPalette = openPalette;
+    window.closePalette = closePalette;
+    window.paletteMove = paletteMove;
+    window.paletteClick = paletteClick;
+    window.paletteExecute = paletteExecute;
+    window.printAllPDF = printAllPDF;
+    window.closeMobileSidebar = closeMobileSidebar;
+
+const BLOCKS_META = [
+      { id: 'PBR', name: '1. Materiais PBR & Superfícies', range: '01–07', accent: '#10B981' },
+      { id: 'NPR', name: '2. Estilização & Retro NPR', range: '08–12', accent: '#9B5DE5' },
+      { id: 'UV',  name: '3. UV, Distorção & Animação', range: '13–17', accent: '#00BBF9' },
+      { id: 'INT', name: '4. Áudio, Cursor & Dados', range: '18–22', accent: '#FF9F1C' },
+      { id: 'GEO', name: '5. Geometria Procedural', range: '23–26', accent: '#00F5D4' },
+      { id: 'VFX', name: '6. Partículas & VFX', range: '27–30', accent: '#F59E0B' }
+    ];
+
+    const RECIPES_ENHANCED = [
+      // BLOCO 1: MATERIAIS PBR & SUPERFÍCIES REALISTAS (01-07)
+      {
+        id: 1, block: 'PBR', blockName: 'Materiais PBR & Superfícies', difficulty: 'Intermediário',
+        title: 'Desgaste Metálico em Quinas (Edge Wear PBR)',
+        summary: 'Revela metal polido nas arestas expostas de objetos pintados e ajusta a rugosidade automaticamente.',
+        tags: ['[GEN]', '[FIL]', '[COL]', '[UTI]', '[OUT]'],
+        chain: [
+          { node: 'Brick + Noise', out: 'Value', type: 'scalar' },
+          { node: 'Math [Add]', in: 'A / B', out: 'Value', type: 'scalar' },
+          { node: 'Edge Wear', in: 'Height', out: 'Value', type: 'scalar' },
+          { node: 'Mix + Invert', in: 'Fac / In', out: 'Color', type: 'color' },
+          { node: 'Material Output', in: 'Base Color, Metalness & Roughness', type: 'color' }
+        ],
+        utility: 'Calcula a curvatura convexa do relevo combinado para gerar uma máscara de desgaste físico nas quinas. Onde a tinta descasca (Value = 1.0), o metal subjacente aparece e a rugosidade cai.',
+        params: [
+          'Math [Add]: Some 85% de Brick (Value) com 15% de Noise (Value) para quebrar quinas perfeitas.',
+          'Edge Wear: Ajuste o raio/intensidade para isolar apenas as bordas salientes.',
+          'Invert: Inverta a máscara antes de ligar em Roughness para tornar o metal exposto mais reflexivo.'
+        ]
+      },
+      {
+        id: 2, block: 'PBR', blockName: 'Materiais PBR & Superfícies', difficulty: 'Intermediário',
+        title: 'Acúmulo Realista de Neve, Areia ou Musgo (Height Blend)',
+        summary: 'Mistura dois materiais baseando-se em seus mapas de altura reais para preencher cavidades primeiro.',
+        tags: ['[GEN]', '[COL]', '[VEC]', '[OUT]'],
+        chain: [
+          { node: 'Voronoi (Pedra) + Noise (Neve)', out: 'Value', type: 'scalar' },
+          { node: 'Height Blend', in: 'A, B, Height A, Height B', out: 'Color, Height & Mask', type: 'color' },
+          { node: 'Bump', in: 'Height', out: 'Normal', type: 'vector' },
+          { node: 'Material Output', in: 'Base Color, Normal & Roughness', type: 'color' }
+        ],
+        utility: 'Ao contrário de um Mix linear que deixa a superfície semitransparente, o Height Blend compara a elevação de cada pixel, fazendo com que neve ou areia se depositem primeiro nos vãos entre as pedras.',
+        params: [
+          'Height Blend: Use a saída Mask para controlar também a transição de Roughness entre pedra úmida e neve.',
+          'Bump: Conecte a saída Height combinada do Height Blend para manter a continuidade das normais.'
+        ]
+      },
+      {
+        id: 3, block: 'PBR', blockName: 'Materiais PBR & Superfícies', difficulty: 'Essencial',
+        title: 'Sombreamento de Cavidades & Sujeira (Micro-AO)',
+        summary: 'Gera oclusão de ambiente procedural diretamente de um mapa de altura sem baking externo.',
+        tags: ['[GEN]', '[FIL]', '[COL]', '[OUT]'],
+        chain: [
+          { node: 'Brick / Voronoi', out: 'Value', type: 'scalar' },
+          { node: 'Height AO', in: 'Height', out: 'Value', type: 'scalar' },
+          { node: 'Levels', in: 'In', out: 'Color', type: 'color' },
+          { node: 'Blend [Multiply]', in: 'Base / Blend', out: 'Color', type: 'color' },
+          { node: 'Material Output', in: 'Base Color & Occlusion', type: 'scalar' }
+        ],
+        utility: 'Escurece automaticamente frestas, rejuntes e regiões profundas cercadas por relevo alto, conferindo profundidade e peso visual imediato a qualquer superfície procedural.',
+        params: [
+          'Levels: Comprima o ponto de branco para manter as áreas expostas em 1.0 puro.',
+          'Material Output: Conecte o Value do Height AO também na entrada dedicada Occlusion.'
+        ]
+      },
+      {
+        id: 4, block: 'PBR', blockName: 'Materiais PBR & Superfícies', difficulty: 'Intermediário',
+        title: 'Alvenaria Orgânica com Tijolos Quebrados (Slope Blur)',
+        summary: 'Deforma bordas geométricas seguindo as inclinações de um ruído para simular erosão e lascas.',
+        tags: ['[GEN]', '[FIL]', '[VEC]', '[OUT]'],
+        chain: [
+          { node: 'Brick (In) + Noise (Slope)', out: 'Value', type: 'scalar' },
+          { node: 'Slope Blur', in: 'In / Slope', out: 'Color', type: 'color' },
+          { node: 'Bump', in: 'Height', out: 'Normal', type: 'vector' },
+          { node: 'Material Output', in: 'Normal & Height', type: 'vector' }
+        ],
+        utility: 'Empurra os pixels do padrão Brick ao longo do gradiente direcional de um Noise, destruindo o aspecto artificial de computador e criando pedras rústicas ou tijolos antigos.',
+        params: [
+          'Noise: Use escala média-alta para simular lascas nas quinas dos tijolos.',
+          'Slope Blur: Valores sutis preservam o rejunte enquanto desgastam apenas o contorno das peças.'
+        ]
+      },
+      {
+        id: 5, block: 'PBR', blockName: 'Materiais PBR & Superfícies', difficulty: 'Essencial',
+        title: 'Variação Individual por Peça / Ladrilho (Brick ID)',
+        summary: 'Atribui variações únicas de cor e rugosidade para cada tijolo ou azulejo individualmente.',
+        tags: ['[GEN]', '[COL]', '[OUT]'],
+        chain: [
+          { node: 'Brick', out: 'ID', type: 'scalar' },
+          { node: 'Color Ramp', in: 'Fac', out: 'Color', type: 'color' },
+          { node: 'Blend [Overlay]', in: 'Base / Blend', out: 'Color', type: 'color' },
+          { node: 'Material Output', in: 'Base Color', type: 'color' }
+        ],
+        utility: 'Lê o índice exclusivo (ID) emitido por cada bloco do node Brick para mapear nuances sutis de tonalidade entre peças vizinhas.',
+        params: [
+          'Color Ramp: Defina 3 a 4 tons próximos da cor base da argila ou pedra.',
+          'Blend: Ajuste Mask entre 0.25 e 0.45 para evitar contraste exagerado.'
+        ]
+      },
+      {
+        id: 6, block: 'PBR', blockName: 'Materiais PBR & Superfícies', difficulty: 'Essencial',
+        title: 'Desempacotamento de Mapas ORM (Channel-Packed PBR)',
+        summary: 'Extrai Occlusion, Roughness e Metalness armazenados nos canais R, G e B de uma única textura.',
+        tags: ['[INP]', '[VEC]', '[OUT]'],
+        chain: [
+          { node: 'Image Texture (Mapa ORM)', out: 'Color', type: 'color' },
+          { node: 'Separate RGB', in: 'Color', out: 'R, G, B', type: 'scalar' },
+          { node: 'Material Output', in: 'Occlusion (R), Roughness (G), Metalness (B)', type: 'scalar' }
+        ],
+        utility: 'Reduz o consumo de memória de vídeo em até 66% ao decodificar três mapas PBR em escala de cinza a partir de um único arquivo RGB.',
+        params: [
+          'R ➔ Material Output (Occlusion)',
+          'G ➔ Material Output (Roughness)',
+          'B ➔ Material Output (Metalness)'
+        ]
+      },
+      {
+        id: 7, block: 'PBR', blockName: 'Materiais PBR & Superfícies', difficulty: 'Essencial',
+        title: 'Textura Triplanar / Sem Costuras UV (World-Space)',
+        summary: 'Projeta padrões procedurais usando coordenadas 3D do mundo para eliminar emendas de UV.',
+        tags: ['[VEC]', '[GEN]', '[COL]', '[OUT]'],
+        chain: [
+          { node: 'Position', out: 'Position', type: 'vector' },
+          { node: 'Noise / Voronoi', in: 'Coord', out: 'Value', type: 'scalar' },
+          { node: 'Color Ramp', in: 'Fac', out: 'Color', type: 'color' },
+          { node: 'Material Output', in: 'Base Color', type: 'color' }
+        ],
+        utility: 'Avalia os geradores procedurais diretamente no espaço tridimensional da malha (Position), garantindo continuidade perfeita mesmo em modelos sem mapeamento UV aberto.',
+        params: [
+          'Position: Conecte diretamente na entrada Coord de Noise, Voronoi ou Cells.'
+        ]
+      },
+
+      // BLOCO 2: ESTILIZAÇÃO, RETRO 64-BIT & NPR (08-12)
+      {
+        id: 8, block: 'NPR', blockName: 'Estilização & Retro NPR', difficulty: 'Essencial',
+        title: 'Cel-Shading / Faixas Tonais Retro 64-Bit',
+        summary: 'Quantiza gradientes em degraus rígidos e remapeia para uma paleta fechada de 4 cores.',
+        tags: ['[INP]', '[COL]', '[OUT]'],
+        chain: [
+          { node: 'Image Texture', out: 'Color', type: 'color' },
+          { node: 'Posterize', in: 'In', out: 'Color', type: 'color' },
+          { node: 'Gradient Map 4', in: 'In', out: 'Color', type: 'color' },
+          { node: 'Material Output', in: 'Base Color', type: 'color' }
+        ],
+        utility: 'Transforma texturas fotográficas ou gradientes suaves em arte estilizada com bandas tonais discretas estilo pixel art ou console 16/64-bit.',
+        params: [
+          'Posterize: Configure para 4 níveis para alinhar exatamente cada faixa com as 4 paradas do Gradient Map 4.'
+        ]
+      },
+      {
+        id: 9, block: 'NPR', blockName: 'Estilização & Retro NPR', difficulty: 'Essencial',
+        title: 'Contorno Mágico / Rim Light (Fresnel + Smoothstep)',
+        summary: 'Isola as bordas rasantes da silhueta para criar auras emissivas e escudos de energia.',
+        tags: ['[VEC]', '[UTI]', '[COL]', '[OUT]'],
+        chain: [
+          { node: 'Fresnel', out: 'Value', type: 'scalar' },
+          { node: 'Smoothstep', in: 'In', out: 'Value', type: 'scalar' },
+          { node: 'Color Ramp', in: 'Fac', out: 'Color', type: 'color' },
+          { node: 'Material Output', in: 'Emissive', type: 'color' }
+        ],
+        utility: 'Utiliza o ângulo entre a normal da superfície e o vetor da câmera para acender apenas o perímetro externo do objeto.',
+        params: [
+          'Smoothstep: Use faixa estreita (ex: 0.65 a 0.85) para criar um contorno nítido de energia.'
+        ]
+      },
+      {
+        id: 10, block: 'NPR', blockName: 'Estilização & Retro NPR', difficulty: 'Avançado',
+        title: 'Retícula de Quadrinhos / Halftone Dinâmico',
+        summary: 'Converte a luminância de qualquer imagem em pontos de retícula estilizados.',
+        tags: ['[VEC]', '[GEN]', '[COL]', '[UTI]', '[OUT]'],
+        chain: [
+          { node: 'Mapping ➔ Dots (Value) + Luminance (Value)', out: 'Value', type: 'scalar' },
+          { node: 'Math [Greater Than]', in: 'A / B', out: 'Value', type: 'scalar' },
+          { node: 'Color Ramp', in: 'Fac', out: 'Color', type: 'color' },
+          { node: 'Material Output', in: 'Base Color', type: 'color' }
+        ],
+        utility: 'Compara a máscara radial de pontos (Dots) contra o brilho percebido (Luminance) da imagem original, fazendo os pontos crescerem nas sombras e encolherem nos realces.',
+        params: [
+          'Mapping: Rotacione as coordenadas UV em 45° para reproduzir o padrão clássico de impressão.'
+        ]
+      },
+      {
+        id: 11, block: 'NPR', blockName: 'Estilização & Retro NPR', difficulty: 'Intermediário',
+        title: 'Iridescência Óptica / Bolha de Sabão e Óleo',
+        summary: 'Simula interferência de filme fino com reflexos arco-íris variáveis pelo ângulo de visão.',
+        tags: ['[VEC]', '[GEN]', '[UTI]', '[COL]', '[OUT]'],
+        chain: [
+          { node: 'Fresnel (Value) + Noise (Value)', out: 'Value', type: 'scalar' },
+          { node: 'Math [Add]', in: 'A / B', out: 'Value', type: 'scalar' },
+          { node: 'Spectral Dispersion', in: 'Thickness', out: 'Color', type: 'color' },
+          { node: 'Material Output', in: 'Base Color & Clearcoat', type: 'color' }
+        ],
+        utility: 'Modula a espessura óptica (Thickness) do node Spectral Dispersion usando Fresnel e ruído orgânico para criar superfícies holográficas, vidro dicroico ou manchas de óleo.',
+        params: [
+          'Material Output: Defina Clearcoat em 1.0 e Roughness próximo de 0.05 para máximo brilho especular.'
+        ]
+      },
+      {
+        id: 12, block: 'NPR', blockName: 'Estilização & Retro NPR', difficulty: 'Intermediário',
+        title: 'Conversão de Altura para Normal Map RGB (Sobel)',
+        summary: 'Converte mapas escalares de altura em texturas RGB de Normal Map manipuláveis.',
+        tags: ['[GEN]', '[FIL]', '[VEC]', '[OUT]'],
+        chain: [
+          { node: 'Voronoi', out: 'Value', type: 'scalar' },
+          { node: 'Blur', in: 'In', out: 'Color', type: 'color' },
+          { node: 'Sobel Normal', in: 'Height', out: 'Normal Map', type: 'color' },
+          { node: 'Normal Map', in: 'Color', out: 'Normal', type: 'vector' },
+          { node: 'Material Output', in: 'Normal', type: 'vector' }
+        ],
+        utility: 'Permite gerar um Normal Map no formato padrão RGB (lilás/azulado) para combiná-lo com outras texturas antes de decodificá-lo para o shader.',
+        params: [
+          'Blur: Suaviza bordas duras do Voronoi antes do filtro Sobel para produzir chanfros arredondados.'
+        ]
+      },
+
+      // BLOCO 3: DISTORÇÃO ESPACIAL, UV & ANIMAÇÃO (13-17)
+      {
+        id: 13, block: 'UV', blockName: 'UV, Distorção & Animação', difficulty: 'Intermediário',
+        title: 'Superfície de Água Ondulante / Distorção de Calor',
+        summary: 'Anima um ruído ao longo do tempo para distorcer continuamente as coordenadas UV.',
+        tags: ['[UTI]', '[VEC]', '[GEN]', '[INP]'],
+        chain: [
+          { node: 'Time ➔ Mapping', out: 'UV', type: 'vector' },
+          { node: 'Noise', in: 'Coord', out: 'Value', type: 'scalar' },
+          { node: 'Directional Warp', in: 'UV / Map', out: 'UV', type: 'vector' },
+          { node: 'Image Texture', in: 'UV', out: 'Color', type: 'color' }
+        ],
+        utility: 'Desloca um campo de ruído no tempo e o injeta no Directional Warp para ondular qualquer textura ou padrão, simulando refração na água ou ar quente.',
+        params: [
+          'Directional Warp: Use intensidade baixa (0.02 a 0.06) para manter a legibilidade da imagem distorcida.'
+        ]
+      },
+      {
+        id: 14, block: 'UV', blockName: 'UV, Distorção & Animação', difficulty: 'Essencial',
+        title: 'Correção de Proporção de Tela (Aspect Ratio Fix)',
+        summary: 'Impede que formas geométricas fiquem esticadas em telas widescreen ou mobile.',
+        tags: ['[VEC]', '[INP]', '[UTI]', '[GEN]'],
+        chain: [
+          { node: 'UV (UV) + Viewport (Aspect)', out: 'Vector/Scalar', type: 'vector' },
+          { node: 'Math [Multiply]', in: 'A / B', out: 'Value', type: 'scalar' },
+          { node: 'Dots / Checker / Brick', in: 'UV', out: 'Value', type: 'scalar' }
+        ],
+        utility: 'Multiplica o eixo horizontal das coordenadas UV pela razão de aspecto dinâmica da janela (Viewport), garantindo círculos e quadrados perfeitos em qualquer resolução.',
+        params: [
+          'Viewport: Leia sempre a saída Aspect (laranja) para adaptação responsiva automática.'
+        ]
+      },
+      {
+        id: 15, block: 'UV', blockName: 'UV, Distorção & Animação', difficulty: 'Essencial',
+        title: 'Pulso Rítmico Normalizado (Senoide Calibrada)',
+        summary: 'Converte ondas senoidais (-1 a +1) para a faixa segura de [0.0, 1.0].',
+        tags: ['[UTI]', '[OUT]'],
+        chain: [
+          { node: 'Time', out: 'Value', type: 'scalar' },
+          { node: 'Math [Sine]', in: 'A', out: 'Value', type: 'scalar' },
+          { node: 'Remap [-1..1 → 0..1]', in: 'In', out: 'Value', type: 'scalar' },
+          { node: 'Material Output', in: 'Emissive', type: 'color' }
+        ],
+        utility: 'Evita valores negativos inválidos gerados por funções trigonométricas ao remapear a saída do seno para [0.0, 1.0], criando pulsações suaves de luz ou escala.',
+        params: [
+          'Math [Multiply]: Insira entre Time e Sine para controlar a velocidade do ciclo.'
+        ]
+      },
+      {
+        id: 16, block: 'UV', blockName: 'UV, Distorção & Animação', difficulty: 'Intermediário',
+        title: 'Erosão / Dissolve Orgânico com Histogram Scan',
+        summary: 'Anima o surgimento ou dissolução de materiais varrendo a faixa tonal de um ruído.',
+        tags: ['[GEN]', '[FIL]', '[UTI]', '[OUT]'],
+        chain: [
+          { node: 'Noise', out: 'Value', type: 'scalar' },
+          { node: 'Histogram Scan', in: 'In', out: 'Value', type: 'scalar' },
+          { node: 'Clamp', in: 'In', out: 'Value', type: 'scalar' },
+          { node: 'Material Output', in: 'Opacity', type: 'scalar' }
+        ],
+        utility: 'Permite controlar com precisão a erosão progressiva de uma máscara para efeitos de teletransporte, queima de papel ou aparição mágica.',
+        params: [
+          'Histogram Scan: Aumente o contraste para criar recortes nítidos sem zonas semitransparentes.'
+        ]
+      },
+      {
+        id: 17, block: 'UV', blockName: 'UV, Distorção & Animação', difficulty: 'Intermediário',
+        title: 'Madeira Procedural com Veios Orgânicos',
+        summary: 'Distorce coordenadas UV antes de gerar ondas para criar anéis naturais de madeira.',
+        tags: ['[VEC]', '[GEN]', '[COL]', '[OUT]'],
+        chain: [
+          { node: 'UV ➔ Directional Warp (+ Noise)', out: 'UV', type: 'vector' },
+          { node: 'Wave', in: 'UV', out: 'Value', type: 'scalar' },
+          { node: 'Color Ramp', in: 'Fac', out: 'Color', type: 'color' },
+          { node: 'Material Output', in: 'Base Color', type: 'color' }
+        ],
+        utility: 'Ao deformar o domínio UV antes do gerador Wave, listras paralelas transformam-se em veios orgânicos e nós de madeira.',
+        params: [
+          'Mapping: Estique a escala em um dos eixos (ex: X=2, Y=12) antes do Warp para alongar as fibras.'
+        ]
+      },
+
+      // BLOCO 4: INTERATIVIDADE, ÁUDIO & DADOS (18-22)
+      {
+        id: 18, block: 'INT', blockName: 'Áudio, Cursor & Dados', difficulty: 'Intermediário',
+        title: 'Visualizador de Espectro de Áudio (Spectrum Bars)',
+        summary: 'Mapeia bandas de frequência sonoras ao longo do eixo horizontal para gráficos reativos.',
+        tags: ['[VEC]', '[INP]', '[UTI]', '[COL]', '[OUT]'],
+        chain: [
+          { node: 'UV', out: 'UV', type: 'vector' },
+          { node: 'Audio Input', in: 'U', out: 'Spectrum', type: 'scalar' },
+          { node: 'Step', in: 'In', out: 'Value', type: 'scalar' },
+          { node: 'Color Ramp', in: 'Fac', out: 'Color', type: 'color' },
+          { node: 'Material Output', in: 'Emissive', type: 'color' }
+        ],
+        utility: 'Alimenta o pino U do Audio Input com a coordenada UV.x para consultar a energia de cada frequência em tempo real e acender barras luminosas.',
+        params: [
+          'Audio Input: Certifique-se de ativar a captura de microfone ou áudio do sistema no painel do node.'
+        ]
+      },
+      {
+        id: 19, block: 'INT', blockName: 'Áudio, Cursor & Dados', difficulty: 'Essencial',
+        title: 'Batida Musical Pulsando Geometria e Luz (Beat Trigger)',
+        summary: 'Sincroniza deformações da malha 3D e picos de brilho com os graves e batidas da música.',
+        tags: ['[INP]', '[UTI]', '[GEO]', '[OUT]'],
+        chain: [
+          { node: 'Audio Input', out: 'Beat & Bass', type: 'scalar' },
+          { node: 'Smoothstep', in: 'In', out: 'Value', type: 'scalar' },
+          { node: 'Deform (Height) + Material Output (Emissive)', in: 'Height / Emissive', type: 'scalar' }
+        ],
+        utility: 'Conecta diretamente os detectores de batida (Beat) e graves (Bass) ao deslocamento de vértices e intensidade emissiva.',
+        params: [
+          'Smoothstep: Suaviza o decaimento do sinal para criar um movimento elástico orgânico.'
+        ]
+      },
+      {
+        id: 20, block: 'INT', blockName: 'Áudio, Cursor & Dados', difficulty: 'Avançado',
+        title: 'Pincel / Halo Interativo com o Cursor (Pointer Tracking)',
+        summary: 'Cria áreas luminosas ou ondas que seguem o mouse/toque enquanto pressionado.',
+        tags: ['[VEC]', '[INP]', '[UTI]', '[OUT]'],
+        chain: [
+          { node: 'UV (UV) vs Pointer (UV)', out: 'Vector', type: 'vector' },
+          { node: 'Math [Distance] ➔ Smoothstep', in: 'A / B', out: 'Value', type: 'scalar' },
+          { node: 'Math [Multiply] (+ Pointer Down)', in: 'A / B', out: 'Value', type: 'scalar' },
+          { node: 'Material Output', in: 'Emissive', type: 'color' }
+        ],
+        utility: 'Mede a distância entre cada pixel e o cursor normalizado (Pointer UV), multiplicando o resultado pelo estado do clique (Pointer Down) para ativar o efeito sob demanda.',
+        params: [
+          'Pointer: Use Delta para modular a intensidade conforme a velocidade do movimento do cursor.'
+        ]
+      },
+      {
+        id: 21, block: 'INT', blockName: 'Áudio, Cursor & Dados', difficulty: 'Essencial',
+        title: 'Variação Automática por Objeto na Cena (Object ID)',
+        summary: 'Rotaciona a matiz automaticamente para cada instância de objeto usando seu ID único.',
+        tags: ['[INP]', '[UTI]', '[COL]', '[OUT]'],
+        chain: [
+          { node: 'Object Info', out: 'ID', type: 'scalar' },
+          { node: 'Math [Multiply]', in: 'A', out: 'Value', type: 'scalar' },
+          { node: 'Hue Shift', in: 'In', out: 'Color', type: 'color' },
+          { node: 'Material Output', in: 'Base Color', type: 'color' }
+        ],
+        utility: 'Permite aplicar um único material compartilhado a dezenas de props na cena garantindo que cada objeto exiba uma variação cromática distinta.',
+        params: [
+          'Math [Multiply]: Multiplique o ID por 0.37 para distribuir bem as cores ao longo do círculo cromático.'
+        ]
+      },
+      {
+        id: 22, block: 'INT', blockName: 'Áudio, Cursor & Dados', difficulty: 'Intermediário',
+        title: 'Visualização de Gráficos Guiada por Planilha (Data)',
+        summary: 'Conecta tabelas externas diretamente à elevação e cor de malhas 3D.',
+        tags: ['[INP]', '[UTI]', '[GEO]', '[COL]'],
+        chain: [
+          { node: 'Data (T / Coluna U)', out: 'Value', type: 'scalar' },
+          { node: 'Remap', in: 'In', out: 'Value', type: 'scalar' },
+          { node: 'Deform (Height) + Color Ramp (Fac)', in: 'Height / Fac', type: 'scalar' }
+        ],
+        utility: 'Transforma valores tabulares em altura física e gradiente de cor em tempo real, ideal para infográficos 3D e animações orientadas por dados.',
+        params: [
+          'Data: Use o pino Count para normalizar os índices de leitura ao longo da tabela.'
+        ]
+      },
+
+      // BLOCO 5: GEOMETRIA PROCEDURAL & INSTANCING (23-26)
+      {
+        id: 23, block: 'GEO', blockName: 'Geometria Procedural', difficulty: 'Essencial',
+        title: 'Terreno Procedural Esculpido (Primitive + Deform)',
+        summary: 'Desloca vértices de uma malha primitiva usando um ruído contínuo para gerar relevo.',
+        tags: ['[GEO]', '[GEN]'],
+        chain: [
+          { node: 'Primitive (Plano) + Noise (Value)', out: 'Geo / Scalar', type: 'geo' },
+          { node: 'Deform', in: 'Geometria / Height', out: 'Geometria', type: 'geo' },
+          { node: 'Geometry Output', in: 'Geometria', type: 'geo' }
+        ],
+        utility: 'Cria montanhas, dunas ou superfícies rochosas em tempo real modificando diretamente a posição dos vértices da malha.',
+        params: [
+          'Primitive: Aumente a subdivisão de vértices para capturar detalhes finos sem facetas poligonais.'
+        ]
+      },
+      {
+        id: 24, block: 'GEO', blockName: 'Geometria Procedural', difficulty: 'Intermediário',
+        title: 'Ecossistema / Floresta com Clareiras Naturais (Scatter)',
+        summary: 'Espalha instâncias sobre um terreno usando um mapa de ruído para modular a densidade.',
+        tags: ['[GEO]', '[GEN]'],
+        chain: [
+          { node: 'Deform (Terreno) + Primitive (Árvore)', out: 'Geometria', type: 'geo' },
+          { node: 'Scatter (+ Noise em Densidade)', in: 'Superfície / Instância / Densidade', out: 'Instâncias', type: 'inst' },
+          { node: 'Geometry Output', in: 'Geometria & Instâncias', type: 'inst' }
+        ],
+        utility: 'Popula superfícies complexas com milhares de cópias leves (instâncias), criando agrupamentos orgânicos e clareiras naturais através da entrada Densidade.',
+        params: [
+          'Scatter: Conecte tanto a Geometria (terreno) quanto as Instâncias (árvores) no Geometry Output.'
+        ]
+      },
+      {
+        id: 25, block: 'GEO', blockName: 'Geometria Procedural', difficulty: 'Essencial',
+        title: 'Colorização Aleatória de Instâncias (Instance Info)',
+        summary: 'Atribui cores distintas por instância espalhada sem duplicar materiais ou malhas.',
+        tags: ['[GEO]', '[COL]', '[OUT]'],
+        chain: [
+          { node: 'Instance Info', out: 'Aleatório', type: 'scalar' },
+          { node: 'Color Ramp', in: 'Fac', out: 'Color', type: 'color' },
+          { node: 'Material Output', in: 'Base Color', type: 'color' }
+        ],
+        utility: 'Lê o valor pseudoaleatório individual (0.0 a 1.0) de cada cópia gerada pelo Scatter para variar tons de folhagem, pedras ou cristais.',
+        params: [
+          'Instance Info: Combine com o pino Escala para também variar o tamanho ou brilho das instâncias maiores.'
+        ]
+      },
+      {
+        id: 26, block: 'GEO', blockName: 'Geometria Procedural', difficulty: 'Essencial',
+        title: 'Deformação Ondulante Animada em Malha',
+        summary: 'Anima ondas físicas diretamente nos vértices da geometria ao longo do tempo.',
+        tags: ['[UTI]', '[VEC]', '[GEN]', '[GEO]'],
+        chain: [
+          { node: 'Time ➔ Mapping ➔ Wave', out: 'Value', type: 'scalar' },
+          { node: 'Deform (+ Primitive)', in: 'Height / Geometria', out: 'Geometria', type: 'geo' },
+          { node: 'Geometry Output', in: 'Geometria', type: 'geo' }
+        ],
+        utility: 'Simula superfícies oceânicas, tecidos tremulando ao vento ou pisos pulsantes deformando continuamente a malha 3D.',
+        params: [
+          'Wave: Some dois geradores Wave rotacionados em ângulos diferentes para evitar ondas unidirecionais artificiais.'
+        ]
+      },
+
+      // BLOCO 6: SISTEMAS DE PARTÍCULAS & VFX (27-30)
+      {
+        id: 27, block: 'VFX', blockName: 'Partículas & VFX', difficulty: 'Intermediário',
+        title: 'Fogo / Fumaça Ascendente com Turbulência',
+        summary: 'Pipeline completo de combustão com movimento orgânico, transição térmica e fade suave.',
+        tags: ['[VFX]'],
+        chain: [
+          { node: 'Particle ➔ Emitter ➔ Motion', out: 'Position', type: 'vector' },
+          { node: 'Turbulence', in: 'Position', out: 'Position', type: 'vector' },
+          { node: 'Color over Life + Fade + Sprite', out: 'Color / Opacity / Mask', type: 'color' },
+          { node: 'VFX Output', in: 'Position, Color, Opacity, Sprite', type: 'vector' }
+        ],
+        utility: 'Controla todo o ciclo de vida das partículas desde o lançamento no Emitter, adicionando ondulação caótica via Turbulence e resfriamento gradual de cor.',
+        params: [
+          'Color over Life: Branco/Amarelo (Age 0.0) ➔ Laranja Vivo (0.45) ➔ Cinza Escuro (1.0).'
+        ]
+      },
+      {
+        id: 28, block: 'VFX', blockName: 'Partículas & VFX', difficulty: 'Intermediário',
+        title: 'Portal Mágico / Tornado em Espiral (Vortex)',
+        summary: 'Gira partículas continuamente em redemoinho ao redor de um eixo no espaço.',
+        tags: ['[VFX]'],
+        chain: [
+          { node: 'Motion (Position) + Particle (Time s)', out: 'Vector/Scalar', type: 'vector' },
+          { node: 'Vortex', in: 'Position / Time s', out: 'Position', type: 'vector' },
+          { node: 'Size over Life + Sprite', out: 'Size / Mask', type: 'scalar' },
+          { node: 'VFX Output', in: 'Position, Size, Sprite', type: 'vector' }
+        ],
+        utility: 'Aplica um campo de força rotacional para criar portais arcanos, vórtices de energia, espirais de fogo ou tempestades de poeira.',
+        params: [
+          'Vortex: Encadeie Turbulence logo após o Vortex para quebrar a simetria perfeita da espiral.'
+        ]
+      },
+      {
+        id: 29, block: 'VFX', blockName: 'Partículas & VFX', difficulty: 'Essencial',
+        title: 'Absorção de Energia / Buraco Negro (Attractor)',
+        summary: 'Atrai partículas espalhadas em direção a um ponto focal conforme envelhecem.',
+        tags: ['[VFX]'],
+        chain: [
+          { node: 'Emitter (Origin) + Particle (Age 0-1)', out: 'Vector/Scalar', type: 'vector' },
+          { node: 'Attractor', in: 'Position / Age 0-1', out: 'Position', type: 'vector' },
+          { node: 'Fade (Opacity) + VFX Output', in: 'Position / Opacity', type: 'vector' }
+        ],
+        utility: 'Cria efeitos de implosão, coleta de energia ou carregamento de magia puxando partículas periféricas para o centro.',
+        params: [
+          'Size over Life: Reduza a escala próximo de Age 1.0 para que as partículas desapareçam ao tocar o núcleo.'
+        ]
+      },
+      {
+        id: 30, block: 'VFX', blockName: 'Partículas & VFX', difficulty: 'Avançado',
+        title: 'Enxame de Vaga-Lumes / Brasas Reativas ao Áudio',
+        summary: 'Faz partículas flutuantes pulsarem em tamanho e brilho no ritmo da música.',
+        tags: ['[VFX]', '[INP]'],
+        chain: [
+          { node: 'Turbulence (Position) ➔ VFX Output (Position)', out: 'Position', type: 'vector' },
+          { node: 'Audio Input (Level)', out: 'Level', type: 'scalar' },
+          { node: 'VFX Output', in: 'Size & Opacity (+ Sprite)', type: 'scalar' }
+        ],
+        utility: 'Une o movimento orgânico errático do campo Turbulence à amplitude sonora em tempo real para criar atmosferas musicais interativas.',
+        params: [
+          'Audio Input: Use Level ou Bass para controlar o pulso simultâneo de todas as partículas ativas.'
+        ]
+      }
+    ];
+
+    let activeBlock = 'ALL';
+    let activeDifficulty = 'ALL';
+    let activeSearch = '';
+
+    function renderSidebarBlueprints() {
+      const container = document.getElementById('sidebar-blueprints');
+      let html = `<div class="text-[10px] font-mono uppercase tracking-wider text-slate-500 px-1">Blueprints — Vol. 3 (30)</div>`;
+
+      BLOCKS_META.forEach((blk, idx) => {
+        const items = RECIPES_ENHANCED.filter(r => r.block === blk.id);
+        html += `
+          <details ${idx < 2 ? 'open' : ''} class="rounded-lg bg-obsBase/80 border border-obsDivider overflow-hidden">
+            <summary class="flex items-center justify-between px-2.5 py-2 cursor-pointer select-none hover:bg-obsHover transition">
+              <span class="text-xs font-semibold text-slate-200 truncate">${blk.name}</span>
+              <span class="text-[10px] font-mono font-bold" style="color: ${blk.accent}">${blk.range}</span>
+            </summary>
+            <div class="px-2 pb-2 pt-1 space-y-0.5 border-t border-obsDivider/60">
+              ${items.map(r => `
+                <button onclick="jumpToBlueprint(${r.id})" class="w-full text-left px-2 py-1 rounded text-[11px] font-mono text-slate-400 hover:text-amber-300 hover:bg-obsHover transition truncate">
+                  #${String(r.id).padStart(2, '0')} ${r.title.split('(')[0].trim()}
+                </button>
+              `).join('')}
+            </div>
+          </details>
+        `;
+      });
+
+      container.innerHTML = html;
+      wireTree('sidebar-blueprints');
+    }
+
+    function renderBlueprints() {
+      const container = document.getElementById('blueprints-container');
+      container.innerHTML = RECIPES_ENHANCED.map(r => {
+        const searchIndex = `${r.title} ${r.summary} ${r.blockName} ${r.difficulty} ${r.tags.join(' ')} ${r.chain.map(c => c.node).join(' ')} ${r.utility} ${r.params.join(' ')}`.toLowerCase();
+
+        const diffBadgeColor = r.difficulty === 'Essencial'
+          ? 'bg-emerald-500/10 text-emerald-300 border-emerald-500/30'
+          : r.difficulty === 'Intermediário'
+          ? 'bg-cyan-500/10 text-cyan-300 border-cyan-500/30'
+          : 'bg-purple-500/10 text-purple-300 border-purple-500/30';
+
+        const chainHtml = r.chain.map((step, i) => {
+          const pinColor = PIN_COLORS[step.type] || '#00BBF9';
+          const arrow = i < r.chain.length - 1
+            ? `<div class="flex items-center justify-center px-1.5 text-slate-500 font-mono font-bold text-sm">➔</div>`
+            : '';
+
+          return `
+            <div class="flex items-center">
+              <div class="rounded-xl bg-[#13161E] border border-obsBorder px-3.5 py-2.5 font-mono text-xs space-y-1 shadow">
+                <div class="font-bold text-white flex items-center gap-1.5">
+                  <span class="w-2.5 h-2.5 rounded-full shrink-0" style="background-color: ${pinColor}"></span>
+                  <span>${step.node}</span>
+                </div>
+                <div class="text-[10px] text-slate-400 flex flex-wrap items-center gap-2">
+                  ${step.in ? `<span class="text-sky-300">IN: ${step.in}</span>` : ''}
+                  ${step.out ? `<span class="text-emerald-300">OUT: ${step.out}</span>` : ''}
+                </div>
+              </div>
+              ${arrow}
+            </div>
+          `;
+        }).join('');
+
+        return `
+          <article id="blueprint-card-${r.id}"
+                   class="blueprint-card bg-obsPanel border border-obsBorder rounded-2xl p-6 space-y-4 transition-all duration-300"
+                   data-block="${r.block}"
+                   data-diff="${r.difficulty}"
+                   data-search="${searchIndex}">
+            <!-- Cabeçalho -->
+            <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-2 pb-3 border-b border-obsDivider">
+              <div class="space-y-1">
+                <div class="flex flex-wrap items-center gap-2">
+                  <span class="font-mono text-xs font-bold px-2 py-0.5 rounded bg-amber-500/15 text-amber-300 border border-amber-500/30">
+                    BLUEPRINT #${String(r.id).padStart(2, '0')}
+                  </span>
+                  <span class="font-mono text-[11px] text-slate-400">${r.blockName}</span>
+                </div>
+                <h2 class="text-lg sm:text-xl font-bold text-white">${r.title}</h2>
+                <p class="text-xs text-slate-400">${r.summary}</p>
+              </div>
+
+              <div class="flex flex-wrap items-center gap-1.5 font-mono text-[10px] shrink-0">
+                ${r.tags.map(t => `<span class="px-2 py-0.5 rounded bg-obsBase border border-obsBorder text-slate-300">${t}</span>`).join('')}
+                <span class="px-2.5 py-0.5 rounded border ${diffBadgeColor}">${r.difficulty}</span>
+              </div>
+            </div>
+
+            <!-- Fluxograma Visual de Encadeamento -->
+            <div class="bg-obsBase border border-obsBorder rounded-xl p-4 overflow-x-auto">
+              <div class="text-[10px] font-mono uppercase text-slate-500 mb-2.5">Topologia de Encadeamento de Portas</div>
+              <div class="flex flex-wrap items-center gap-y-2">
+                ${chainHtml}
+              </div>
+            </div>
+
+            <!-- Detalhamento Técnico + Parâmetros Internos -->
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-4 text-xs">
+              <div class="lg:col-span-6 space-y-1.5">
+                <div class="font-mono text-[10px] uppercase text-cyan-400 font-bold">Utilidade & Comportamento no Grafo</div>
+                <p class="text-slate-300 leading-relaxed">${r.utility}</p>
+              </div>
+              <div class="lg:col-span-6 bg-obsBase border border-obsBorder rounded-xl p-4 space-y-1.5">
+                <div class="font-mono text-[10px] uppercase text-amber-400 font-bold">Parâmetros & Calibração Recomendada</div>
+                <ul class="space-y-1 text-slate-300">
+                  ${r.params.map(p => `<li class="flex items-start gap-2"><span class="text-amber-400 font-mono">•</span><span>${p}</span></li>`).join('')}
+                </ul>
+              </div>
+            </div>
+          </article>
+        `;
+      }).join('');
+    }
+
+    function applyBlueprintFilters() {
+      const cards = document.querySelectorAll('#blueprints-container .blueprint-card');
+      let visible = 0;
+
+      cards.forEach(card => {
+        const matchBlock = activeBlock === 'ALL' || card.dataset.block === activeBlock;
+        const matchDiff = activeDifficulty === 'ALL' || card.dataset.diff === activeDifficulty;
+        const matchSearch = !activeSearch || card.dataset.search.includes(activeSearch);
+
+        if (matchBlock && matchDiff && matchSearch) {
+          card.classList.remove('hidden');
+          visible++;
+        } else {
+          card.classList.add('hidden');
+        }
+      });
+
+      document.getElementById('blueprints-visible-count').textContent = visible;
+      const emptyEl = document.getElementById('blueprints-empty-state');
+      if (visible === 0) emptyEl.classList.remove('hidden');
+      else emptyEl.classList.add('hidden');
+    }
+
+    function setBlueprintBlock(blockId) {
+      activeBlock = blockId;
+      document.querySelectorAll('.block-pill').forEach(btn => {
+        btn.className = btn.dataset.block === blockId
+          ? 'block-pill px-3 py-1.5 rounded-lg font-mono text-xs font-semibold bg-amber-500/20 text-amber-300 border border-amber-500/40 transition'
+          : 'block-pill px-3 py-1.5 rounded-lg font-mono text-xs font-medium bg-obsBase text-slate-300 border border-obsBorder hover:border-slate-500 transition';
+      });
+      applyBlueprintFilters();
+    }
+
+    function setBlueprintDifficulty(diff) {
+      activeDifficulty = diff;
+      document.querySelectorAll('.diff-pill').forEach(btn => {
+        btn.className = btn.dataset.diff === diff
+          ? 'diff-pill px-2.5 py-1 rounded font-mono text-[11px] font-semibold bg-purple-500/20 text-purple-300 border border-purple-500/40'
+          : 'diff-pill px-2.5 py-1 rounded font-mono text-[11px] bg-obsBase text-slate-300 border border-obsBorder';
+      });
+      applyBlueprintFilters();
+    }
+
+    function resetBlueprintFilters() {
+      activeBlock = 'ALL';
+      activeDifficulty = 'ALL';
+      activeSearch = '';
+      document.getElementById('blueprint-search').value = '';
+      setBlueprintBlock('ALL');
+      setBlueprintDifficulty('ALL');
+    }
+
+    function jumpToBlueprint(id) {
+      resetBlueprintFilters();
+      switchSection('blueprints');
+      setTimeout(() => {
+        const target = document.getElementById(`recipe-card-${id}`);
+        if (target) {
+          if (typeof target.scrollIntoView === 'function') target.scrollIntoView({ behavior: 'smooth', block: 'center' });
+          target.classList.add('ring-2', 'ring-amber-400', 'border-amber-400');
+          setTimeout(() => target.classList.remove('ring-2', 'ring-amber-400', 'border-amber-400'), 1800);
+        }
+      }, 40);
+    }
+
+    document.getElementById('blueprint-search').addEventListener('input', (e) => {
+      activeSearch = e.target.value.toLowerCase().trim();
+      if (activeSearch) switchSection('blueprints');
+      applyBlueprintFilters();
+    });
+
+    // ===================== VOL. 1 — CATÁLOGO TÉCNICO DOS 73 NODES =====================
+    const NODE_CATS = {"INP": {"name": "Inputs & Fontes de Dados", "accent": "#38BDF8"}, "GEN": {"name": "Geradores Procedurais", "accent": "#10B981"}, "COL": {"name": "Cor & Composição", "accent": "#9B5DE5"}, "FIL": {"name": "Filtros & Convolução", "accent": "#F59E0B"}, "VEC": {"name": "Vetores & UV", "accent": "#00BBF9"}, "UTI": {"name": "Utilitários & Lógica", "accent": "#F472B6"}, "GEO": {"name": "Geometria Procedural", "accent": "#00F5D4"}, "VFX": {"name": "Partículas & VFX", "accent": "#EF4444"}, "OUT": {"name": "Saídas & Render", "accent": "#94A3B8"}};
+
+    const NODES_P1 = [{"slug": "image-texture", "cat": "INP", "name": "Image Texture", "desc": "Carrega um arquivo de imagem (PNG/JPG/EXR) e expõe seus canais para o grafo.", "in": [], "out": [["Color", "color"], ["Alpha", "scalar"]], "use": "Padrão para mapas ORM: R = Occlusion, G = Roughness, B = Metalness (Receita #06)."}, {"slug": "audio-input", "cat": "INP", "name": "Audio Input", "desc": "Captura o áudio do ambiente em tempo real e o traduz em sinais numéricos.", "in": [], "out": [["Spectrum", "scalar"], ["Level", "scalar"], ["Beat", "scalar"]], "use": "Base para reatividade sonora: calibre picos com Step/Smoothstep (Receita #21)."}, {"slug": "time", "cat": "INP", "name": "Time", "desc": "Relógio do grafo: segundos corridos e ciclo normalizado 0.0–1.0.", "in": [], "out": [["Segundos", "scalar"], ["Normalizado", "scalar"]], "use": "Combine com Math [Sine] e Remap para pulsações e ondas contínuas."}, {"slug": "pointer", "cat": "INP", "name": "Pointer", "desc": "Posição do cursor na viewport e estado de clique.", "in": [], "out": [["UV", "vector"], ["Down", "scalar"]], "use": "Compare UV do cursor com UV do node para máscaras interativas (Receita #20)."}, {"slug": "data-input", "cat": "INP", "name": "Data Input", "desc": "Lê colunas de dados externos (T, U) e as expõe como valores numéricos.", "in": [], "out": [["Valor", "scalar"]], "use": "Ideal para dashboards e visualizações dirigidas por dados."}, {"slug": "viewport", "cat": "INP", "name": "Viewport", "desc": "Dimensões da tela: proporção (aspect) e resolução em pixels.", "in": [], "out": [["Aspect", "vector"], ["Resolução", "vector"]], "use": "Corrija distorções de padrões em telas não quadradas (Receita #19)."}, {"slug": "noise", "cat": "GEN", "name": "Noise", "desc": "Ruído procedural fractal clássico, base de quase toda variação orgânica.", "in": [["Coord", "vector"]], "out": [["Value", "scalar"], ["Color", "color"]], "use": "Some 10–20% de Noise a padrões geométricos para quebrar a regularidade."}, {"slug": "voronoi", "cat": "GEN", "name": "Voronoi", "desc": "Células orgânicas com pontos de crescimento; ótimo para pedra, pele e solo.", "in": [["Coord", "vector"]], "out": [["Value", "scalar"], ["Color", "color"], ["Distância", "scalar"]], "use": "Combine com Height Blend para preencher cavidades primeiro (Receita #02)."}, {"slug": "brick", "cat": "GEN", "name": "Brick", "desc": "Grade de tijolos/ladrilhos paramétrica com juntes e deslocamento de linhas.", "in": [["Coord", "vector"]], "out": [["Value", "scalar"], ["ID", "scalar"]], "use": "A saída ID gera variação individual por peça (Receita #05)."}, {"slug": "dots", "cat": "GEN", "name": "Dots", "desc": "Grade de pontos circulares com espaçamento e raio ajustáveis.", "in": [["Coord", "vector"]], "out": [["Value", "scalar"]], "use": "Base para halftone, telas e micro-relevo de tecido."}, {"slug": "checker", "cat": "GEN", "name": "Checker", "desc": "Xadrez binário para testar UVs e escala de textura.", "in": [["Coord", "vector"]], "out": [["Color", "color"]], "use": "Ferramenta de diagnóstico: qualquer distorção de UV fica imediatamente visível."}, {"slug": "gradient", "cat": "GEN", "name": "Gradient", "desc": "Gradiente linear, radial ou diamante entre dois pontos do espaço.", "in": [["Coord", "vector"]], "out": [["Value", "scalar"]], "use": "Máscaras de posição e fades de iluminação em NPR."}, {"slug": "wave", "cat": "GEN", "name": "Wave", "desc": "Ondas senoidal, triangular e quadrada, animáveis por fase.", "in": [["Coord", "vector"], ["Fase", "scalar"]], "out": [["Value", "scalar"]], "use": "Time ➔ Mapping ➔ Wave para bandeiras e superfícies animadas (Receita #15)."}, {"slug": "white-noise", "cat": "GEN", "name": "White Noise", "desc": "Aleatoriedade pura por pixel, sem coerência espacial.", "in": [], "out": [["Value", "scalar"]], "use": "Grão de filme, dithering e sementes aleatórias por instância."}, {"slug": "truchet", "cat": "GEN", "name": "Truchet", "desc": "Mosaico de azulejos rotacionados aleatoriamente que formam caminhos contínuos.", "in": [["Coord", "vector"]], "out": [["Value", "scalar"]], "use": "Labirintos, circuitos e padrões decorativos sem emendas."}, {"slug": "caustics", "cat": "GEN", "name": "Caustics", "desc": "Padrão de luz refratada em água, procedural e animável.", "in": [["Coord", "vector"], ["Escala", "scalar"]], "out": [["Value", "scalar"], ["Color", "color"]], "use": "Superfícies de água e fundo de piscina; anime via Time no domínio."}, {"slug": "color-ramp", "cat": "COL", "name": "Color Ramp", "desc": "Converte um valor 0–1 em paleta de cores com paradas editáveis.", "in": [["Fac", "scalar"]], "out": [["Color", "color"]], "use": "O conversor universal: Noise/Voronoi ➔ Color Ramp é um par canônico."}, {"slug": "blend", "cat": "COL", "name": "Blend", "desc": "Mescla duas cores com modos (Multiply, Overlay, Screen, Add…).", "in": [["Base", "color"], ["Blend", "color"], ["Mask", "scalar"]], "out": [["Color", "color"]], "use": "Camadas de sujeira e variação controladas por máscara (Receita #03)."}, {"slug": "mix", "cat": "COL", "name": "Mix", "desc": "Mistura linear A↔B controlada pelo fator Fac.", "in": [["A", "color"], ["B", "color"], ["Fac", "scalar"]], "out": [["Color", "color"]], "use": "Combine com Invert para trocar material exposto/base (Receita #01)."}, {"slug": "invert", "cat": "COL", "name": "Invert", "desc": "Inverte valores (1−x) ou gera a cor complementar.", "in": [["Entrada", "color"]], "out": [["Color", "color"]], "use": "Em Edge Wear, inverta antes de Roughness para metal liso nas quinas."}, {"slug": "levels", "cat": "COL", "name": "Levels", "desc": "Recomprime tons com pontos de preto e branco remapeáveis.", "in": [["Entrada", "color"]], "out": [["Color", "color"]], "use": "Endureça máscaras: comprima o branco para manter áreas expostas em 1.0."}, {"slug": "histogram-scan", "cat": "COL", "name": "Histogram Scan", "desc": "Isola uma faixa de tons como máscara com suavização de borda.", "in": [["Value", "scalar"]], "out": [["Value", "scalar"]], "use": "Transforme mapas de altura em máscaras precisas de desgaste."}, {"slug": "hue-shift", "cat": "COL", "name": "Hue Shift", "desc": "Rotaciona o matiz mantendo saturação e luminosidade.", "in": [["Cor", "color"], ["Deslocamento", "scalar"]], "out": [["Color", "color"]], "use": "Variação de cor por objeto via Object Info (Random)."}, {"slug": "posterize", "cat": "COL", "name": "Posterize", "desc": "Reduz o número de níveis de tom, criando degraus discretos.", "in": [["Entrada", "color"], ["Passos", "scalar"]], "out": [["Color", "color"]], "use": "Estilo cel-shading e dithering retro (Bloco NPR)."}, {"slug": "gradient-map", "cat": "COL", "name": "Gradient Map", "desc": "Mapeia a luminância para uma paleta fixa de N cores.", "in": [["Value", "scalar"]], "out": [["Color", "color"]], "use": "Paletas limitadas (duotone/tritone) para estilização NPR."}, {"slug": "luminance", "cat": "COL", "name": "Luminance", "desc": "Converte cor em escala de cinza ponderada (0.0–1.0).", "in": [["Cor", "color"]], "out": [["Value", "scalar"]], "use": "Extraia altura de texturas coloridas para Bump/Deform."}, {"slug": "curves", "cat": "COL", "name": "Curves", "desc": "Curva de resposta editável ponto a ponto sobre qualquer sinal.", "in": [["Entrada", "color"]], "out": [["Color", "color"]], "use": "Contraste fino de máscaras sem empilhar múltiplos Levels."}, {"slug": "spectral-dispersion", "cat": "COL", "name": "Spectral Dispersion", "desc": "Separa a luz por comprimento de onda, gerando iridescência.", "in": [["Ângulo", "scalar"], ["Intensidade", "scalar"]], "out": [["Color", "color"]], "use": "Efeitos holográficos e de bolha de sabão (Receita #12)."}, {"slug": "blur", "cat": "FIL", "name": "Blur", "desc": "Suavização gaussiana/box com raio ajustável.", "in": [["Entrada", "color"], ["Raio", "scalar"]], "out": [["Color", "color"]], "use": "Suavize máscaras serrilhadas antes de usar como Fac."}, {"slug": "slope-blur", "cat": "FIL", "name": "Slope Blur", "desc": "Desloca pixels ao longo do gradiente de um segundo ruído.", "in": [["In", "color"], ["Slope", "scalar"]], "out": [["Color", "color"]], "use": "Erosão e lascas: Brick + Noise em Slope (Receita #04)."}, {"slug": "directional-warp", "cat": "FIL", "name": "Directional Warp", "desc": "Distorce a imagem numa direção específica com intensidade animável.", "in": [["Entrada", "color"], ["Ângulo", "scalar"], ["Intensidade", "scalar"]], "out": [["Color", "color"]], "use": "Fluxos direcionais: vento, cabelo, água (Receita #14)."}, {"slug": "edge-wear", "cat": "FIL", "name": "Edge Wear", "desc": "Detecta quinas convexas do relevo e gera máscara de desgaste.", "in": [["Height", "scalar"]], "out": [["Value", "scalar"]], "use": "Desgaste metálico PBR (Receita #01); inverta para Roughness."}, {"slug": "height-ao", "cat": "FIL", "name": "Height AO", "desc": "Oclusão de ambiente derivada do mapa de altura, sem baking.", "in": [["Height", "scalar"]], "out": [["Value", "scalar"]], "use": "Escureça cavidades e conecte também em Occlusion do Material Output (Receita #03)."}, {"slug": "bump", "cat": "FIL", "name": "Bump", "desc": "Converte altura em perturbação de normais (relevo falso, barato).", "in": [["Height", "scalar"]], "out": [["Normal", "vector"]], "use": "Conecte sempre a Height combinada para manter continuidade das normais."}, {"slug": "normal-map", "cat": "FIL", "name": "Normal Map", "desc": "Gera mapa de normais tangent-space a partir de altura ou arquivo.", "in": [["Height", "scalar"]], "out": [["Normal", "vector"]], "use": "Prefira ao Bump quando o material for exportado para outros motores."}, {"slug": "sobel-normal", "cat": "FIL", "name": "Sobel Normal", "desc": "Convolução de Sobel para extrair normais nítidas de alta frequência.", "in": [["Height", "scalar"]], "out": [["Normal", "vector"]], "use": "Detalhe de micro-relevo em textos, tecidos e gravações."}, {"slug": "sharpen", "cat": "FIL", "name": "Sharpen", "desc": "Realça bordas e detalhes por máscara de nitidez (unsharp mask).", "in": [["Entrada", "color"], ["Intensidade", "scalar"]], "out": [["Color", "color"]], "use": "Recupere definição após Blurs intensos ou upscales."}];
+
+    const NODES_P2 = [{"slug": "uv", "cat": "VEC", "name": "UV", "desc": "Coordenadas de textura 0–1 do objeto ou da tela.", "in": [], "out": [["UV", "vector"]], "use": "Ponto de partida de quase todo padrão procedural (par canônico com Mapping)."}, {"slug": "mapping", "cat": "VEC", "name": "Mapping", "desc": "Aplica escala, rotação e translação às coordenadas.", "in": [["UV", "vector"]], "out": [["UV", "vector"]], "use": "Defina escala/rotação ANTES de amostrar qualquer padrão (par canônico)."}, {"slug": "separate-rgb", "cat": "VEC", "name": "Separate RGB", "desc": "Decompõe uma cor nos canais R, G e B escalares.", "in": [["Cor", "color"]], "out": [["R", "scalar"], ["G", "scalar"], ["B", "scalar"]], "use": "Desempacote mapas ORM canal a canal (Receita #06)."}, {"slug": "combine-xyz", "cat": "VEC", "name": "Combine XYZ", "desc": "Monta um vetor a partir de três escalares independentes.", "in": [["X", "scalar"], ["Y", "scalar"], ["Z", "scalar"]], "out": [["Vetor", "vector"]], "use": "Reconstrua vetores após processar cada eixo separadamente."}, {"slug": "vector-math", "cat": "VEC", "name": "Vector Math", "desc": "Operações vetoriais: add, sub, dot, cross, normalize, distance.", "in": [["A", "vector"], ["B", "vector"]], "out": [["Vetor", "vector"], ["Valor", "scalar"]], "use": "Distance ➔ Smoothstep é o par canônico de proximidade (Receita #20)."}, {"slug": "remap", "cat": "VEC", "name": "Remap", "desc": "Remapeia um intervalo de entrada para outro de saída (linear).", "in": [["In", "scalar"]], "out": [["Value", "scalar"]], "use": "Normalize sinais: [-1..1 ➔ 0..1] antes de alimentar um Color Ramp."}, {"slug": "fresnel", "cat": "VEC", "name": "Fresnel", "desc": "Intensidade do ângulo de visão: bordas acesas, frente apagada.", "in": [["Normal", "vector"], ["Visão", "vector"]], "out": [["Value", "scalar"]], "use": "Rim light, iridescência e contornos em NPR (Receita #11)."}, {"slug": "position", "cat": "VEC", "name": "Position", "desc": "Posição do ponto no espaço do objeto ou do mundo.", "in": [], "out": [["Posição", "vector"]], "use": "Gradientes espaciais 3D e domínios de ruído em geometria."}, {"slug": "normal", "cat": "VEC", "name": "Normal", "desc": "Vetor normal da superfície no ponto avaliado.", "in": [], "out": [["Normal", "vector"]], "use": "Combine com Dot e Fresnel para sombreamento customizado."}, {"slug": "math", "cat": "UTI", "name": "Math", "desc": "Operações aritméticas e funções: add, multiply, sine, power, distance…", "in": [["A", "scalar"], ["B", "scalar"]], "out": [["Value", "scalar"]], "use": "O canivete do grafo: encadeie vários para construir sinais complexos."}, {"slug": "step", "cat": "UTI", "name": "Step", "desc": "Degrau binário: 0 abaixo do limite, 1 acima.", "in": [["In", "scalar"], ["Limite", "scalar"]], "out": [["Value", "scalar"]], "use": "Converta picos de áudio em gatilhos limpos (Receita #21)."}, {"slug": "smoothstep", "cat": "UTI", "name": "Smoothstep", "desc": "Degrau suavizado com interpolação Hermite nas bordas.", "in": [["In", "scalar"]], "out": [["Value", "scalar"]], "use": "Versão orgânica do Step para transições sem serrilhado."}, {"slug": "clamp", "cat": "UTI", "name": "Clamp", "desc": "Limita o sinal a um intervalo mínimo/máximo.", "in": [["In", "scalar"]], "out": [["Value", "scalar"]], "use": "Sempre clamp saídas de Multiply antes de usar como máscara."}, {"slug": "curve", "cat": "UTI", "name": "Curve", "desc": "Curva de resposta editável (bézier) sobre um sinal 0–1.", "in": [["Fac", "scalar"]], "out": [["Value", "scalar"]], "use": "Controle artístico fino de falloffs e animações por vida."}, {"slug": "object-info", "cat": "UTI", "name": "Object Info", "desc": "Dados do objeto: posição, rotação, escala e random estável.", "in": [], "out": [["Posição", "vector"], ["Random", "scalar"]], "use": "Variação por objeto: alimente Random em Hue Shift ou offset de Noise."}, {"slug": "instance-info", "cat": "UTI", "name": "Instance Info", "desc": "Dados de cada instância no Scatter: idade, transform e random.", "in": [], "out": [["Idade", "scalar"], ["Random", "scalar"]], "use": "Variação individual em florestas e multidões espalhadas."}, {"slug": "switch", "cat": "UTI", "name": "Switch", "desc": "Escolhe entre duas entradas com base em uma condição.", "in": [["A", "color"], ["B", "color"], ["Condição", "scalar"]], "out": [["Saída", "color"]], "use": "Alterne materiais/estados em tempo real (UI interativa)."}, {"slug": "primitive", "cat": "GEO", "name": "Primitive", "desc": "Malhas base paramétricas: plano, cubo, esfera, cilindro, torus.", "in": [], "out": [["Geometria", "geo"]], "use": "Início de todo pipeline [GEO]; plano + Noise = terreno (Receita #23)."}, {"slug": "deform", "cat": "GEO", "name": "Deform", "desc": "Deforma a geometria usando um mapa de altura ou campo vetorial.", "in": [["Geometria", "geo"], ["Height", "scalar"]], "out": [["Geometria", "geo"]], "use": "Terrenos e ondulações: height procedural direto na malha."}, {"slug": "scatter", "cat": "GEO", "name": "Scatter", "desc": "Espalha instâncias sobre uma superfície com densidade controlável.", "in": [["Superfície", "geo"], ["Instância", "geo"], ["Densidade", "scalar"]], "out": [["Instâncias", "inst"]], "use": "Par canônico Primitive ➔ Scatter; use Noise na densidade (Receita #24)."}, {"slug": "attractor", "cat": "GEO", "name": "Attractor", "desc": "Puxa ou empurra vértices e partículas em direção a um ponto.", "in": [["Geometria", "geo"], ["Ponto", "vector"], ["Força", "scalar"]], "out": [["Geometria", "geo"]], "use": "Interação do cursor com a malha (Bloco Interação)."}, {"slug": "vortex", "cat": "GEO", "name": "Vortex", "desc": "Gira vértices/partículas ao redor de um eixo com falloff.", "in": [["Geometria", "geo"], ["Eixo", "vector"], ["Força", "scalar"]], "out": [["Geometria", "geo"]], "use": "Redemoinhos e espirais em VFX e geometria."}, {"slug": "mirror", "cat": "GEO", "name": "Mirror", "desc": "Duplica e espelha a geometria em um eixo.", "in": [["Geometria", "geo"]], "out": [["Geometria", "geo"]], "use": "Simetria rápida para personagens e props."}, {"slug": "subdivide", "cat": "GEO", "name": "Subdivide", "desc": "Refina a malha dividindo faces, habilitando deformações suaves.", "in": [["Geometria", "geo"], ["Nível", "scalar"]], "out": [["Geometria", "geo"]], "use": "Subdivida ANTES de Deform/Displace para evitar facetas."}, {"slug": "array", "cat": "GEO", "name": "Array", "desc": "Replica a geometria em grade linear ou radial.", "in": [["Geometria", "geo"], ["Contagem", "scalar"]], "out": [["Instâncias", "inst"]], "use": "Colunas, grades e coroas de objetos."}, {"slug": "displace", "cat": "GEO", "name": "Displace", "desc": "Desloca vértices ao longo da normal por um mapa de altura.", "in": [["Geometria", "geo"], ["Height", "scalar"], ["Escala", "scalar"]], "out": [["Geometria", "geo"]], "use": "Relevo real (não falso como Bump); combine com Subdivide."}, {"slug": "emitter", "cat": "VFX", "name": "Emitter", "desc": "Fonte de partículas: taxa, vida útil, velocidade inicial e origem.", "in": [], "out": [["Partículas", "inst"]], "use": "Início de todo sistema VFX (Receitas #27–30)."}, {"slug": "particle", "cat": "VFX", "name": "Particle", "desc": "Estado de cada partícula: idade 0–1, posição e velocidade.", "in": [["Partículas", "inst"]], "out": [["Idade", "scalar"], ["Posição", "vector"], ["Velocidade", "vector"]], "use": "Age 0–1 sincroniza Size/Color over Life e Fade (par canônico)."}, {"slug": "turbulence", "cat": "VFX", "name": "Turbulence", "desc": "Campo de ruído que agita posições de partículas e vértices.", "in": [["Posição", "vector"], ["Escala", "scalar"]], "out": [["Posição", "vector"]], "use": "Brasas e poeira errática (Receita #30)."}, {"slug": "size-over-life", "cat": "VFX", "name": "Size over Life", "desc": "Curva de tamanho ao longo da vida da partícula.", "in": [["Idade", "scalar"]], "out": [["Tamanho", "scalar"]], "use": "Nascimento pequeno ➔ pico ➔ fade; use Remap para um mínimo visível."}, {"slug": "color-over-life", "cat": "VFX", "name": "Color over Life", "desc": "Gradiente de cor ao longo da vida da partícula.", "in": [["Idade", "scalar"]], "out": [["Cor", "color"]], "use": "Fogo: branco ➔ laranja ➔ vermelho ➔ fumaça."}, {"slug": "fade", "cat": "VFX", "name": "Fade", "desc": "Opacidade da partícula com curvas de entrada e saída.", "in": [["Idade", "scalar"]], "out": [["Opacidade", "scalar"]], "use": "Evite pops: sempre fade-out suave antes da morte da partícula."}, {"slug": "sprite", "cat": "VFX", "name": "Sprite", "desc": "Billboard texturizado renderizado por partícula.", "in": [["Cor", "color"], ["Opacidade", "scalar"]], "out": [["Visual", "inst"]], "use": "Fumaça, brasas e detritos com textura suave."}, {"slug": "material-output", "cat": "OUT", "name": "Material Output", "desc": "Terminal do pipeline de material: define o shader final da superfície.", "in": [["Base Color", "color"], ["Roughness", "scalar"], ["Metalness", "scalar"], ["Normal", "vector"], ["Occlusion", "scalar"], ["Emissive", "color"]], "out": [], "use": "Todo caminho de material termina aqui (usado em 19 receitas)."}, {"slug": "geometry-output", "cat": "OUT", "name": "Geometry Output", "desc": "Terminal do pipeline de geometria: malha final para render.", "in": [["Geometria", "geo"]], "out": [], "use": "Fim do fluxo [GEO]; sem saídas à direita (node terminal)."}, {"slug": "vfx-output", "cat": "OUT", "name": "VFX Output", "desc": "Terminal do pipeline de partículas: posição, tamanho, opacity e sprite.", "in": [["Posição", "vector"], ["Tamanho", "scalar"], ["Opacidade", "scalar"], ["Sprite", "inst"]], "out": [], "use": "Fim do fluxo VFX; conecte Turbulence em Position para movimento."}];
+
+    let catalog1Cat = 'INP';
+    let catalog2Cat = 'VEC';
+    let catalogPin = 'all';
+
+    function pinChip(label, type) {
+      const c = PIN_COLORS[type] || '#00BBF9';
+      return `<span class="inline-flex items-center gap-1.5 px-2 py-0.5 rounded bg-obsBase border border-obsBorder font-mono text-[10px] text-slate-300"><span class="w-2 h-2 rounded-full shrink-0" style="background-color: ${c}"></span>${label}</span>`;
+    }
+
+    function nodeCard(nd) {
+      const cat = NODE_CATS[nd.cat];
+      const pins = [...new Set([...nd.in.map(p => p[1]), ...nd.out.map(p => p[1])])].join(' ');
+      return `
+        <article id="node-card-${nd.slug}" class="node-card bg-obsPanel border border-obsBorder rounded-2xl p-5 space-y-3 transition-all duration-300"
+                 data-cat="${nd.cat}" data-pins="${pins}">
+          <div class="flex items-center justify-between gap-2 pb-2 border-b border-obsDivider">
+            <div class="flex items-center gap-2 min-w-0">
+              <span class="font-mono text-[10px] font-bold px-2 py-0.5 rounded border shrink-0" style="color: ${cat.accent}; border-color: ${cat.accent}55; background: ${cat.accent}18;">[${nd.cat}]</span>
+              <h3 class="text-sm sm:text-base font-bold text-white truncate">${nd.name}</h3>
+            </div>
+            <span class="font-mono text-[10px] text-slate-500 shrink-0">${nd.slug}</span>
+          </div>
+          <p class="text-xs text-slate-300 leading-relaxed">${nd.desc}</p>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+            <div class="bg-obsBase border border-obsBorder rounded-xl p-3 space-y-1.5">
+              <div class="font-mono text-[10px] uppercase text-sky-300 font-bold">Entradas (Esquerda)</div>
+              <div class="flex flex-wrap gap-1.5">${nd.in.length ? nd.in.map(p => pinChip(p[0], p[1])).join('') : '<span class="font-mono text-[10px] text-slate-500">— nenhuma (fonte/gerador)</span>'}</div>
+            </div>
+            <div class="bg-obsBase border border-obsBorder rounded-xl p-3 space-y-1.5">
+              <div class="font-mono text-[10px] uppercase text-emerald-300 font-bold">Saídas (Direita)</div>
+              <div class="flex flex-wrap gap-1.5">${nd.out.length ? nd.out.map(p => pinChip(p[0], p[1])).join('') : '<span class="font-mono text-[10px] text-slate-500">— node terminal</span>'}</div>
+            </div>
+          </div>
+          <div class="flex items-start gap-2 text-[11px] text-slate-400">
+            <span class="font-mono text-amber-400 shrink-0">USO:</span>
+            <span class="leading-relaxed">${nd.use}</span>
+          </div>
+        </article>`;
+    }
+
+    function renderCatalogs() {
+      document.getElementById('catalog1-container').innerHTML = NODES_P1.map(nodeCard).join('');
+      document.getElementById('catalog2-container').innerHTML = NODES_P2.map(nodeCard).join('');
+      applyCatalogFilters(1);
+      applyCatalogFilters(2);
+    }
+
+    function applyCatalogFilters(part) {
+      const cat = part === 1 ? catalog1Cat : catalog2Cat;
+      const sel = part === 1 ? '#catalog1-container .node-card' : '#catalog2-container .node-card';
+      let visible = 0;
+      document.querySelectorAll(sel).forEach(card => {
+        const matchCat = card.dataset.cat === cat;
+        const matchPin = catalogPin === 'all' || card.dataset.pins.split(' ').includes(catalogPin);
+        card.classList.toggle('hidden', !(matchCat && matchPin));
+        if (matchCat && matchPin) visible++;
+      });
+      const countEl = document.getElementById(`catalog${part}-visible-count`);
+      if (countEl) countEl.textContent = visible;
+      document.querySelectorAll(`.cat-pill[data-part="${part}"]`).forEach(btn => {
+        const on = btn.dataset.cat === cat;
+        const accent = NODE_CATS[btn.dataset.cat].accent;
+        btn.className = on
+          ? 'cat-pill px-3 py-1.5 rounded-lg font-mono text-xs font-semibold border transition'
+          : 'cat-pill px-3 py-1.5 rounded-lg font-mono text-xs font-medium bg-obsBase text-slate-300 border border-obsBorder hover:border-slate-500 transition';
+        if (on) {
+          btn.style.color = accent;
+          btn.style.borderColor = accent + '66';
+          btn.style.background = accent + '22';
+        } else {
+          btn.style.color = ''; btn.style.borderColor = ''; btn.style.background = '';
+        }
+      });
+      document.querySelectorAll('.pin-pill').forEach(btn => {
+        const on = btn.dataset.pin === catalogPin;
+        btn.className = on
+          ? 'pin-pill px-2.5 py-1 rounded font-mono text-[11px] font-semibold bg-cyan-500/20 text-cyan-300 border border-cyan-500/40'
+          : 'pin-pill px-2.5 py-1 rounded font-mono text-[11px] bg-obsBase text-slate-300 border border-obsBorder';
+      });
+    }
+
+    function setCatalogCategory(part, cat) {
+      if (part === 1) catalog1Cat = cat; else catalog2Cat = cat;
+      applyCatalogFilters(part);
+    }
+
+    function setCatalogPin(pin) {
+      catalogPin = pin;
+      applyCatalogFilters(1);
+      applyCatalogFilters(2);
+    }
+
+    function jumpToNode(slug) {
+      const all = [...NODES_P1, ...NODES_P2];
+      const nd = all.find(x => x.slug === slug);
+      if (!nd) return;
+      const part = NODES_P1.includes(nd) ? 1 : 2;
+      catalogPin = 'all';
+      setCatalogCategory(part, nd.cat);
+      switchSection(part === 1 ? 'catalog' : 'catalog2');
+      setTimeout(() => {
+        const target = document.getElementById(`node-card-${slug}`);
+        if (target) {
+          if (typeof target.scrollIntoView === 'function') target.scrollIntoView({ behavior: 'smooth', block: 'center' });
+          target.classList.add('ring-2', 'ring-cyan-400', 'border-cyan-400');
+          setTimeout(() => target.classList.remove('ring-2', 'ring-cyan-400', 'border-cyan-400'), 1800);
+        }
+      }, 60);
+    }
+
+    function renderSidebarNodes() {
+      const container = document.getElementById('sidebar-nodes');
+      let html = `<div class="text-[10px] font-mono uppercase tracking-wider text-slate-500 px-1">Nodes — Vol. 1 (73)</div>`;
+      Object.entries(NODE_CATS).forEach(([id, meta], idx) => {
+        const items = [...NODES_P1, ...NODES_P2].filter(nd => nd.cat === id);
+        html += `
+          <details ${idx === 0 ? 'open' : ''} class="rounded-lg bg-obsBase/80 border border-obsDivider overflow-hidden">
+            <summary class="flex items-center justify-between px-2.5 py-2 cursor-pointer select-none hover:bg-obsHover transition">
+              <span class="text-xs font-semibold text-slate-200 truncate">[${id}] ${meta.name}</span>
+              <span class="text-[10px] font-mono font-bold" style="color: ${meta.accent}">${items.length}</span>
+            </summary>
+            <div class="px-2 pb-2 pt-1 space-y-0.5 border-t border-obsDivider/60">
+              ${items.map(nd => `
+                <button onclick="jumpToNode('${nd.slug}')" class="w-full text-left px-2 py-1 rounded text-[11px] font-mono text-slate-400 hover:text-cyan-300 hover:bg-obsHover transition truncate">
+                  ${nd.name}
+                </button>
+              `).join('')}
+            </div>
+          </details>
+        `;
+      });
+      container.innerHTML = html;
+      wireTree('sidebar-nodes');
+    }
+
+    function persistTree(id) {
+      const open = [...document.querySelectorAll(`#${id} details`)].map(d => d.open);
+      try { localStorage.setItem('prism-tree-' + id, JSON.stringify(open)); } catch (err) {}
+    }
+
+    function wireTree(id) {
+      try {
+        const saved = JSON.parse(localStorage.getItem('prism-tree-' + id) || 'null');
+        if (Array.isArray(saved)) {
+          document.querySelectorAll(`#${id} details`).forEach((d, i) => { d.open = !!saved[i]; });
+        }
+      } catch (err) {}
+      document.querySelectorAll(`#${id} details`).forEach(d => d.addEventListener('toggle', () => persistTree(id)));
+    }
+
+    // ===================== UX: PALETA DE COMANDOS, PAGER, PRINT-ALL =====================
+    const PALETTE_TYPE_COLORS = {
+      'Node': 'text-cyan-300 border-cyan-500/30 bg-cyan-500/10',
+      'Receita': 'text-purple-300 border-purple-500/30 bg-purple-500/10',
+      'Blueprint': 'text-amber-300 border-amber-500/30 bg-amber-500/10',
+      'Seção': 'text-emerald-300 border-emerald-500/30 bg-emerald-500/10'
+    };
+
+    let PALETTE_INDEX = [];
+    let paletteOpen = false;
+    let paletteResults = [];
+    let paletteIndex = 0;
+
+    function buildPaletteIndex() {
+      const idx = [];
+      SECTION_LIST.forEach(s => idx.push({ type: 'Seção', label: s.label, sub: 'Ir para a seção', run: () => switchSection(s.id) }));
+      [...NODES_P1, ...NODES_P2].forEach(nd => idx.push({ type: 'Node', label: `[${nd.cat}] ${nd.name}`, sub: nd.desc, run: () => jumpToNode(nd.slug) }));
+      RECIPES_DATA.forEach(r => idx.push({ type: 'Receita', label: `#${String(r.id).padStart(2, '0')} ${r.title}`, sub: r.blockName, run: () => jumpToRecipe(r.id) }));
+      RECIPES_ENHANCED.forEach(r => idx.push({ type: 'Blueprint', label: `#${String(r.id).padStart(2, '0')} ${r.title}`, sub: r.blockName + ' • catálogo aprimorado', run: () => jumpToBlueprint(r.id) }));
+      return idx;
+    }
+
+    function openPalette() {
+      paletteOpen = true;
+      document.getElementById('palette-backdrop').classList.remove('hidden');
+      const inp = document.getElementById('palette-input');
+      inp.value = '';
+      renderPalette('');
+      setTimeout(() => inp.focus(), 30);
+    }
+
+    function closePalette() {
+      paletteOpen = false;
+      document.getElementById('palette-backdrop').classList.add('hidden');
+    }
+
+    function renderPalette(q) {
+      const query = q.toLowerCase().trim();
+      let items = PALETTE_INDEX;
+      if (query) {
+        items = PALETTE_INDEX
+          .map(it => ({ it, pos: `${it.label} ${it.sub}`.toLowerCase().indexOf(query) }))
+          .filter(x => x.pos >= 0)
+          .sort((a, b) => a.it.label.toLowerCase().indexOf(query) - b.it.label.toLowerCase().indexOf(query))
+          .map(x => x.it);
+      }
+      paletteResults = items.slice(0, 20);
+      paletteIndex = 0;
+      const box = document.getElementById('palette-results');
+      if (!paletteResults.length) {
+        box.innerHTML = '<div class="px-3 py-8 text-center font-mono text-xs text-slate-500">NENHUM RESULTADO</div>';
+      } else {
+        box.innerHTML = paletteResults.map((it, i) => `
+          <button onclick="paletteClick(${i})" data-i="${i}" class="palette-row w-full flex items-center gap-3 px-3 py-2 rounded-lg text-left transition ${i === 0 ? 'bg-obsHover' : 'hover:bg-obsHover'}">
+            <span class="font-mono text-[9px] font-bold px-1.5 py-0.5 rounded border shrink-0 ${PALETTE_TYPE_COLORS[it.type]}">${it.type.toUpperCase()}</span>
+            <span class="min-w-0 flex-1">
+              <span class="block text-xs font-semibold text-slate-200 truncate">${it.label}</span>
+              <span class="block text-[10px] text-slate-500 truncate font-mono">${it.sub}</span>
+            </span>
+          </button>
+        `).join('');
+      }
+      document.getElementById('palette-count').textContent = `${items.length} resultado${items.length === 1 ? '' : 's'}`;
+    }
+
+    function paletteHighlight() {
+      document.querySelectorAll('.palette-row').forEach(r => {
+        const on = Number(r.dataset.i) === paletteIndex;
+        r.classList.toggle('bg-obsHover', on);
+        r.classList.toggle('ring-1', on);
+        r.classList.toggle('ring-cyan-500/40', on);
+        if (on && typeof r.scrollIntoView === 'function') r.scrollIntoView({ block: 'nearest' });
+      });
+    }
+
+    function paletteMove(dir) {
+      if (!paletteResults.length) return;
+      paletteIndex = (paletteIndex + dir + paletteResults.length) % paletteResults.length;
+      paletteHighlight();
+    }
+
+    function paletteClick(i) {
+      paletteIndex = i;
+      paletteExecute();
+    }
+
+    function paletteExecute() {
+      const item = paletteResults[paletteIndex];
+      if (!item) return;
+      closePalette();
+      item.run();
+    }
+
+    function renderPager() {
+      const pager = document.getElementById('section-pager');
+      if (!pager) return;
+      const idx = SECTION_LIST.findIndex(s => s.id === activeSection);
+      const prev = idx > 0 ? SECTION_LIST[idx - 1] : null;
+      const next = idx < SECTION_LIST.length - 1 ? SECTION_LIST[idx + 1] : null;
+      pager.innerHTML = `
+        ${prev ? `
+          <button onclick="switchSection('${prev.id}')" class="flex items-center gap-2.5 px-4 py-2.5 rounded-xl bg-obsPanel border border-obsBorder hover:border-slate-500 text-xs font-mono text-slate-300 transition">
+            <span class="text-cyan-400 font-bold">←</span>
+            <span class="text-left"><span class="block text-[9px] text-slate-500 uppercase tracking-wider">Anterior</span>${prev.label}</span>
+          </button>` : '<span></span>'}
+        ${next ? `
+          <button onclick="switchSection('${next.id}')" class="ml-auto flex items-center gap-2.5 px-4 py-2.5 rounded-xl bg-obsPanel border border-obsBorder hover:border-slate-500 text-xs font-mono text-slate-300 transition">
+            <span class="text-right"><span class="block text-[9px] text-slate-500 uppercase tracking-wider">Próxima</span>${next.label}</span>
+            <span class="text-cyan-400 font-bold">→</span>
+          </button>` : '<span></span>'}
+      `;
+    }
+
+    function printAllPDF() {
+      document.body.classList.add('print-all');
+      setTimeout(() => window.print(), 50);
+    }
+
+    window.addEventListener('afterprint', () => document.body.classList.remove('print-all'));
+
+    window.addEventListener('scroll', () => {
+      const doc = document.documentElement;
+      const max = doc.scrollHeight - window.innerHeight;
+      const p = max > 0 ? (window.scrollY / max) * 100 : 0;
+      document.getElementById('scroll-progress').style.width = p + '%';
+      const btt = document.getElementById('back-to-top');
+      btt.classList.toggle('hidden', window.scrollY < 400);
+      btt.classList.toggle('flex', window.scrollY >= 400);
+    }, { passive: true });
+
+    document.getElementById('palette-input').addEventListener('input', (e) => renderPalette(e.target.value));
+    document.getElementById('palette-input').addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowDown') { e.preventDefault(); paletteMove(1); }
+      else if (e.key === 'ArrowUp') { e.preventDefault(); paletteMove(-1); }
+      else if (e.key === 'Enter') { e.preventDefault(); paletteExecute(); }
+      else if (e.key === 'Escape') { e.preventDefault(); closePalette(); }
+    });
+
+    // Boot do Manual Unificado
+    renderSidebarBlocks();
+    renderSidebarBlueprints();
+    renderRecipes();
+    renderBlueprints();
+    renderSidebarNodes();
+    renderCatalogs();
+    selectAnatomyZone('header');
+    renderCanonicalPairs();
+    evaluatePortConnection();
+    PALETTE_INDEX = buildPaletteIndex();
+    let savedSection = null;
+    try { savedSection = localStorage.getItem('prism-active-section'); } catch (err) {}
+    switchSection(SECTION_LIST.some(s => s.id === savedSection) ? savedSection : 'overview');
+  </script>
+
+</body>
+</html>
