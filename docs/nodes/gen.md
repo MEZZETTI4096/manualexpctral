@@ -1,6 +1,6 @@
 # GEN — Geradores Procedurais
 
-Sessão do catálogo técnico com **10 nodes**. Cor da categoria na interface: `#10B981`.
+Sessão do catálogo técnico com **12 nodes**. Cor da categoria na interface: `#10B981`.
 
 Exemplo real da interface: ![exemplo](../assets/exemplos/gen.png)
 
@@ -16,6 +16,8 @@ Exemplo real da interface: ![exemplo](../assets/exemplos/gen.png)
 | **White Noise** | `white-noise` | — | Value (scalar) | Grão de filme, dithering e sementes aleatórias por instância. | — |
 | **Truchet** | `truchet` | Coord (vector) | Value (scalar) | Labirintos, circuitos e padrões decorativos sem emendas. | — |
 | **Caustics** | `caustics` | Coord (vector), Escala (scalar) | Value (scalar), Color (color) | Superfícies de água e fundo de piscina; anime via Time no domínio. | — |
+| **Cells** | `cells` | Coord (vector) | Value (scalar), Color (color) | Pedras, escamas e placas; varie a cor por célula com Color Ramp. | — |
+| **Stripes** | `stripes` | Coord (vector) | Value (scalar) | Madeira e tecido listrado; anime via Mapping com Time. | — |
 
 ---
 

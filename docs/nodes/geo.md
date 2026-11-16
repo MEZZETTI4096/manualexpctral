@@ -1,6 +1,6 @@
 # GEO — Geometria Procedural
 
-Sessão do catálogo técnico com **9 nodes**. Cor da categoria na interface: `#00F5D4`.
+Sessão do catálogo técnico com **10 nodes**. Cor da categoria na interface: `#00F5D4`.
 
 Exemplo real da interface: ![exemplo](../assets/exemplos/geo.png)
 
@@ -15,6 +15,7 @@ Exemplo real da interface: ![exemplo](../assets/exemplos/geo.png)
 | **Subdivide** | `subdivide` | Geometria (geo), Nível (scalar) | Geometria (geo) | Subdivida ANTES de Deform/Displace para evitar facetas. | — |
 | **Array** | `array` | Geometria (geo), Contagem (scalar) | Instâncias (inst) | Colunas, grades e coroas de objetos. | — |
 | **Displace** | `displace` | Geometria (geo), Height (scalar), Escala (scalar) | Geometria (geo) | Relevo real (não falso como Bump); combine com Subdivide. | — |
+| **Delete** | `delete` | Geometria (geo), Taglist (scalar) | Geometria (geo) | Delete por tag antes do Scatter; combine com Instance Info (Id). | — |
 
 ---
 

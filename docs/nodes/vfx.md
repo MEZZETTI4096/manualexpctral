@@ -1,6 +1,6 @@
 # VFX — Partículas & VFX
 
-Sessão do catálogo técnico com **7 nodes**. Cor da categoria na interface: `#EF4444`.
+Sessão do catálogo técnico com **9 nodes**. Cor da categoria na interface: `#EF4444`.
 
 Exemplo real da interface: ![exemplo](../assets/exemplos/vfx.png)
 
@@ -13,6 +13,8 @@ Exemplo real da interface: ![exemplo](../assets/exemplos/vfx.png)
 | **Color over Life** | `color-over-life` | Idade (scalar) | Cor (color) | Fogo: branco ➔ laranja ➔ vermelho ➔ fumaça. | Receitas #27; Blueprints #27 |
 | **Fade** | `fade` | Idade (scalar) | Opacidade (scalar) | Evite pops: sempre fade-out suave antes da morte da partícula. | Receitas #27, #29; Blueprints #27, #29 |
 | **Sprite** | `sprite` | Cor (color), Opacidade (scalar) | Visual (inst) | Fumaça, brasas e detritos com textura suave. | Receitas #27, #28; Blueprints #27, #28 |
+| **Simulation** | `simulation` | Position (vector), Velocity (vector), Idade (scalar) | Position (vector), Velocity (vector), Idade (scalar) | Núcleo do loop VFX: Emitter ➔ Simulation ➔ Color over Life ➔ VFX Output. | — |
+| **Field** | `field` | Position (vector) | Field (vector) | Combine com Simulation para vento, gravidade localizada e redemoinhos. | — |
 
 ---
 

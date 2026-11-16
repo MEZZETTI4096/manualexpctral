@@ -1,6 +1,6 @@
 # UTI — Utilitários & Lógica
 
-Sessão do catálogo técnico com **8 nodes**. Cor da categoria na interface: `#F472B6`.
+Sessão do catálogo técnico com **9 nodes**. Cor da categoria na interface: `#F472B6`.
 
 Exemplo real da interface: ![exemplo](../assets/exemplos/uti.png)
 
@@ -14,6 +14,7 @@ Exemplo real da interface: ![exemplo](../assets/exemplos/uti.png)
 | **Object Info** | `object-info` | — | Posição (vector), Random (scalar) | Variação por objeto: alimente Random em Hue Shift ou offset de Noise. | Receitas #21; Blueprints #21 |
 | **Instance Info** | `instance-info` | — | Idade (scalar), Random (scalar) | Variação individual em florestas e multidões espalhadas. | Receitas #25; Blueprints #25 |
 | **Switch** | `switch` | A (color), B (color), Condição (scalar) | Saída (color) | Alterne materiais/estados em tempo real (UI interativa). | — |
+| **Reroute** | `reroute` | In (scalar) | Out (scalar) | Aceita qualquer tipo de pino; use para evitar cruzamentos longos de cabos. | — |
 
 ---
 

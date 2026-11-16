@@ -8,7 +8,7 @@ O manual unificado está publicado no GitHub Pages:
 
 **https://mezzetti4096.github.io/manualexpctral/**
 
-Um único arquivo navegável com 6 seções: Visão Geral · Catálogo de Nodes (73 nodes em 9 sessões por categoria, com template visual de portas e galeria de exemplos reais da interface) · Anatomia & Coerção · Mapa de Caminhos · 30 Receitas · 30 Blueprints Aprimorados.
+Um único arquivo navegável com 6 seções: Visão Geral · Catálogo de Nodes (90 nodes em 9 sessões por categoria, com template visual de portas e galeria de exemplos reais da interface) · Anatomia & Coerção · Mapa de Caminhos · 30 Receitas · 30 Blueprints Aprimorados.
 
 Atalhos: `Ctrl+K` ou `/` abre a busca global (140 itens indexados) · `Exportar PDF (tudo)` gera o manual completo em PDF.
 
@@ -28,6 +28,6 @@ Atalhos: `Ctrl+K` ou `/` abre a busca global (140 itens indexados) · `Exportar 
 
 ## 🗂 Os 3 volumes
 
-- **Vol. 1 — Catálogo de Nodes:** 73 nodes em 9 categorias ([INP], [GEN], [COL], [FIL], [VEC], [UTI], [GEO], [VFX], [OUT]), com entradas/saídas tipadas por cor (🟠 escalar · 🔵 vetor · 🟣 cor · 🟢 geometria · 🟩 instâncias).
+- **Vol. 1 — Catálogo de Nodes:** 90 nodes em 9 categorias ([INP], [GEN], [COL], [FIL], [VEC], [UTI], [GEO], [VFX], [OUT]), com entradas/saídas tipadas por cor (🟠 escalar · 🔵 vetor · 🟣 cor · 🟢 geometria · 🟩 instâncias).
 - **Vol. 2 — Arquitetura & Mapa de Caminhos:** anatomia do node, regras de coerção entre portas, pares canônicos de encadeamento e 30 receitas práticas em 6 blocos temáticos.
 - **Vol. 3 — Catálogo Aprimorado:** os mesmos 30 padrões com resumo, topologia detalhada e parâmetros internos de calibração, com filtros por bloco e complexidade.
