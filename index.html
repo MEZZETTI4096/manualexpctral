@@ -129,27 +129,23 @@
           <span class="text-[10px] font-mono text-cyan-400">V1–3</span>
         </button>
         <button onclick="switchSection('catalog')" id="btn-sec-catalog" class="sec-nav-btn w-full flex items-center justify-between px-3 py-2 rounded-lg text-xs font-medium text-slate-300 hover:bg-obsHover transition">
-          <span>2. Catálogo Parte 1</span>
-          <span class="text-[10px] font-mono text-emerald-400">37</span>
-        </button>
-        <button onclick="switchSection('catalog2')" id="btn-sec-catalog2" class="sec-nav-btn w-full flex items-center justify-between px-3 py-2 rounded-lg text-xs font-medium text-slate-300 hover:bg-obsHover transition">
-          <span>3. Catálogo Parte 2</span>
-          <span class="text-[10px] font-mono text-emerald-400">36</span>
+          <span>2. Catálogo de Nodes</span>
+          <span class="text-[10px] font-mono text-emerald-400">73</span>
         </button>
         <button onclick="switchSection('anatomy')" id="btn-sec-anatomy" class="sec-nav-btn w-full flex items-center justify-between px-3 py-2 rounded-lg text-xs font-semibold bg-purple-500/15 text-purple-300 border border-purple-500/30 transition">
-          <span>4. Anatomia & Coerção</span>
+          <span>3. Anatomia & Coerção</span>
           <span class="text-[10px] font-mono">UI</span>
         </button>
         <button onclick="switchSection('topology')" id="btn-sec-topology" class="sec-nav-btn w-full flex items-center justify-between px-3 py-2 rounded-lg text-xs font-medium text-slate-300 hover:bg-obsHover transition">
-          <span>5. Mapa de Caminhos</span>
+          <span>4. Mapa de Caminhos</span>
           <span class="text-[10px] font-mono text-cyan-400">FLUXO</span>
         </button>
         <button onclick="switchSection('recipes')" id="btn-sec-recipes" class="sec-nav-btn w-full flex items-center justify-between px-3 py-2 rounded-lg text-xs font-medium text-slate-300 hover:bg-obsHover transition">
-          <span>6. Receitas — 30 Fluxos</span>
+          <span>5. Receitas — 30 Fluxos</span>
           <span class="text-[10px] font-mono text-amber-400">30</span>
         </button>
         <button onclick="switchSection('blueprints')" id="btn-sec-blueprints" class="sec-nav-btn w-full flex items-center justify-between px-3 py-2 rounded-lg text-xs font-medium text-slate-300 hover:bg-obsHover transition">
-          <span>7. Blueprints Aprimorados</span>
+          <span>6. Blueprints Aprimorados</span>
           <span class="text-[10px] font-mono text-amber-400">V3 • 30</span>
         </button>
       </nav>
@@ -194,10 +190,7 @@
             </p>
             <div class="flex flex-wrap gap-3">
               <button onclick="switchSection('catalog')" class="px-4 py-2.5 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-semibold text-xs sm:text-sm transition shadow-lg shadow-emerald-500/20">
-                Catálogo Parte 1 (37 Nodes) →
-              </button>
-              <button onclick="switchSection('catalog2')" class="px-4 py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-semibold text-xs sm:text-sm transition shadow-lg shadow-emerald-600/20">
-                Catálogo Parte 2 (36 Nodes) →
+                Catálogo Técnico (73 Nodes) →
               </button>
               <button onclick="switchSection('anatomy')" class="px-4 py-2.5 rounded-xl bg-purple-500 hover:bg-purple-400 text-white font-semibold text-xs sm:text-sm transition shadow-lg shadow-purple-500/20">
                 Anatomia & Coerção →
@@ -245,20 +238,20 @@
                 <span class="font-mono text-[10px] font-bold px-2 py-0.5 rounded bg-emerald-400/15 text-emerald-400 border border-emerald-400/30">01 · VOL. 1</span>
                 <span class="text-slate-500 group-hover:text-emerald-400 group-hover:translate-x-0.5 transition-all font-mono text-sm">→</span>
               </div>
-              <h3 class="text-sm font-bold text-white">Catálogo Parte 1</h3>
-              <p class="text-[11px] text-slate-400 leading-relaxed"><span class="font-mono text-[10px] font-bold text-emerald-400">SERVE PARA:</span> consultar as fichas técnicas dos 37 nodes de entrada, geração, cor e filtro antes de montar o grafo.</p>
-              <p class="text-[11px] text-slate-500 leading-relaxed">Portas tipadas por cor · notas de uso · links diretos para as receitas que usam cada node.</p>
-              <div class="font-mono text-[10px] text-slate-500 pt-1.5 border-t border-obsDivider">37 NODES · 4 CATEGORIAS · INP GEN COL FIL</div>
+              <h3 class="text-sm font-bold text-white">Catálogo de Nodes</h3>
+              <p class="text-[11px] text-slate-400 leading-relaxed"><span class="font-mono text-[10px] font-bold text-emerald-400">SERVE PARA:</span> consultar as fichas técnicas dos 73 nodes, organizadas em 9 sessões por categoria com template visual de portas.</p>
+              <p class="text-[11px] text-slate-500 leading-relaxed">Portas tipadas por cor · notas de uso · exemplos reais da interface · links para receitas e blueprints.</p>
+              <div class="font-mono text-[10px] text-slate-500 pt-1.5 border-t border-obsDivider">73 NODES · 9 SESSÕES · INP→OUT</div>
             </button>
-            <button onclick="switchSection('catalog2')" class="topic-card group text-left bg-obsBase border border-obsBorder rounded-xl p-4 space-y-2 hover:bg-obsHover transition-all duration-200 hover:border-emerald-400/50">
+            <button onclick="openPalette()" class="topic-card group text-left bg-obsBase border border-obsBorder rounded-xl p-4 space-y-2 hover:bg-obsHover transition-all duration-200 hover:border-cyan-400/50">
               <div class="flex items-center justify-between gap-2">
-                <span class="font-mono text-[10px] font-bold px-2 py-0.5 rounded bg-emerald-400/15 text-emerald-400 border border-emerald-400/30">02 · VOL. 1</span>
-                <span class="text-slate-500 group-hover:text-emerald-400 group-hover:translate-x-0.5 transition-all font-mono text-sm">→</span>
+                <span class="font-mono text-[10px] font-bold px-2 py-0.5 rounded bg-cyan-400/15 text-cyan-400 border border-cyan-400/30">02 · ATALHO</span>
+                <span class="text-slate-500 group-hover:text-cyan-400 group-hover:translate-x-0.5 transition-all font-mono text-sm">→</span>
               </div>
-              <h3 class="text-sm font-bold text-white">Catálogo Parte 2</h3>
-              <p class="text-[11px] text-slate-400 leading-relaxed"><span class="font-mono text-[10px] font-bold text-emerald-400">SERVE PARA:</span> consultar os 36 nodes de vetor, utilidades, geometria, VFX e as saídas finais do grafo.</p>
-              <p class="text-[11px] text-slate-500 leading-relaxed">Portas tipadas por cor · notas de uso · links diretos para os blueprints que usam cada node.</p>
-              <div class="font-mono text-[10px] text-slate-500 pt-1.5 border-t border-obsDivider">36 NODES · 5 CATEGORIAS · VEC UTI GEO VFX OUT</div>
+              <h3 class="text-sm font-bold text-white">Busca Rápida — Ctrl+K</h3>
+              <p class="text-[11px] text-slate-400 leading-relaxed"><span class="font-mono text-[10px] font-bold text-cyan-400">SERVE PARA:</span> achar qualquer node, receita ou blueprint em segundos, de qualquer lugar do manual.</p>
+              <p class="text-[11px] text-slate-500 leading-relaxed">140+ entradas · navegação por teclado (↑↓ / ↵ / Esc) · abre com Ctrl+K ou /</p>
+              <div class="font-mono text-[10px] text-slate-500 pt-1.5 border-t border-obsDivider">7 SEÇÕES · 73 NODES · 60 RECEITAS/BLUEPRINTS</div>
             </button>
             <button onclick="switchSection('anatomy')" class="topic-card group text-left bg-obsBase border border-obsBorder rounded-xl p-4 space-y-2 hover:bg-obsHover transition-all duration-200 hover:border-purple-400/50">
               <div class="flex items-center justify-between gap-2">
@@ -330,19 +323,19 @@
         <div class="bg-obsPanel border border-obsBorder rounded-2xl p-6 space-y-5">
           <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-4">
             <div>
-              <div class="inline-flex items-center gap-2 px-2.5 py-0.5 rounded bg-cyan-500/15 border border-cyan-500/30 text-cyan-300 font-mono text-[11px] mb-2">
-                VOL. 1 • PARTE 1 • REFERÊNCIA DOS 73 NODES
+              <div class="inline-flex items-center gap-2 px-2.5 py-0.5 rounded bg-emerald-500/15 border border-emerald-500/30 text-emerald-300 font-mono text-[11px] mb-2">
+                VOL. 1 • CATÁLOGO TÉCNICO • 73 NODES EM 9 SESSÕES
               </div>
-              <h1 class="text-2xl sm:text-3xl font-extrabold text-white">Catálogo Técnico — Parte 1 (37 Nodes)</h1>
+              <h1 class="text-2xl sm:text-3xl font-extrabold text-white">Catálogo Técnico — 73 Nodes</h1>
               <p class="text-xs sm:text-sm text-slate-400 mt-1">
-                Fichas técnicas com portas de entrada/saída tipadas por cor e notas de uso prático. Clique numa categoria para filtrar.
+                Fichas técnicas com template visual de portas, organizadas em sessões por categoria. Use TODAS AS SESSÕES para navegar categoria a categoria ou clique numa para focar.
               </p>
             </div>
               <div class="flex flex-wrap items-center gap-1.5 pt-1">
                 <span class="font-mono text-[10px] uppercase text-slate-500 font-bold mr-1">Seções relacionadas:</span>
-                <button onclick="switchSection('catalog2')" class="px-2.5 py-1 rounded-lg font-mono text-[11px] bg-obsBase text-slate-300 border border-obsBorder hover:border-emerald-400/50 hover:text-emerald-400 transition">Catálogo Parte 2</button>
                 <button onclick="switchSection('anatomy')" class="px-2.5 py-1 rounded-lg font-mono text-[11px] bg-obsBase text-slate-300 border border-obsBorder hover:border-purple-400/50 hover:text-purple-400 transition">Anatomia & Coerção</button>
                 <button onclick="switchSection('recipes')" class="px-2.5 py-1 rounded-lg font-mono text-[11px] bg-obsBase text-slate-300 border border-obsBorder hover:border-purple-400/50 hover:text-purple-400 transition">Receitas que usam estes nodes</button>
+                <button onclick="switchSection('blueprints')" class="px-2.5 py-1 rounded-lg font-mono text-[11px] bg-obsBase text-slate-300 border border-obsBorder hover:border-amber-400/50 hover:text-amber-400 transition">Blueprints</button>
               </div>
             <div class="bg-obsBase border border-obsBorder rounded-xl px-4 py-3 text-right shrink-0">
               <div class="text-xs font-mono text-slate-400">EXIBINDO</div>
@@ -352,6 +345,9 @@
 
           <div class="pt-4 border-t border-obsDivider space-y-3">
             <div class="flex flex-wrap items-center gap-1.5">
+          <button onclick="setCatalogCategory(1,'ALL')" data-part="1" data-cat="ALL" class="cat-pill px-3 py-1.5 rounded-lg font-mono text-xs font-semibold bg-cyan-500/20 text-cyan-300 border border-cyan-500/40 transition">
+            TODAS AS SESSÕES (73)
+          </button>
           <button onclick="setCatalogCategory(1,'INP')" data-part="1" data-cat="INP" class="cat-pill px-3 py-1.5 rounded-lg font-mono text-xs font-medium bg-obsBase text-slate-300 border border-obsBorder hover:border-slate-500 transition">
             INP. Inputs & Fontes de Dados
           </button>
@@ -364,66 +360,19 @@
           <button onclick="setCatalogCategory(1,'FIL')" data-part="1" data-cat="FIL" class="cat-pill px-3 py-1.5 rounded-lg font-mono text-xs font-medium bg-obsBase text-slate-300 border border-obsBorder hover:border-slate-500 transition">
             FIL. Filtros & Convolução
           </button>
-            </div>
-            <div class="pt-3 border-t border-obsDivider flex flex-wrap items-center gap-1.5">
-              <span class="text-[11px] font-mono text-slate-400 mr-1">FILTRAR POR PINO:</span>
-          <button onclick="setCatalogPin('all')" data-pin="all" class="pin-pill px-2.5 py-1 rounded font-mono text-[11px] font-semibold bg-cyan-500/20 text-cyan-300 border border-cyan-500/40">Todos os Pinos</button>
-          <button onclick="setCatalogPin('scalar')" data-pin="scalar" class="pin-pill px-2.5 py-1 rounded font-mono text-[11px] bg-obsBase text-slate-300 border border-obsBorder"><span class="inline-block w-2 h-2 rounded-full bg-pinScalar mr-1"></span>Escalar</button>
-          <button onclick="setCatalogPin('vector')" data-pin="vector" class="pin-pill px-2.5 py-1 rounded font-mono text-[11px] bg-obsBase text-slate-300 border border-obsBorder"><span class="inline-block w-2 h-2 rounded-full bg-pinVector mr-1"></span>Vetor</button>
-          <button onclick="setCatalogPin('color')" data-pin="color" class="pin-pill px-2.5 py-1 rounded font-mono text-[11px] bg-obsBase text-slate-300 border border-obsBorder"><span class="inline-block w-2 h-2 rounded-full bg-pinColor mr-1"></span>Cor</button>
-          <button onclick="setCatalogPin('geo')" data-pin="geo" class="pin-pill px-2.5 py-1 rounded font-mono text-[11px] bg-obsBase text-slate-300 border border-obsBorder"><span class="inline-block w-2 h-2 rounded-full bg-pinGeo mr-1"></span>Geo</button>
-          <button onclick="setCatalogPin('inst')" data-pin="inst" class="pin-pill px-2.5 py-1 rounded font-mono text-[11px] bg-obsBase text-slate-300 border border-obsBorder"><span class="inline-block w-2 h-2 rounded-full bg-pinInst mr-1"></span>Inst</button>
-            </div>
-          </div>
-        </div>
-
-        <div id="catalog1-container" class="grid grid-cols-1 xl:grid-cols-2 gap-4">
-          <!-- Renderizado via JS -->
-        </div>
-      </section>
-
-      <!-- =====================================================================
-           SEÇÃO VOL. 1 2: CATÁLOGO TÉCNICO — PARTE 2 (5 CATEGORIAS)
-           ===================================================================== -->
-      <section id="sec-catalog2" class="hidden space-y-6">
-        <div class="bg-obsPanel border border-obsBorder rounded-2xl p-6 space-y-5">
-          <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-4">
-            <div>
-              <div class="inline-flex items-center gap-2 px-2.5 py-0.5 rounded bg-cyan-500/15 border border-cyan-500/30 text-cyan-300 font-mono text-[11px] mb-2">
-                VOL. 1 • PARTE 2 • REFERÊNCIA DOS 73 NODES
-              </div>
-              <h1 class="text-2xl sm:text-3xl font-extrabold text-white">Catálogo Técnico — Parte 2 (36 Nodes)</h1>
-              <p class="text-xs sm:text-sm text-slate-400 mt-1">
-                Fichas técnicas com portas de entrada/saída tipadas por cor e notas de uso prático. Clique numa categoria para filtrar.
-              </p>
-            </div>
-              <div class="flex flex-wrap items-center gap-1.5 pt-1">
-                <span class="font-mono text-[10px] uppercase text-slate-500 font-bold mr-1">Seções relacionadas:</span>
-                <button onclick="switchSection('catalog')" class="px-2.5 py-1 rounded-lg font-mono text-[11px] bg-obsBase text-slate-300 border border-obsBorder hover:border-emerald-400/50 hover:text-emerald-400 transition">Catálogo Parte 1</button>
-                <button onclick="switchSection('anatomy')" class="px-2.5 py-1 rounded-lg font-mono text-[11px] bg-obsBase text-slate-300 border border-obsBorder hover:border-purple-400/50 hover:text-purple-400 transition">Anatomia & Coerção</button>
-                <button onclick="switchSection('blueprints')" class="px-2.5 py-1 rounded-lg font-mono text-[11px] bg-obsBase text-slate-300 border border-obsBorder hover:border-amber-400/50 hover:text-amber-400 transition">Blueprints que usam estes nodes</button>
-              </div>
-            <div class="bg-obsBase border border-obsBorder rounded-xl px-4 py-3 text-right shrink-0">
-              <div class="text-xs font-mono text-slate-400">EXIBINDO</div>
-              <div class="text-xl font-mono font-bold text-cyan-300"><span id="catalog2-visible-count">0</span> <span class="text-xs text-slate-500">NODES</span></div>
-            </div>
-          </div>
-
-          <div class="pt-4 border-t border-obsDivider space-y-3">
-            <div class="flex flex-wrap items-center gap-1.5">
-          <button onclick="setCatalogCategory(2,'VEC')" data-part="2" data-cat="VEC" class="cat-pill px-3 py-1.5 rounded-lg font-mono text-xs font-medium bg-obsBase text-slate-300 border border-obsBorder hover:border-slate-500 transition">
+          <button onclick="setCatalogCategory(1,'VEC')" data-part="1" data-cat="VEC" class="cat-pill px-3 py-1.5 rounded-lg font-mono text-xs font-medium bg-obsBase text-slate-300 border border-obsBorder hover:border-slate-500 transition">
             VEC. Vetores & UV
           </button>
-          <button onclick="setCatalogCategory(2,'UTI')" data-part="2" data-cat="UTI" class="cat-pill px-3 py-1.5 rounded-lg font-mono text-xs font-medium bg-obsBase text-slate-300 border border-obsBorder hover:border-slate-500 transition">
+          <button onclick="setCatalogCategory(1,'UTI')" data-part="1" data-cat="UTI" class="cat-pill px-3 py-1.5 rounded-lg font-mono text-xs font-medium bg-obsBase text-slate-300 border border-obsBorder hover:border-slate-500 transition">
             UTI. Utilitários & Lógica
           </button>
-          <button onclick="setCatalogCategory(2,'GEO')" data-part="2" data-cat="GEO" class="cat-pill px-3 py-1.5 rounded-lg font-mono text-xs font-medium bg-obsBase text-slate-300 border border-obsBorder hover:border-slate-500 transition">
+          <button onclick="setCatalogCategory(1,'GEO')" data-part="1" data-cat="GEO" class="cat-pill px-3 py-1.5 rounded-lg font-mono text-xs font-medium bg-obsBase text-slate-300 border border-obsBorder hover:border-slate-500 transition">
             GEO. Geometria Procedural
           </button>
-          <button onclick="setCatalogCategory(2,'VFX')" data-part="2" data-cat="VFX" class="cat-pill px-3 py-1.5 rounded-lg font-mono text-xs font-medium bg-obsBase text-slate-300 border border-obsBorder hover:border-slate-500 transition">
+          <button onclick="setCatalogCategory(1,'VFX')" data-part="1" data-cat="VFX" class="cat-pill px-3 py-1.5 rounded-lg font-mono text-xs font-medium bg-obsBase text-slate-300 border border-obsBorder hover:border-slate-500 transition">
             VFX. Partículas & VFX
           </button>
-          <button onclick="setCatalogCategory(2,'OUT')" data-part="2" data-cat="OUT" class="cat-pill px-3 py-1.5 rounded-lg font-mono text-xs font-medium bg-obsBase text-slate-300 border border-obsBorder hover:border-slate-500 transition">
+          <button onclick="setCatalogCategory(1,'OUT')" data-part="1" data-cat="OUT" class="cat-pill px-3 py-1.5 rounded-lg font-mono text-xs font-medium bg-obsBase text-slate-300 border border-obsBorder hover:border-slate-500 transition">
             OUT. Saídas & Render
           </button>
             </div>
@@ -439,10 +388,79 @@
           </div>
         </div>
 
-        <div id="catalog2-container" class="grid grid-cols-1 xl:grid-cols-2 gap-4">
+        <div class="bg-obsPanel border border-obsBorder rounded-2xl p-6 space-y-3">
+          <div class="flex items-center justify-between gap-3 flex-wrap">
+            <h2 class="font-mono text-sm font-bold text-white uppercase tracking-wider">Exemplos reais da interface Prism</h2>
+            <span class="font-mono text-[10px] text-slate-500">CLIQUE PARA AMPLIAR · 1 IMAGEM POR CATEGORIA</span>
+          </div>
+          <div class="grid grid-cols-2 md:grid-cols-4 gap-3">
+            <a href="assets/exemplos/inp.png" target="_blank" rel="noopener" class="group block bg-obsBase border border-obsBorder rounded-xl overflow-hidden hover:border-emerald-500/50 transition">
+              <img src="assets/exemplos/inp.png" alt="Exemplo real — Inputs & Fontes" loading="lazy" class="w-full h-28 object-cover object-top opacity-90 group-hover:opacity-100 transition" />
+              <div class="p-2.5 space-y-0.5">
+                <div class="font-mono text-[10px] font-bold text-emerald-300 uppercase">Inputs & Fontes</div>
+                <div class="text-[10px] text-slate-500 leading-snug">Image Texture, Pointer, Viewport, Audio Input, Camera…</div>
+              </div>
+            </a>
+            <a href="assets/exemplos/gen.png" target="_blank" rel="noopener" class="group block bg-obsBase border border-obsBorder rounded-xl overflow-hidden hover:border-emerald-500/50 transition">
+              <img src="assets/exemplos/gen.png" alt="Exemplo real — Geradores" loading="lazy" class="w-full h-28 object-cover object-top opacity-90 group-hover:opacity-100 transition" />
+              <div class="p-2.5 space-y-0.5">
+                <div class="font-mono text-[10px] font-bold text-emerald-300 uppercase">Geradores</div>
+                <div class="text-[10px] text-slate-500 leading-snug">Noise, Voronoi, Checker, Gradient, Brick, Dots…</div>
+              </div>
+            </a>
+            <a href="assets/exemplos/col.png" target="_blank" rel="noopener" class="group block bg-obsBase border border-obsBorder rounded-xl overflow-hidden hover:border-emerald-500/50 transition">
+              <img src="assets/exemplos/col.png" alt="Exemplo real — Cor & Composição" loading="lazy" class="w-full h-28 object-cover object-top opacity-90 group-hover:opacity-100 transition" />
+              <div class="p-2.5 space-y-0.5">
+                <div class="font-mono text-[10px] font-bold text-emerald-300 uppercase">Cor & Composição</div>
+                <div class="text-[10px] text-slate-500 leading-snug">Blend, Color Ramp, Gradient Map, Hue Shift, Invert…</div>
+              </div>
+            </a>
+            <a href="assets/exemplos/fil.png" target="_blank" rel="noopener" class="group block bg-obsBase border border-obsBorder rounded-xl overflow-hidden hover:border-emerald-500/50 transition">
+              <img src="assets/exemplos/fil.png" alt="Exemplo real — Filtros" loading="lazy" class="w-full h-28 object-cover object-top opacity-90 group-hover:opacity-100 transition" />
+              <div class="p-2.5 space-y-0.5">
+                <div class="font-mono text-[10px] font-bold text-emerald-300 uppercase">Filtros</div>
+                <div class="text-[10px] text-slate-500 leading-snug">Blur, Histogram Scan, Height AO, Levels, Edge Wear…</div>
+              </div>
+            </a>
+            <a href="assets/exemplos/vec.png" target="_blank" rel="noopener" class="group block bg-obsBase border border-obsBorder rounded-xl overflow-hidden hover:border-emerald-500/50 transition">
+              <img src="assets/exemplos/vec.png" alt="Exemplo real — Vetores & UV" loading="lazy" class="w-full h-28 object-cover object-top opacity-90 group-hover:opacity-100 transition" />
+              <div class="p-2.5 space-y-0.5">
+                <div class="font-mono text-[10px] font-bold text-emerald-300 uppercase">Vetores & UV</div>
+                <div class="text-[10px] text-slate-500 leading-snug">Mapping, UV, Fresnel, Position, Separate RGB…</div>
+              </div>
+            </a>
+            <a href="assets/exemplos/uti.png" target="_blank" rel="noopener" class="group block bg-obsBase border border-obsBorder rounded-xl overflow-hidden hover:border-emerald-500/50 transition">
+              <img src="assets/exemplos/uti.png" alt="Exemplo real — Utilitários" loading="lazy" class="w-full h-28 object-cover object-top opacity-90 group-hover:opacity-100 transition" />
+              <div class="p-2.5 space-y-0.5">
+                <div class="font-mono text-[10px] font-bold text-emerald-300 uppercase">Utilitários</div>
+                <div class="text-[10px] text-slate-500 leading-snug">Math, Time, Clamp, Remap, Step, Smoothstep…</div>
+              </div>
+            </a>
+            <a href="assets/exemplos/geo.png" target="_blank" rel="noopener" class="group block bg-obsBase border border-obsBorder rounded-xl overflow-hidden hover:border-emerald-500/50 transition">
+              <img src="assets/exemplos/geo.png" alt="Exemplo real — Geometria" loading="lazy" class="w-full h-28 object-cover object-top opacity-90 group-hover:opacity-100 transition" />
+              <div class="p-2.5 space-y-0.5">
+                <div class="font-mono text-[10px] font-bold text-emerald-300 uppercase">Geometria</div>
+                <div class="text-[10px] text-slate-500 leading-snug">Scatter, Primitive, Geometry Output, Instance Info…</div>
+              </div>
+            </a>
+            <a href="assets/exemplos/vfx.png" target="_blank" rel="noopener" class="group block bg-obsBase border border-obsBorder rounded-xl overflow-hidden hover:border-emerald-500/50 transition">
+              <img src="assets/exemplos/vfx.png" alt="Exemplo real — Partículas & VFX" loading="lazy" class="w-full h-28 object-cover object-top opacity-90 group-hover:opacity-100 transition" />
+              <div class="p-2.5 space-y-0.5">
+                <div class="font-mono text-[10px] font-bold text-emerald-300 uppercase">Partículas & VFX</div>
+                <div class="text-[10px] text-slate-500 leading-snug">Emitter, Attractor, Vortex, Turbulence, Sprite…</div>
+              </div>
+            </a>
+          </div>
+        </div>
+
+        <div id="catalog1-container" class="space-y-8">
           <!-- Renderizado via JS -->
         </div>
       </section>
+
+      <!-- =====================================================================
+           SEÇÃO VOL. 1 2: CATÁLOGO TÉCNICO — PARTE 2 (5 CATEGORIAS)
+           ===================================================================== -->
       <!-- =====================================================================
            SEÇÃO 1: ANATOMIA DO NODE & COERÇÃO DE PORTAS
            ===================================================================== -->
@@ -471,8 +489,7 @@
               </div>
               <div class="flex flex-wrap items-center gap-1.5 pt-1">
                 <span class="font-mono text-[10px] uppercase text-slate-500 font-bold mr-1">Seções relacionadas:</span>
-                <button onclick="switchSection('catalog')" class="px-2.5 py-1 rounded-lg font-mono text-[11px] bg-obsBase text-slate-300 border border-obsBorder hover:border-emerald-400/50 hover:text-emerald-400 transition">Catálogo Parte 1</button>
-                <button onclick="switchSection('catalog2')" class="px-2.5 py-1 rounded-lg font-mono text-[11px] bg-obsBase text-slate-300 border border-obsBorder hover:border-emerald-400/50 hover:text-emerald-400 transition">Catálogo Parte 2</button>
+                <button onclick="switchSection('catalog')" class="px-2.5 py-1 rounded-lg font-mono text-[11px] bg-obsBase text-slate-300 border border-obsBorder hover:border-emerald-400/50 hover:text-emerald-400 transition">Catálogo de Nodes</button>
                 <button onclick="switchSection('blueprints')" class="px-2.5 py-1 rounded-lg font-mono text-[11px] bg-obsBase text-slate-300 border border-obsBorder hover:border-amber-400/50 hover:text-amber-400 transition">Blueprints</button>
               </div>
             </div>
@@ -1597,8 +1614,7 @@
 
     const BREADCRUMB_VOL2 = {
       overview: '00_VISAO_GERAL_EDICAO_UNIFICADA',
-      catalog: '01_VOL1_CATALOGO_PARTE_1_37_NODES',
-      catalog2: '02_VOL1_CATALOGO_PARTE_2_36_NODES',
+      catalog: '01_VOL1_CATALOGO_TECNICO_73_NODES',
       anatomy: '03_ANATOMIA_COERCAO_PORTAS',
       topology: '04_MAPA_CAMINHOS_TOPOLOGIA',
       recipes: '05_CATALOGO_30_RECEITAS_BLUEPRINTS',
@@ -1607,8 +1623,7 @@
 
     const SECTION_LIST = [
       { id: 'overview',   label: 'Visão Geral' },
-      { id: 'catalog',    label: 'Catálogo P1 (37 Nodes)' },
-      { id: 'catalog2',   label: 'Catálogo P2 (36 Nodes)' },
+      { id: 'catalog',    label: 'Catálogo — 73 Nodes' },
       { id: 'anatomy',    label: 'Anatomia & Coerção' },
       { id: 'topology',   label: 'Mapa de Caminhos' },
       { id: 'recipes',    label: 'Receitas — 30 Fluxos' },
@@ -1616,7 +1631,7 @@
     ];
 
     function switchSection(sectionId) {
-      ['overview', 'catalog', 'catalog2', 'anatomy', 'topology', 'recipes', 'blueprints'].forEach(id => {
+      ['overview', 'catalog', 'anatomy', 'topology', 'recipes', 'blueprints'].forEach(id => {
         const sec = document.getElementById(`sec-${id}`);
         const btn = document.getElementById(`btn-sec-${id}`);
         if (sec) sec.classList.toggle('hidden', id !== sectionId);
@@ -2429,8 +2444,7 @@ const BLOCKS_META = [
 
     const NODES_P2 = [{"slug": "uv", "cat": "VEC", "name": "UV", "desc": "Coordenadas de textura 0–1 do objeto ou da tela.", "in": [], "out": [["UV", "vector"]], "use": "Ponto de partida de quase todo padrão procedural (par canônico com Mapping)."}, {"slug": "mapping", "cat": "VEC", "name": "Mapping", "desc": "Aplica escala, rotação e translação às coordenadas.", "in": [["UV", "vector"]], "out": [["UV", "vector"]], "use": "Defina escala/rotação ANTES de amostrar qualquer padrão (par canônico)."}, {"slug": "separate-rgb", "cat": "VEC", "name": "Separate RGB", "desc": "Decompõe uma cor nos canais R, G e B escalares.", "in": [["Cor", "color"]], "out": [["R", "scalar"], ["G", "scalar"], ["B", "scalar"]], "use": "Desempacote mapas ORM canal a canal (Receita #06)."}, {"slug": "combine-xyz", "cat": "VEC", "name": "Combine XYZ", "desc": "Monta um vetor a partir de três escalares independentes.", "in": [["X", "scalar"], ["Y", "scalar"], ["Z", "scalar"]], "out": [["Vetor", "vector"]], "use": "Reconstrua vetores após processar cada eixo separadamente."}, {"slug": "vector-math", "cat": "VEC", "name": "Vector Math", "desc": "Operações vetoriais: add, sub, dot, cross, normalize, distance.", "in": [["A", "vector"], ["B", "vector"]], "out": [["Vetor", "vector"], ["Valor", "scalar"]], "use": "Distance ➔ Smoothstep é o par canônico de proximidade (Receita #20)."}, {"slug": "remap", "cat": "VEC", "name": "Remap", "desc": "Remapeia um intervalo de entrada para outro de saída (linear).", "in": [["In", "scalar"]], "out": [["Value", "scalar"]], "use": "Normalize sinais: [-1..1 ➔ 0..1] antes de alimentar um Color Ramp."}, {"slug": "fresnel", "cat": "VEC", "name": "Fresnel", "desc": "Intensidade do ângulo de visão: bordas acesas, frente apagada.", "in": [["Normal", "vector"], ["Visão", "vector"]], "out": [["Value", "scalar"]], "use": "Rim light, iridescência e contornos em NPR (Receita #11)."}, {"slug": "position", "cat": "VEC", "name": "Position", "desc": "Posição do ponto no espaço do objeto ou do mundo.", "in": [], "out": [["Posição", "vector"]], "use": "Gradientes espaciais 3D e domínios de ruído em geometria."}, {"slug": "normal", "cat": "VEC", "name": "Normal", "desc": "Vetor normal da superfície no ponto avaliado.", "in": [], "out": [["Normal", "vector"]], "use": "Combine com Dot e Fresnel para sombreamento customizado."}, {"slug": "math", "cat": "UTI", "name": "Math", "desc": "Operações aritméticas e funções: add, multiply, sine, power, distance…", "in": [["A", "scalar"], ["B", "scalar"]], "out": [["Value", "scalar"]], "use": "O canivete do grafo: encadeie vários para construir sinais complexos."}, {"slug": "step", "cat": "UTI", "name": "Step", "desc": "Degrau binário: 0 abaixo do limite, 1 acima.", "in": [["In", "scalar"], ["Limite", "scalar"]], "out": [["Value", "scalar"]], "use": "Converta picos de áudio em gatilhos limpos (Receita #21)."}, {"slug": "smoothstep", "cat": "UTI", "name": "Smoothstep", "desc": "Degrau suavizado com interpolação Hermite nas bordas.", "in": [["In", "scalar"]], "out": [["Value", "scalar"]], "use": "Versão orgânica do Step para transições sem serrilhado."}, {"slug": "clamp", "cat": "UTI", "name": "Clamp", "desc": "Limita o sinal a um intervalo mínimo/máximo.", "in": [["In", "scalar"]], "out": [["Value", "scalar"]], "use": "Sempre clamp saídas de Multiply antes de usar como máscara."}, {"slug": "curve", "cat": "UTI", "name": "Curve", "desc": "Curva de resposta editável (bézier) sobre um sinal 0–1.", "in": [["Fac", "scalar"]], "out": [["Value", "scalar"]], "use": "Controle artístico fino de falloffs e animações por vida."}, {"slug": "object-info", "cat": "UTI", "name": "Object Info", "desc": "Dados do objeto: posição, rotação, escala e random estável.", "in": [], "out": [["Posição", "vector"], ["Random", "scalar"]], "use": "Variação por objeto: alimente Random em Hue Shift ou offset de Noise."}, {"slug": "instance-info", "cat": "UTI", "name": "Instance Info", "desc": "Dados de cada instância no Scatter: idade, transform e random.", "in": [], "out": [["Idade", "scalar"], ["Random", "scalar"]], "use": "Variação individual em florestas e multidões espalhadas."}, {"slug": "switch", "cat": "UTI", "name": "Switch", "desc": "Escolhe entre duas entradas com base em uma condição.", "in": [["A", "color"], ["B", "color"], ["Condição", "scalar"]], "out": [["Saída", "color"]], "use": "Alterne materiais/estados em tempo real (UI interativa)."}, {"slug": "primitive", "cat": "GEO", "name": "Primitive", "desc": "Malhas base paramétricas: plano, cubo, esfera, cilindro, torus.", "in": [], "out": [["Geometria", "geo"]], "use": "Início de todo pipeline [GEO]; plano + Noise = terreno (Receita #23)."}, {"slug": "deform", "cat": "GEO", "name": "Deform", "desc": "Deforma a geometria usando um mapa de altura ou campo vetorial.", "in": [["Geometria", "geo"], ["Height", "scalar"]], "out": [["Geometria", "geo"]], "use": "Terrenos e ondulações: height procedural direto na malha."}, {"slug": "scatter", "cat": "GEO", "name": "Scatter", "desc": "Espalha instâncias sobre uma superfície com densidade controlável.", "in": [["Superfície", "geo"], ["Instância", "geo"], ["Densidade", "scalar"]], "out": [["Instâncias", "inst"]], "use": "Par canônico Primitive ➔ Scatter; use Noise na densidade (Receita #24)."}, {"slug": "attractor", "cat": "GEO", "name": "Attractor", "desc": "Puxa ou empurra vértices e partículas em direção a um ponto.", "in": [["Geometria", "geo"], ["Ponto", "vector"], ["Força", "scalar"]], "out": [["Geometria", "geo"]], "use": "Interação do cursor com a malha (Bloco Interação)."}, {"slug": "vortex", "cat": "GEO", "name": "Vortex", "desc": "Gira vértices/partículas ao redor de um eixo com falloff.", "in": [["Geometria", "geo"], ["Eixo", "vector"], ["Força", "scalar"]], "out": [["Geometria", "geo"]], "use": "Redemoinhos e espirais em VFX e geometria."}, {"slug": "mirror", "cat": "GEO", "name": "Mirror", "desc": "Duplica e espelha a geometria em um eixo.", "in": [["Geometria", "geo"]], "out": [["Geometria", "geo"]], "use": "Simetria rápida para personagens e props."}, {"slug": "subdivide", "cat": "GEO", "name": "Subdivide", "desc": "Refina a malha dividindo faces, habilitando deformações suaves.", "in": [["Geometria", "geo"], ["Nível", "scalar"]], "out": [["Geometria", "geo"]], "use": "Subdivida ANTES de Deform/Displace para evitar facetas."}, {"slug": "array", "cat": "GEO", "name": "Array", "desc": "Replica a geometria em grade linear ou radial.", "in": [["Geometria", "geo"], ["Contagem", "scalar"]], "out": [["Instâncias", "inst"]], "use": "Colunas, grades e coroas de objetos."}, {"slug": "displace", "cat": "GEO", "name": "Displace", "desc": "Desloca vértices ao longo da normal por um mapa de altura.", "in": [["Geometria", "geo"], ["Height", "scalar"], ["Escala", "scalar"]], "out": [["Geometria", "geo"]], "use": "Relevo real (não falso como Bump); combine com Subdivide."}, {"slug": "emitter", "cat": "VFX", "name": "Emitter", "desc": "Fonte de partículas: taxa, vida útil, velocidade inicial e origem.", "in": [], "out": [["Partículas", "inst"]], "use": "Início de todo sistema VFX (Receitas #27–30)."}, {"slug": "particle", "cat": "VFX", "name": "Particle", "desc": "Estado de cada partícula: idade 0–1, posição e velocidade.", "in": [["Partículas", "inst"]], "out": [["Idade", "scalar"], ["Posição", "vector"], ["Velocidade", "vector"]], "use": "Age 0–1 sincroniza Size/Color over Life e Fade (par canônico)."}, {"slug": "turbulence", "cat": "VFX", "name": "Turbulence", "desc": "Campo de ruído que agita posições de partículas e vértices.", "in": [["Posição", "vector"], ["Escala", "scalar"]], "out": [["Posição", "vector"]], "use": "Brasas e poeira errática (Receita #30)."}, {"slug": "size-over-life", "cat": "VFX", "name": "Size over Life", "desc": "Curva de tamanho ao longo da vida da partícula.", "in": [["Idade", "scalar"]], "out": [["Tamanho", "scalar"]], "use": "Nascimento pequeno ➔ pico ➔ fade; use Remap para um mínimo visível."}, {"slug": "color-over-life", "cat": "VFX", "name": "Color over Life", "desc": "Gradiente de cor ao longo da vida da partícula.", "in": [["Idade", "scalar"]], "out": [["Cor", "color"]], "use": "Fogo: branco ➔ laranja ➔ vermelho ➔ fumaça."}, {"slug": "fade", "cat": "VFX", "name": "Fade", "desc": "Opacidade da partícula com curvas de entrada e saída.", "in": [["Idade", "scalar"]], "out": [["Opacidade", "scalar"]], "use": "Evite pops: sempre fade-out suave antes da morte da partícula."}, {"slug": "sprite", "cat": "VFX", "name": "Sprite", "desc": "Billboard texturizado renderizado por partícula.", "in": [["Cor", "color"], ["Opacidade", "scalar"]], "out": [["Visual", "inst"]], "use": "Fumaça, brasas e detritos com textura suave."}, {"slug": "material-output", "cat": "OUT", "name": "Material Output", "desc": "Terminal do pipeline de material: define o shader final da superfície.", "in": [["Base Color", "color"], ["Roughness", "scalar"], ["Metalness", "scalar"], ["Normal", "vector"], ["Occlusion", "scalar"], ["Emissive", "color"]], "out": [], "use": "Todo caminho de material termina aqui (usado em 19 receitas)."}, {"slug": "geometry-output", "cat": "OUT", "name": "Geometry Output", "desc": "Terminal do pipeline de geometria: malha final para render.", "in": [["Geometria", "geo"]], "out": [], "use": "Fim do fluxo [GEO]; sem saídas à direita (node terminal)."}, {"slug": "vfx-output", "cat": "OUT", "name": "VFX Output", "desc": "Terminal do pipeline de partículas: posição, tamanho, opacity e sprite.", "in": [["Posição", "vector"], ["Tamanho", "scalar"], ["Opacidade", "scalar"], ["Sprite", "inst"]], "out": [], "use": "Fim do fluxo VFX; conecte Turbulence em Position para movimento."}];
 
-    let catalog1Cat = 'INP';
-    let catalog2Cat = 'VEC';
+    let catalog1Cat = 'ALL';
     let catalogPin = 'all';
 
     function pinChip(label, type) {
@@ -2526,6 +2540,40 @@ const BLOCKS_META = [
             </div>`;
     }
 
+    function escXml(s) {
+      return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+    }
+
+    function nodeTemplateSVG(nd) {
+      const cat = NODE_CATS[nd.cat];
+      const rowH = 20, padTop = 30, padBottom = 12;
+      const rows = Math.max(nd.in.length, nd.out.length, 1);
+      const H = padTop + rows * rowH + padBottom;
+      let ports = '';
+      nd.in.forEach((p, i) => {
+        const y = padTop + i * rowH;
+        const c = PIN_COLORS[p[1]] || '#00BBF9';
+        ports += `<g><circle cx="12" cy="${y}" r="4.5" fill="${c}" stroke="#090A0D" stroke-width="1.5"/><text x="24" y="${y + 3.5}" font-family="JetBrains Mono, monospace" font-size="9.5" fill="#CBD5E1">${escXml(p[0])}</text></g>`;
+      });
+      nd.out.forEach((p, i) => {
+        const y = padTop + i * rowH;
+        const c = PIN_COLORS[p[1]] || '#00BBF9';
+        ports += `<g><circle cx="308" cy="${y}" r="4.5" fill="${c}" stroke="#090A0D" stroke-width="1.5"/><text x="296" y="${y + 3.5}" font-family="JetBrains Mono, monospace" font-size="9.5" fill="#CBD5E1" text-anchor="end">${escXml(p[0])}</text></g>`;
+      });
+      if (!nd.in.length) ports += `<text x="24" y="${padTop + 3.5}" font-family="JetBrains Mono, monospace" font-size="9" fill="#475569" font-style="italic">fonte / gerador — sem entradas</text>`;
+      if (!nd.out.length) ports += `<text x="296" y="${padTop + 3.5}" font-family="JetBrains Mono, monospace" font-size="9" fill="#475569" font-style="italic" text-anchor="end">node terminal — sem saídas</text>`;
+      return `
+        <div class="node-template bg-obsBase border border-obsBorder rounded-xl p-2" title="Template do node no estilo da interface Prism">
+          <svg viewBox="0 0 320 ${H}" class="w-full h-auto" role="img" aria-label="Template do node ${escXml(nd.name)} com suas portas">
+            <rect x="1" y="1" width="318" height="${H - 2}" rx="10" fill="#13161E" stroke="${cat.accent}" stroke-width="1.5"/>
+            <path d="M 1 20 H 319" stroke="${cat.accent}44" stroke-width="1"/>
+            <rect x="1" y="1" width="318" height="19" rx="9" fill="${cat.accent}16"/>
+            <text x="160" y="14.5" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="10.5" font-weight="bold" fill="#F1F5F9">${escXml(nd.name)}</text>
+            ${ports}
+          </svg>
+        </div>`;
+    }
+
     function nodeCard(nd) {
       const cat = NODE_CATS[nd.cat];
       const pins = [...new Set([...nd.in.map(p => p[1]), ...nd.out.map(p => p[1])])].join(' ');
@@ -2539,6 +2587,7 @@ const BLOCKS_META = [
             </div>
             <span class="font-mono text-[10px] text-slate-500 shrink-0">${nd.slug}</span>
           </div>
+          ${nodeTemplateSVG(nd)}
           <p class="text-xs text-slate-300 leading-relaxed">${nd.desc}</p>
           <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
             <div class="bg-obsBase border border-obsBorder rounded-xl p-3 space-y-1.5">
@@ -2559,27 +2608,50 @@ const BLOCKS_META = [
     }
 
     function renderCatalogs() {
-      document.getElementById('catalog1-container').innerHTML = NODES_P1.map(nodeCard).join('');
-      document.getElementById('catalog2-container').innerHTML = NODES_P2.map(nodeCard).join('');
+      const all = [...NODES_P1, ...NODES_P2];
+      const byCat = {};
+      all.forEach(nd => { (byCat[nd.cat] = byCat[nd.cat] || []).push(nd); });
+      let html = '';
+      Object.entries(NODE_CATS).forEach(([id, meta]) => {
+        const items = byCat[id] || [];
+        if (!items.length) return;
+        html += `
+          <div id="cat-session-${id}" class="cat-session space-y-4" data-cat="${id}">
+            <div class="flex items-center gap-2.5">
+              <span class="font-mono text-xs font-bold px-2 py-0.5 rounded border" style="color:${meta.accent};border-color:${meta.accent}55;background:${meta.accent}18">[${id}]</span>
+              <h2 class="text-base font-bold text-white">${meta.name}</h2>
+              <span class="font-mono text-[10px] text-slate-500">${items.length} NODES</span>
+              <div class="flex-1 h-px bg-obsDivider"></div>
+            </div>
+            <div class="grid grid-cols-1 xl:grid-cols-2 gap-4">
+              ${items.map(nodeCard).join('')}
+            </div>
+          </div>`;
+      });
+      document.getElementById('catalog1-container').innerHTML = html;
       applyCatalogFilters(1);
-      applyCatalogFilters(2);
     }
 
     function applyCatalogFilters(part) {
-      const cat = part === 1 ? catalog1Cat : catalog2Cat;
-      const sel = part === 1 ? '#catalog1-container .node-card' : '#catalog2-container .node-card';
+      const cat = catalog1Cat;
       let visible = 0;
-      document.querySelectorAll(sel).forEach(card => {
-        const matchCat = card.dataset.cat === cat;
-        const matchPin = catalogPin === 'all' || card.dataset.pins.split(' ').includes(catalogPin);
-        card.classList.toggle('hidden', !(matchCat && matchPin));
-        if (matchCat && matchPin) visible++;
+      document.querySelectorAll('#catalog1-container .cat-session').forEach(sess => {
+        let n = 0;
+        sess.querySelectorAll('.node-card').forEach(card => {
+          const matchCat = cat === 'ALL' || card.dataset.cat === cat;
+          const matchPin = catalogPin === 'all' || card.dataset.pins.split(' ').includes(catalogPin);
+          const show = matchCat && matchPin;
+          card.classList.toggle('hidden', !show);
+          if (show) { visible++; n++; }
+        });
+        sess.classList.toggle('hidden', n === 0);
       });
-      const countEl = document.getElementById(`catalog${part}-visible-count`);
+      const countEl = document.getElementById('catalog1-visible-count');
       if (countEl) countEl.textContent = visible;
-      document.querySelectorAll(`.cat-pill[data-part="${part}"]`).forEach(btn => {
+      document.querySelectorAll('.cat-pill').forEach(btn => {
         const on = btn.dataset.cat === cat;
-        const accent = NODE_CATS[btn.dataset.cat].accent;
+        const meta = NODE_CATS[btn.dataset.cat];
+        const accent = meta ? meta.accent : '#00BBF9';
         btn.className = on
           ? 'cat-pill px-3 py-1.5 rounded-lg font-mono text-xs font-semibold border transition'
           : 'cat-pill px-3 py-1.5 rounded-lg font-mono text-xs font-medium bg-obsBase text-slate-300 border border-obsBorder hover:border-slate-500 transition';
@@ -2600,24 +2672,22 @@ const BLOCKS_META = [
     }
 
     function setCatalogCategory(part, cat) {
-      if (part === 1) catalog1Cat = cat; else catalog2Cat = cat;
-      applyCatalogFilters(part);
+      catalog1Cat = cat;
+      applyCatalogFilters(1);
     }
 
     function setCatalogPin(pin) {
       catalogPin = pin;
       applyCatalogFilters(1);
-      applyCatalogFilters(2);
     }
 
     function jumpToNode(slug) {
       const all = [...NODES_P1, ...NODES_P2];
       const nd = all.find(x => x.slug === slug);
       if (!nd) return;
-      const part = NODES_P1.includes(nd) ? 1 : 2;
       catalogPin = 'all';
-      setCatalogCategory(part, nd.cat);
-      switchSection(part === 1 ? 'catalog' : 'catalog2');
+      setCatalogCategory(1, nd.cat);
+      switchSection('catalog');
       setTimeout(() => {
         const target = document.getElementById(`node-card-${slug}`);
         if (target) {
